@@ -1,1 +1,1 @@
-konex1.0
+Konex

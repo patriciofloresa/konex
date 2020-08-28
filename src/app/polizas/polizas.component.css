@@ -1,0 +1,20 @@
+input{
+    box-shadow: 1px 1px rebeccapurple;
+}
+.textalign-right{
+    text-align: right;
+}
+select{
+    box-shadow: 1px 1px rebeccapurple;
+}
+.center{
+    display: flex;
+    justify-content: center;
+}
+label{
+    font-weight: 500;
+    color: #161616;
+}
+.form-control:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(128, 140, 163);
+  }
