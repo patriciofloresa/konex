@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { PolizasComponent } from './polizas/polizas.component';
 import { AseguradosComponent } from './asegurados/asegurados.component';
 import { AseguradorComponent } from './asegurador/asegurador.component';
+import { AgregarComponent } from './polizas/agregar/agregar.component';
 
 const routes : Routes = [
   { path: '', component: PolizasComponent},
@@ -16,6 +17,7 @@ const routes : Routes = [
   { path: 'polizas', component: PolizasComponent },
   { path: 'asegurados', component: AseguradosComponent },
   { path: 'asegurador', component: AseguradorComponent },
+  { path: 'polizas/agregar', component: AgregarComponent }
 ]
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ const routes : Routes = [
     HeaderComponent,
     PolizasComponent,
     AseguradosComponent,
-    AseguradorComponent
+    AseguradorComponent,
+    AgregarComponent
   ],
   imports: [
     BrowserModule,
