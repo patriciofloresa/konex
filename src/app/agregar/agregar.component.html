@@ -12,7 +12,7 @@
             <input type text class="form-control" id="fc_prop" value="{{ this.dated | date: 'dd-MMM-yyyy' }}" readonly> 
         </div>
         <div class="col-md-4 col-lg-2">
-            <label for="ramo"> Ramo </label>
+            <label for="ramo"> Ramo </label> <a [routerLink]="['/ramo']"><img src="src\assets\img\plus.svg" alt="agregar_ramo"></a>
             <select class="form-control" name="ramo" id="ramo" aria-placeholder="ramos">
               <option value=""> Incendios </option>
               <option value=""> Vehiculos </option>
@@ -170,3 +170,4 @@
       <button class="btn bg-primary m-2"> Agregar </button>
     </div>
 </form>
+

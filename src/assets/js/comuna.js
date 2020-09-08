@@ -91,17 +91,17 @@ jQuery(document).ready(function () {
 		});
 		jQuery('#comunas').html(htmlComuna);
 	});
-	jQuery('#comunas').change(function () {
-		if (jQuery(this).val() == 'sin-region') {
-			alert('selecciones Región');
-		} else if (jQuery(this).val() == 'sin-comuna') {
-			alert('selecciones Comuna');
-		}
-	});
-	jQuery('#regiones').change(function () {
-		if (jQuery(this).val() == 'sin-region') {
-			alert('selecciones Región');
-		}
-	});
+	// jQuery('#comunas').change(function () {
+	// 	if (jQuery(this).val() == 'sin-region') {
+	// 		alert('selecciones Región');
+	// 	} else if (jQuery(this).val() == 'sin-comuna') {
+	// 		alert('selecciones Comuna');
+	// 	}
+	// });
+	// jQuery('#regiones').change(function () {
+	// 	if (jQuery(this).val() == 'sin-region') {
+	// 		alert('selecciones Región');
+	// 	}
+	// });
 
 });

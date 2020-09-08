@@ -7,13 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PolizasComponent implements OnInit {
 
-  dated = Date.now();
-
   constructor() { }
 
   ngOnInit(): void {
-    
-    console.log(this.dated)
 
   }
 

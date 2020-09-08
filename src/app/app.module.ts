@@ -6,18 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
+import { AfiliadosComponent } from './afiliados/afiliados.component';
+import { RamosComponent } from './ramos/ramos.component';
 import { PolizasComponent } from './polizas/polizas.component';
-import { AseguradosComponent } from './asegurados/asegurados.component';
-import { AseguradorComponent } from './asegurador/asegurador.component';
-import { AgregarComponent } from './polizas/agregar/agregar.component';
+import { AgregarComponent } from './agregar/agregar.component';
+
 
 const routes : Routes = [
   { path: '', component: PolizasComponent},
-  //{ path: '**',redirectTo:'polizas', pathMatch: 'full'},
-  { path: 'polizas', component: PolizasComponent },
-  { path: 'asegurados', component: AseguradosComponent },
-  { path: 'asegurador', component: AseguradorComponent },
-  { path: 'polizas/agregar', component: AgregarComponent }
+  { path: 'polizas/agregar', component: AgregarComponent },
+  { path: 'ramos', component: RamosComponent},
+  { path: 'afiliados', component: AfiliadosComponent}
 ]
 @NgModule({
   declarations: [
@@ -25,9 +24,9 @@ const routes : Routes = [
     LoginComponent,
     HeaderComponent,
     PolizasComponent,
-    AseguradosComponent,
-    AseguradorComponent,
-    AgregarComponent
+    AgregarComponent,
+    AfiliadosComponent,
+    RamosComponent
   ],
   imports: [
     BrowserModule,
