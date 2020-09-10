@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AgregarComponent implements OnInit {
 
   dated = Date.now();
-  
+  showCob:boolean = true
   constructor() { }
 
   public loadScript() {

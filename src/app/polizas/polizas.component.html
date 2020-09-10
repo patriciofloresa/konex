@@ -25,7 +25,7 @@
             <td scope="row"> Entel </td>
             <td scope="row"> Vigente </td>
             <td scope="row">
-                <button class="btn btn-primary p-1">Modificar</button>
+                <button class="btn btn-primary p-1" [routerLink]="['/polizas/modificar']">Modificar</button>
                 <button class="btn btn-primary p-1">Incorporar</button>
                 <button class="btn btn-primary p-1">Excluir</button>
                 <button class="btn btn-primary p-1">Anular</button>
@@ -39,7 +39,18 @@
 <br>
 <div class="d-flex justify-content-around">
     <div class="bg p-3">
-        <h3 class="center pb-3">Pólizas a Vencer</h3>
+        <h3 class="center pb-1">Control de Vencimiento</h3>
+        
+        <div class="row d-flex justify-content-around pb-3">
+            <div>    
+                <label class="center" for="desde"> desde </label>        
+                <input type="date" name="" id="desde" class="form-control">
+            </div>            
+            <div>   
+                <label class="center" for="hasta"> hasta </label>
+                <input type="date" name="" id="hasta" class="form-control">         
+            </div>
+        </div>
         <table class="table table-bordered table-dark table-responsive-sm">
             <thead>
                 <tr>

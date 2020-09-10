@@ -17,7 +17,7 @@ function createWindow() {
         win = null;
     });
 }
-// Para ver el estado de la app
+// // Para ver el estado de la app
 electron_1.app.on('ready', createWindow);
 electron_1.app.on('activate', function () {
     if (win === null) {

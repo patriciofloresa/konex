@@ -20,7 +20,7 @@ function createWindow() {
     win = null;
   });
 }
-// Para ver el estado de la app
+// // Para ver el estado de la app
 app.on('ready', createWindow)
 
 app.on('activate', () => {
