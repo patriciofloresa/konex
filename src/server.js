@@ -1,23 +1,18 @@
-//server.js
+const express = require('express');
+const app = express();
 
-const express = require('express'),
-  path = require('path'),
-  bodyParser = require('body-parser'),
-  cors = require('cors'),
-  mongoose = require('mongoose'),
-  config = require('./config/DB');
+const { mongoose } = require('./database');
 
-  mongoose.Promise = global.Promise;
-  mongoose.connect(config.DB).then(
-    () => {console.log('Database is connected') },
-    err => { console.log('Can not connect to the database'+ err)}
-  );
+//Settings
+app.set('port', process.env.PORT || 4000);
 
-  const app = express();
-  app.use(bodyParser.json());
-  app.use(cors());
-  const port = process.env.PORT || 4000;
+//Middlewares
+app.use(express.json());
 
-  const server = app.listen(port, function(){
-    console.log('Listening on port ' + port);
-  });
+//Routes
+app.use(require('./server/routes/poliza.routes'))
+
+//Starting the server
+app.listen(app.get('port'), () => {
+  console.log('Server on port', app.get('port'));
+})

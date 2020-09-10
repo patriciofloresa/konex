@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "main": "electron/dist/main.js",
   "scripts": {
+    
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -11,7 +12,7 @@
     "e2e": "ng e2e",
     "postinstall": "electron-builder install-app-deps",
     "electron": "ng build --base-href \"./\" && tsc -p electron && electron .",
-    "serve": "nodemon server.js"
+    "dev": "nodemon src/server.js"
   },
   "private": true,
   "dependencies": {
