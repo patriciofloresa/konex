@@ -1,1 +1,94 @@
-<h1>lista poliza works!npm</h1>
+<h3 class="center"> Pólizas</h3>
+<div class="mt-4">
+    <form class="m-1 form-inline d-flex justify-content-center">
+        <input type="search" placeholder="Nro Poliza" class="form-control mr-sm-2">
+        <input type="search" placeholder="Compañia Aseguradora" class="form-control mr-sm-2"
+        ><button type="submit" class="btn btn-secondary my-2 my-sm-0">Buscar</button>
+    </form>
+</div>
+<div class="p-5">
+    <table class="table table-bordered table-dark table-responsive-sm ">
+        <thead>
+            <tr>
+                <th scope="col"> Nro Propuesta </th>
+                <th scope="col"> Rut Aseguradora </th>
+                <th scope="col"> Compañia Aseguradora </th>
+                <th scope="col"> Estado </th>
+                <th scope="col"> Acciones </th>                
+                <th class="btn btn-outline-primary d-flex justify-content-center m-1 bd" tabindex="0" [routerLink]="['/polizas/agregar']"> Agregar </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td scope="row"> 1 </td>
+            <td scope="row"> 77.889.777-1 </td>
+            <td scope="row"> Entel </td>
+            <td scope="row"> Vigente </td>
+            <td scope="row">
+                <button class="btn btn-primary p-1" [routerLink]="['/polizas/modificar']">Modificar</button>
+                <button class="btn btn-primary p-1">Incorporar</button>
+                <button class="btn btn-primary p-1">Excluir</button>
+                <button class="btn btn-primary p-1">Anular</button>
+                <button class="btn btn-primary p-1">Cancelar</button>
+                <button class="btn btn-danger p-1">Historial</button>
+            </td>
+        </tbody>
+    </table>
+</div>
+<hr>
+<br>
+<div class="d-flex justify-content-around">
+    <div class="bg p-3">
+        <h3 class="center pb-1">Control de Vencimiento</h3>
+        
+        <div class="row d-flex justify-content-around pb-3">
+            <div>    
+                <label class="center" for="desde"> desde </label>        
+                <input type="date" name="" id="desde" class="form-control">
+            </div>            
+            <div>   
+                <label class="center" for="hasta"> hasta </label>
+                <input type="date" name="" id="hasta" class="form-control">         
+            </div>
+        </div>
+        <table class="table table-bordered table-dark table-responsive-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Nro Propuesta</th>
+                    <th scope="col">Rut Compañia Aseguradora</th>
+                    <th scope="col">Compañia Aseguradora</th>
+                    <th scope="col"> Fecha Vencimiento </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">1</td>
+                    <td scope="row">77.889.777-1</td>
+                    <td scope="row">Entel</td>
+                    <td scope="row"> 15 - Octubre - 2020 </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="bg p-3">
+        <h3 class="center pb-3">Próximos Pagos</h3>
+        <table class="table table-bordered table-dark table-responsive-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Nro Propuesta</th>
+                    <th scope="col">Rut Compañia Aseguradora</th>
+                    <th scope="col">Compañia Aseguradora</th>
+                    <th scope="col"> Fecha Vencimiento </th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr>
+                    <td scope="row">1</td>
+                    <td scope="row">77.889.777-1</td>
+                    <td scope="row">Entel</td>
+                    <td scope="row"> 15 - Octubre - 2020 </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
