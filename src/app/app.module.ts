@@ -6,18 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //Addons
 import { HttpClientModule } from '@angular/common/http'
-
+import { FormsModule } from '@angular/forms'
 //routes
-import { LoginComponent } from './login/login.component';
-import { HeaderComponent } from './header/header.component';
-import { AfiliadosComponent } from './afiliados/afiliados.component';
-import { RamosComponent } from './ramos/ramos.component';
-import { PolizasComponent } from './polizas/polizas.component';
-import { AgregarComponent } from './agregar/agregar.component';
+import { LoginComponent } from './components/login/login.component';
+import { HeaderComponent } from './components/header/header.component';
+import { AfiliadosComponent } from './components/afiliados/afiliados.component';
+import { RamosComponent } from './components/ramos/ramos.component';
+import { PolizasComponent } from './components/polizas/polizas.component';
+import { AgregarComponent } from './components/agregar/agregar.component';
 
 //Services
-import { AdpolizasService } from './adpolizas.service';
-import { ModificarComponent } from './modificar/modificar.component';
+import { ModificarComponent } from './components/modificar/modificar.component';
 
 const routes : Routes = [
   { path: '', component: PolizasComponent},
@@ -42,9 +41,10 @@ const routes : Routes = [
     AppRoutingModule,
     RouterModule.forRoot(routes),
     AutocompleteLibModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [ AdpolizasService ],
+  providers: [  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

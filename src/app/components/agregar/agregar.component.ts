@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { PolizaService } from '../../services/poliza/poliza.service';
 
 @Component({
   selector: 'app-agregar',
@@ -10,7 +12,8 @@ export class AgregarComponent implements OnInit {
 
   dated = Date.now();
   showCob:boolean = true
-  constructor() { }
+
+  constructor(public poliza: PolizaService) { }
 
   public loadScript() {
     const node = document.createElement('script');
@@ -23,6 +26,11 @@ export class AgregarComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadScript();
+  }
+  
+  addPoliza(form: NgForm){
+    this.poliza.postPoliza(form.value)
+      .subscribe(res => console.log(res))
   }
 
 }

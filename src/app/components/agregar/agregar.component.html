@@ -1,18 +1,14 @@
-<h2 class="center m-1 pt-2"> Endoso de Modificación </h2>
-<form class="ml-5 mr-5">
+<h2 class="center m-1 pt-2"> Aregar Polizas </h2>
+<form #polizaForm = "ngForm" (ngSubmit)="addPoliza(polizaForm)" class="ml-5 mr-5">
   <div class="p-0.5">
     <div class="d-flex justify-content-end">
-      <div class="col-md-4 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="fc_prop"> Fecha Propuesta </label>
-        <input type text class="form-control" id="fc_prop" value=" " readonly>
+        <input type="date" class="form-control" id="fc_prop" value="{{ this.dated | date: 'dd-MM-yyyy' }}" [(ngModel)]="poliza.selectPoliza.fcPropuesta" readonly>
       </div>
       <div class="col-md-4 col-lg-2">
         <label for="nro_poliza"> Numero Propuesta</label>
-        <input type="number" class="form-control textalign-right" value="1" id="nro_poliza" readonly>
-      </div>
-      <div class="col-md-4 col-lg-2">
-        <label for="nro_poliza"> Numero de Poliza</label>
-        <input type="number" class="form-control textalign-right" value="1" id="nro_poliza">
+        <input type="Text" class="form-control textalign-right" value="1" id="nro_poliza" readonly>
       </div>
     </div>    
   </div>
@@ -20,14 +16,14 @@
     <hr>
     <div class="center form-row" id="DatosAsegurados">
       <div class="col-md-6">
-        <label for="company"> Compañia Aseguradora </label>
+        <label for="company" class="control-label"> Compañia Aseguradora </label>
         <input type="text" class="form-control" placeholder="Nombre Compañia" id="company">
       </div>
       <div class="col-md-4 col-lg-2">
         <label for="ramo"> Ramo </label>
         <input type="text" class="form-control" placeholder="Ej: Incendios">
       </div>
-      <div class="col-md-2 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Sub-Ramo </label>
         <input type="text" class="form-control" placeholder=" Sub Ramo " id="company">
       </div>
@@ -77,11 +73,11 @@
   <hr>
   <div class="p-3">
     <div class="center form-row" id="DatosAsegurados">
-      <div class="col-md-3 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Comisión Konex </label>
-        <input type="text" class="form-control" placeholder="Comisión" id="company">
+        <input type="number" class="form-control" placeholder="Comisión" id="company" value='0'>
       </div>
-      <div class="col-md-3 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Forma de Pago </label>
         <select class="form-control" name="" id="">
           <option value="pac"> PAC  </option>
@@ -90,11 +86,11 @@
         </select>
 
       </div>
-      <div class="col-md-2 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="cuotas"> Nro Cuotas </label>
         <input type="number" class="form-control" id="cuotas" value="0">
       </div>
-      <div class="col-md-3 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Primera Cuota </label>
         <input type="date" class="form-control" id="company">
       </div>
@@ -103,23 +99,15 @@
   <hr>
   <div class="p-3">
     <div class="center form-row" id="DatosAsegurados">
-      <div class="col-md-2 col-lg-2">
-        <label for="company"> Comisión </label>
-        <input type="text" class="form-control" placeholder="Comisión" id="company">
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label for="company"> Comisión empresa </label>
+        <input type="number" class="form-control" value="0" id="company">
       </div>
-      <div class="col-md-3 col-lg-2">
-        <label for="company"> Forma de Pago </label>
-        <input type="text" class="form-control" id="company" placeholder="EJ: 10 CUOTA, PAGO CON PAC">
-      </div>
-      <div class="col-md-3 col-lg-2">
-        <label for="company"> Primera Cuota </label>
-        <input type="date" class="form-control" id="company">
-      </div>
-      <div class="col-md-3 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Inicio Vigencia </label>
         <input type="date" class="form-control" id="company">
       </div>
-      <div class="col-md-3 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Fin Vigencia </label>
         <input type="date" class="form-control" id="company">
       </div>
@@ -128,29 +116,29 @@
   <hr>
   <div class="p-3">
     <div class="center form-row" id="DatosAsegurados">
-      <div class="col-md-2 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Prima Afecta </label>
         <input type="number" class="form-control" placeholder=" Prima Afecta" id="company" value="0">
       </div>
-      <div class="col-md-2 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Prima Exenta </label>
         <input type="number" class="form-control" id="company" placeholder=" Prima Exenta " value="0">
       </div>
 
-      <div class="col-md-2 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Prima Neta </label>
         <input type="number" class="form-control" id="company" placeholder=" Prima NETA " value="0">
       </div>
 
-      <div class="col-md-2 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> IVA </label>
         <input type="number" class="form-control" id="company" placeholder=" IVA " value="0">
       </div>
-      <div class="col-md-2 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Prima Bruta </label>
         <input type="number" class="form-control" id="company" placeholder=" Prima Bruta " value="0">
       </div>
-      <div class="col-md-2 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Tipo Moneda </label>
         <select class="form-control" id="company" placeholder=" Tipo de moneda como se pagara ">
           <option value="">UF</option>
@@ -159,17 +147,17 @@
           <option value="">AMD</option>
         </select>
       </div>
-      <div class="col-md-3 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Comisión Exenta % </label>
         <input type="number" class="form-control" id="company" placeholder=" Valor Exenta % " value="0">
       </div>
-      <div class="col-md-3 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Comision Afecta % </label>
         <input type="number" class="form-control" placeholder="Valor Afecta %" id="company" value="0">
       </div>
-      <div class="col-md-3 col-lg-2">
+      <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="company"> Monto Total </label>
-        <input type="number" class="form-control" placeholder=" Monto Asegurado Total " id="company">
+        <input type="number" class="form-control" placeholder=" Monto Asegurado Total " value="0" id="company">
       </div>
     </div>
   </div>
