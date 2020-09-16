@@ -11,6 +11,7 @@ import { PolizaService } from '../../services/poliza/poliza.service';
 export class AgregarComponent implements OnInit {
 
   dated = Date.now();
+  
   showCob:boolean = true
 
   constructor(public poliza: PolizaService) { }
