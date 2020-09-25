@@ -8,11 +8,13 @@ polizaController.getPolizas = async(req, res) => {
     res.json(polizas);
 }
 
-polizaController.createPoliza =async(req, res) => {
+polizaController.createPoliza = async (req, res) => {
    const poliza = new Poliza(req.body)
-   await poliza.save();
-   console.log(poliza)
-   res.json(poliza)
+   console.log(poliza);
+   poliza.save();
+   res.json({
+    'status':'Poliza Guardada'
+    });   
 }
 
 polizaController.getPoliza = async(req, res) => {
@@ -31,8 +33,9 @@ polizaController.editPoliza = async(req, res) => {
     const poliza = {       
         nombreAseguradora: req.body.nombreAseguradora,
         ramo: req.body.ramo,
-        subRamo: req.body.subRamo,
+        montoAsegurado: req.body.montoAsegurado,        
         rutCliente: req.body.rutCliente,
+        alias: req.body.alias,
         nombreCliente: req.body.nombreCliente,
         rutAcreedor: req.body.rutAcreedor,
         nombreAcreedor: req.body.nombreAcreedor,

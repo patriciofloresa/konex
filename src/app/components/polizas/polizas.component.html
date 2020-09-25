@@ -14,17 +14,24 @@
                 <th scope="col"> Rut Aseguradora </th>
                 <th scope="col"> Compañia Aseguradora </th>
                 <th scope="col"> Estado </th>
-                <th scope="col"> Acciones </th>                
+                <th scope="col"> Estado Pago </th>
+                <th scope="col">Inicio Vigencia</th>
+                <th scope="col">Fin Vigencia</th>   
+                <th scope="col"> Acciones </th>             
                 <th class="btn btn-outline-primary d-flex justify-content-center m-1 bd" tabindex="0" [routerLink]="['/polizas/agregar']"> Agregar </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <td scope="row"> 1 </td>
-            <td scope="row"> 77.889.777-1 </td>
-            <td scope="row"> Entel </td>
-            <td scope="row"> Vigente </td>
-            <td scope="row">
+            <tr *ngFor="let poliza of polizaService.poliza">
+            <td scope="row"> {{poliza.nroPropuesta}} </td>
+            <td scope="row"> {{poliza.rutCliente}} </td>
+            <td scope="row"> {{poliza.nombreCliente}} </td>
+            <td scope="row"> {{poliza.estado}} </td>
+            <td scope="row"> {{poliza.estadoPago}} </td>
+            <td scope="row"> {{poliza.inicioVigencia}} </td>
+            <td scope="row"> {{poliza.finVigencia}} </td>
+            <td>
+                <button class="btn btn-primary p-1">Editar</button>
                 <button class="btn btn-primary p-1" [routerLink]="['/polizas/modificar']">Modificar</button>
                 <button class="btn btn-primary p-1">Incorporar</button>
                 <button class="btn btn-primary p-1">Excluir</button>

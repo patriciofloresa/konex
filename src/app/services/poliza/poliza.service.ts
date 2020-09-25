@@ -8,11 +8,15 @@ import { Poliza } from 'src/app/models/poliza';
 export class PolizaService {
 
   selectPoliza: Poliza;
-  readonly URL_API = "http://localhost:4000/"
-  constructor(private http: HttpClient) { }
+  poliza: Poliza[];
+  readonly URL_API = 'http://localhost:3000';
 
-  postPoliza(poliza: Poliza){
-    return this.http.post(this.URL_API+`polizas/agregar`, poliza);
+  constructor(private http: HttpClient) {
+    this.selectPoliza = new Poliza();
+  }
+
+  createPoliza(poliza: Poliza){
+    return this.http.post(this.URL_API+`/polizas/agregar`, poliza);
   }
 
   getPolizas(){
@@ -20,27 +24,27 @@ export class PolizaService {
   }
 
   modPoliza(poliza: Poliza){
-    return this.http.put(this.URL_API+`polizas/modificar/${poliza._id}`,poliza);
+    return this.http.put(this.URL_API+`/polizas/modificar/${poliza._id}`,poliza);
   }
 
   incPoliza(poliza: Poliza){
-    return this.http.put(this.URL_API+`polizas/incorporar/${poliza._id}`,poliza);
+    return this.http.put(this.URL_API+`/polizas/incorporar/${poliza._id}`,poliza);
   }
 
   excPoliza(poliza: Poliza){
-    return this.http.put(this.URL_API+`polizas/excluir/${poliza._id}`,poliza);
+    return this.http.put(this.URL_API+`/polizas/excluir/${poliza._id}`,poliza);
   }
 
   anularPoliza(poliza: Poliza){
-    return this.http.put(this.URL_API+`polizas/modificar/${poliza._id}`,poliza);
+    return this.http.put(this.URL_API+`/polizas/modificar/${poliza._id}`,poliza);
   }
   
   canPoliza(poliza: Poliza){
-    return this.http.put(this.URL_API+`polizas/cancelar/${poliza._id}`,poliza);
+    return this.http.put(this.URL_API+`/polizas/cancelar/${poliza._id}`,poliza);
   }
 
   hisPoliza(poliza: Poliza){
-    return this.http.put(this.URL_API+`polizas/historial/${poliza._id}`,poliza);
+    return this.http.put(this.URL_API+`/polizas/historial/${poliza._id}`,poliza);
   }
   
 }

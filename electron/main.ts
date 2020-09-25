@@ -15,6 +15,7 @@ function createWindow() {
           slashes: true
       })
   );
+  win.webContents.openDevTools();
   win.removeMenu();
   win.on('closed', () => {
     win = null;

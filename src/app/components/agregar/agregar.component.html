@@ -1,14 +1,16 @@
 <h2 class="center m-1 pt-2"> Aregar Polizas </h2>
-<form #polizaForm = "ngForm" (ngSubmit)="addPoliza(polizaForm)" class="ml-5 mr-5">
+<form #polizaForm = "ngForm" (ngSubmit)="createPoliza(polizaForm)" class="ml-5 mr-5">
   <div class="p-0.5">
     <div class="d-flex justify-content-end">
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="fc_prop"> Fecha Propuesta </label>
-        <input type="date" class="form-control" id="fc_prop" value="{{ this.dated | date: 'dd-MM-yyyy' }}" [(ngModel)]="poliza.selectPoliza.fcPropuesta" readonly>
+        <label for="fcPropuesta"> Fecha Propuesta </label>
+        <input type="date" class="form-control" id="fcPropuesta" value="" name="fcPropuesta" #fcPropuesta="ngModel"
+          [(ngModel)]="poliza.selectPoliza.fcPropuesta" >
       </div>
-      <div class="col-md-4 col-lg-2">
-        <label for="nro_poliza"> Numero Propuesta</label>
-        <input type="Text" class="form-control textalign-right" value="1" id="nro_poliza" readonly>
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label for="nroPropuesta"> Numero Propuesta</label>
+        <input type="Text" class="form-control textalign-right" value="1" id="nroPropuesta" name="nroPropuesta" #nroPropuesta="ngModel"
+        [(ngModel)]="poliza.selectPoliza.nroPropuesta">
       </div>
     </div>    
   </div>
@@ -17,55 +19,71 @@
     <div class="center form-row" id="DatosAsegurados">
       <div class="col-md-6">
         <label for="company" class="control-label"> Compañia Aseguradora </label>
-        <input type="text" class="form-control" placeholder="Nombre Compañia" id="company">
+        <input type="text" class="form-control" placeholder="Nombre Compañia" id="company" name="nombreAseguradora" #nombreAseguradora="ngModel"
+        [(ngModel)]="poliza.selectPoliza.nombreAseguradora">
       </div>
       <div class="col-md-4 col-lg-2">
         <label for="ramo"> Ramo </label>
-        <input type="text" class="form-control" placeholder="Ej: Incendios">
+        <input type="text" class="form-control" placeholder="Ej: Incendios" id="ramo" name="ramo" #ramo="ngModel"
+        [(ngModel)]="poliza.selectPoliza.ramo">
       </div>
-      <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Sub-Ramo </label>
-        <input type="text" class="form-control" placeholder=" Sub Ramo " id="company">
+      <div class="col-md-4 col-lg-2">
+        <label for="montoAsegurado"> Monto Asegurado </label>
+        <input type="text" class="form-control" placeholder="Ej: Incendios" id="montoAsegurado" name="montoAsegurado" #montoAsegurado="ngModel"
+        [(ngModel)]="poliza.selectPoliza.montoAsegurado">
       </div>
     </div>
     <div class="center form-row mt-3">
       <div class="col-md-4 col-lg-1">
-        <label for="rut_cli"> Rut Cliente</label>
-        <input type="Text" class="form-control" placeholder="Rut Cliente" id="rut_cli">
+        <label for="rutCliente"> Rut Cliente</label>
+        <input type="Text" class="form-control" placeholder="Rut Cliente" id="rutCliente" name="rutCliente" #rutCliente="ngModel"
+        [(ngModel)]="poliza.selectPoliza.rutCliente">
+      </div>
+      <div class="col-md-4 col-lg-1">
+        <label for="alias"> alias </label>
+        <input type="text" class="form-control" placeholder="alias" id="alias" name="alias" #alias="ngModel"
+        [(ngModel)]="poliza.selectPoliza.alias">
       </div>
       <div class="col-md-4 col-lg-4">
-        <label for="nombre_cli"> Nombre Cliente </label>
-        <input type="text" class="form-control" placeholder="Nombre Cliente" id="nombre_cli">
+        <label for="nombreCliente"> Nombre Cliente </label>
+        <input type="text" class="form-control" placeholder="Nombre Cliente" id="nombreCliente" name="nombreCliente" #nombreCliente="ngModel"
+        [(ngModel)]="poliza.selectPoliza.nombreCliente">
       </div>
       <div class="col-md-4 col-lg-1">
-        <label for="rut_ac"> Rut Acreedor</label>
-        <input type="Text" class="form-control" placeholder="Rut Acreedor" id="rut_ac">
+        <label for="rutAcreedor"> Rut Acreedor</label>
+        <input type="Text" class="form-control" placeholder="Rut Acreedor" id="rutAcreedor" name="rutAcreedor" #rutAcreedor="ngModel"
+        [(ngModel)]="poliza.selectPoliza.rutAcreedor">
       </div>
       <div class="col-md-4 col-lg-2">
-        <label for="nombre_ac"> Nombre Acreedor </label>
-        <input type="text" class="form-control" placeholder="Nombre Acreedor" id="nombre_ac">
+        <label for="nombreAcreedor"> Nombre Acreedor </label>
+        <input type="text" class="form-control" placeholder="Nombre Acreedor" id="nombreAcreedor" name="nombreAcreedor" #nombreAcreedor="ngModel"
+        [(ngModel)]="poliza.selectPoliza.nombreAcreedor">
       </div>
       <div class="col-md-4 col-lg-1">
-        <label for="rut_man"> Rut Mandante</label>
-        <input type="Text" class="form-control" placeholder="Rut Mandante" id="rut_man">
+        <label for="rutMandante"> Rut Mandante</label>
+        <input type="Text" class="form-control" placeholder="Rut Mandante" id="rutMandante" name="rutMandante" #rutMandante="ngModel"
+        [(ngModel)]="poliza.selectPoliza.rutMandante">
       </div>
       <div class="col-md-4 col-lg-2">
-        <label for="nombre_man"> Nombre Mandante</label>
-        <input type="Text" class="form-control" placeholder="Nombre Mandante" id="nombre_man">
+        <label for="nombreMandante"> Nombre Mandante</label>
+        <input type="Text" class="form-control" placeholder="Nombre Mandante" id="nombreMandante" name="nombreMandante" #nombreMandante="ngModel"
+        [(ngModel)]="poliza.selectPoliza.nombreMandante">
       </div>
     </div>
     <div class="center form-row mt-3">
       <div class="col-md-3 col-lg-3">
-        <label for="NombreAsegurado"> Direccion Comercial </label>
-        <input type="text" class="form-control" placeholder="Direccion Comercial" id="NombreAsegurado">
+        <label for="direccion"> Direccion Comercial </label>
+        <input type="text" class="form-control" placeholder="Direccion Comercial" id="direccion" name="direccion" #direccion="ngModel"
+        [(ngModel)]="poliza.selectPoliza.direccion">
       </div>
       <div class="col-md-3 col-lg-3">
         <label for="regiones"> Region </label>
-        <select class="form-control" id="regiones"></select>
+        <select class="form-control" id="regiones" name="region" #region="ngModel"
+        [(ngModel)]="poliza.selectPoliza.region"></select>
       </div>
       <div class="col-md-3 col-lg-3">
         <label for="comunas"> Comuna </label>
-        <select class="form-control" id="comunas"></select>
+        <select class="form-control" id="comunas" name="comuna" #comuna="ngModel" [(ngModel)]="poliza.selectPoliza.comuna"></select>
       </div>
     </div>
 
@@ -74,12 +92,13 @@
   <div class="p-3">
     <div class="center form-row" id="DatosAsegurados">
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Comisión Konex </label>
-        <input type="number" class="form-control" placeholder="Comisión" id="company" value='0'>
+        <label for="comisionKonex"> Comisión Konex </label>
+        <input type="number" class="form-control" placeholder="Comisión" id="comisionKonex" value='0' name="comisionKonex" #comisionKonex="ngModel"
+        [(ngModel)]="poliza.selectPoliza.comisionKonex">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Forma de Pago </label>
-        <select class="form-control" name="" id="">
+        <label for="formaPago"> Forma de Pago </label>
+        <select class="form-control" name="" id="formaPago" name="formaPago" #formaPago="ngModel" [(ngModel)]="poliza.selectPoliza.formaPago">
           <option value="pac"> PAC  </option>
           <option value="pat"> PAT </option>
           <option value="directo"> DIRECTO </option>
@@ -87,29 +106,14 @@
 
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="cuotas"> Nro Cuotas </label>
-        <input type="number" class="form-control" id="cuotas" value="0">
+        <label for="nroCuotas"> Nro Cuotas </label>
+        <input type="number" class="form-control" id="nroCuotas" value="0" name="nroCuotas" #nroCuotas="ngModel"
+        [(ngModel)]="poliza.selectPoliza.nroCuotas">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Primera Cuota </label>
-        <input type="date" class="form-control" id="company">
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class="p-3">
-    <div class="center form-row" id="DatosAsegurados">
-      <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Comisión empresa </label>
-        <input type="number" class="form-control" value="0" id="company">
-      </div>
-      <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Inicio Vigencia </label>
-        <input type="date" class="form-control" id="company">
-      </div>
-      <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Fin Vigencia </label>
-        <input type="date" class="form-control" id="company">
+        <label for="fcPrimeraCuota"> Primera Cuota </label>
+        <input type="date" class="form-control" id="fcPrimeraCuota" name="fcPrimeraCuota" #fcPrimeraCuota="ngModel"
+        [(ngModel)]="poliza.selectPoliza.fcPrimeraCuota"> 
       </div>
     </div>
   </div>
@@ -117,47 +121,71 @@
   <div class="p-3">
     <div class="center form-row" id="DatosAsegurados">
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Prima Afecta </label>
-        <input type="number" class="form-control" placeholder=" Prima Afecta" id="company" value="0">
+        <label for="comisionEmpresa"> Comisión empresa </label>
+        <input type="number" class="form-control" value="0" id="comisionEmpresa" name="comisionEmpresa" #comisionEmpresa="ngModel"
+        [(ngModel)]="poliza.selectPoliza.comisionEmpresa">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Prima Exenta </label>
-        <input type="number" class="form-control" id="company" placeholder=" Prima Exenta " value="0">
+        <label for="inicioVigencia"> Inicio Vigencia </label>
+        <input type="date" class="form-control" id="inicioVigencia" name="inicioVigencia" #inicioVigencia="ngModel"
+        [(ngModel)]="poliza.selectPoliza.inicioVigencia">
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label for="finVigencia"> Fin Vigencia </label>
+        <input type="date" class="form-control" id="finVigencia" name="finVigencia" #finVigencia="ngModel"
+        [(ngModel)]="poliza.selectPoliza.finVigencia">
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="p-3">
+    <div class="center form-row" id="DatosAsegurados">
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label for="primaAfecta"> Prima Afecta </label>
+        <input type="number" class="form-control" placeholder="Prima Afecta" id="primaAfecta" value="0" name="primaAfecta" #primaAfecta="ngModel"
+        [(ngModel)]="poliza.selectPoliza.primaAfecta">
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label for="primaExenta"> Prima Exenta </label>
+        <input type="number" class="form-control" id="primaExenta" placeholder="Prima Exenta" value="0" name="primaExenta" #primaExenta="ngModel"
+        [(ngModel)]="poliza.selectPoliza.primaExenta">
       </div>
 
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Prima Neta </label>
-        <input type="number" class="form-control" id="company" placeholder=" Prima NETA " value="0">
+        <label for="primaNeta"> Prima Neta </label>
+        <input type="number" class="form-control" id="primaNeta" placeholder=" Prima NETA " value="0" name="primaNeta" #primaNeta="ngModel"
+        [(ngModel)]="poliza.selectPoliza.primaNeta"> 
       </div>
 
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> IVA </label>
-        <input type="number" class="form-control" id="company" placeholder=" IVA " value="0">
+        <label for="iva"> IVA </label>
+        <input type="number" class="form-control" id="iva" placeholder="iva" value="0" name="iva" #iva="ngModel"
+        [(ngModel)]="poliza.selectPoliza.iva">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Prima Bruta </label>
-        <input type="number" class="form-control" id="company" placeholder=" Prima Bruta " value="0">
+        <label for="primaBruta"> Prima Bruta </label>
+        <input type="number" class="form-control" id="primaBruta" placeholder=" Prima Bruta " value="0" name="primaBruta" #primaBruta="ngModel"
+        [(ngModel)]="poliza.selectPoliza.primaBruta">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Tipo Moneda </label>
-        <select class="form-control" id="company" placeholder=" Tipo de moneda como se pagara ">
-          <option value="">UF</option>
-          <option value="">CLP</option>
-          <option value="">ARP</option>
-          <option value="">AMD</option>
-        </select>
+        <label for="tipoMoneda"> Tipo Moneda </label>
+        <input class="form-control" id="tipoMoneda" placeholder="Tipo de moneda como se pagara" name="tipoMoneda" #tipoMoneda="ngModel"
+        [(ngModel)]="poliza.selectPoliza.tipoMoneda">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Comisión Exenta % </label>
-        <input type="number" class="form-control" id="company" placeholder=" Valor Exenta % " value="0">
+        <label for="comisionExenta"> Comisión Exenta % </label>
+        <input type="number" class="form-control" id="comisionExenta" placeholder=" Valor Exenta % " value="0" name="comisionExenta" #comisionExenta="ngModel"
+        [(ngModel)]="poliza.selectPoliza.comisionExenta">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Comision Afecta % </label>
-        <input type="number" class="form-control" placeholder="Valor Afecta %" id="company" value="0">
+        <label for="comisionAfecta"> Comision Afecta % </label>
+        <input type="number" class="form-control" placeholder="Valor Afecta %" id="comisionAfecta" value="0" name="comisionAfecta" #comisionAfecta="ngModel"
+        [(ngModel)]="poliza.selectPoliza.comisionAfecta">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Monto Total </label>
-        <input type="number" class="form-control" placeholder=" Monto Asegurado Total " value="0" id="company">
+        <label for="montoTotal"> Monto Total </label>
+        <input type="number" class="form-control" placeholder=" Monto Asegurado Total " value="0" id="montoTotal" name="montoTotal" #montototal="ngModel"
+        [(ngModel)]="poliza.selectPoliza.montoTotal">
       </div>
     </div>
   </div>
@@ -165,20 +193,28 @@
   <div class="p-3">
     <div class="center form-row" id="DatosAsegurados">
       <div class="col-md-4 col-lg-3">
-        <label for=""> Coberturas</label>        
-        <textarea class="form-control" name="" id="tacob" cols="auto" rows="auto"></textarea>        
+        <label for="cobertura"> Coberturas</label>        
+        <textarea class="form-control" id="cobertura" cols="auto" rows="auto" name="cobertura" #cobertura="ngModel"
+        [(ngModel)]="poliza.selectPoliza.cobertura"></textarea>        
       </div>
       <div class="col-md-4 col-lg-3">
-        <label for="company"> Limites </label>
-        <textarea class="form-control" name="" id="" cols="auto" rows="auto"></textarea>
+        <label for="limites"> Limites </label>
+        <textarea class="form-control"cols="auto" rows="auto" id="limites" name="limites" #limites="ngModel"
+        [(ngModel)]="poliza.selectPoliza.limites"></textarea>
       </div>
       <div class="col-md-4 col-lg-3">
-        <label for="company"> Items </label>
-        <textarea class="form-control" name="" id="" cols="auto" rows="auto"></textarea>
+        <label for="items"> Items </label>
+        <textarea class="form-control" cols="auto" rows="auto" id="items" name="items" #items="ngModel"
+        [(ngModel)]="poliza.selectPoliza.items"></textarea>
       </div>
     </div>
   </div>
   <hr>
+  <input type="hidden" class="form-control" id="estado" name="estado" #estado="ngModel"
+  [(ngModel)]="poliza.selectPoliza.estado">
+  <input type="hidden" class="form-control" id="estadoPago" name="estadoPago" #estadoPago="ngModel"
+  [(ngModel)]="poliza.selectPoliza.estadoPago">  
+    
   <div class="d-flex justify-content-center">
     <button class="btn bg-primary m-2"> Agregar </button>
   </div>

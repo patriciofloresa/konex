@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 //Addons
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
+import {DatePipe} from '@angular/common';
 //routes
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -17,6 +18,7 @@ import { AgregarComponent } from './components/agregar/agregar.component';
 
 //Services
 import { ModificarComponent } from './components/modificar/modificar.component';
+import { PolizaService } from './services/poliza/poliza.service';
 
 const routes : Routes = [
   { path: '', component: PolizasComponent},
@@ -44,7 +46,10 @@ const routes : Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [  ],
+  providers: [ 
+    DatePipe,
+    PolizaService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

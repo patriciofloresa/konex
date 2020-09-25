@@ -12,6 +12,7 @@ function createWindow() {
         protocol: 'file:',
         slashes: true
     }));
+    win.webContents.openDevTools();
     win.removeMenu();
     win.on('closed', function () {
         win = null;
