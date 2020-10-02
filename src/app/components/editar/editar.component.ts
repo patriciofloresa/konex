@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Poliza } from 'src/app/models/poliza';
 import { PolizaService } from '../../services/poliza/poliza.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class EditarComponent implements OnInit {
 
   data:any;
   _id:any;
-
+  polizaForm: NgForm
   constructor(
     private route:ActivatedRoute,
     public poliza: PolizaService
@@ -25,7 +26,6 @@ export class EditarComponent implements OnInit {
   ngOnInit(): void {
     this.loadScript();
     this._id = this.route.snapshot.params['_id'];
-    console.log(this._id);
     this.traerPoliza();
   }
 
@@ -43,15 +43,19 @@ export class EditarComponent implements OnInit {
     .subscribe(data => 
       {
         this.data = data;
-        console.log(data)
+        this.load(this.data);
       }
     )
   }
 
   editarPoliza(form: NgForm){
-    this.poliza.selectPoliza.nombrePropuesta = "POLIZA";
-    console.log(form.value)
     this.poliza.editPoliza(form.value)
       .subscribe(res => console.log('Propuesta Editada'));
   }
+
+  load(poliza: Poliza){
+    this.poliza.selectPoliza.nombrePropuesta = "POLIZA";
+    this.poliza.selectPoliza = poliza;
+  }
+
 }

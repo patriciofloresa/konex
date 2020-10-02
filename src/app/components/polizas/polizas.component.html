@@ -38,7 +38,7 @@
                 <td scope="row"> {{poliza.inicioVigencia}} </td>
                 <td scope="row"> {{poliza.finVigencia}} </td>
                 <td>
-                    <button class="btn btn-primary p-1"> ESTADO </button>
+                    <button class="btn btn-primary p-1" (click)="estado()"> ESTADO </button>
                     <button class="btn btn-primary p-1" [routerLink]="['/polizas/editar/'+poliza._id]">EDITAR</button>                   
                     <button class="btn btn-danger p-1">HISTORIAL</button>
                     <button class="btn p-1" [routerLink]="['/polizas/descargar/'+poliza._id]"><img src="../../../assets/img/download_111133.png" alt="descargar"></button>

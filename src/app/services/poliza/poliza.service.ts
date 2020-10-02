@@ -53,7 +53,7 @@ export class PolizaService {
   }
 
   editPoliza(poliza: Poliza){
-    return this.http.put(this.URL_API+`/polizas/historial/${poliza._id}`,poliza);
+    return this.http.put(this.URL_API+`/polizas/editar/${poliza._id}`,poliza);
   }
 
   enviada(poliza: Poliza){

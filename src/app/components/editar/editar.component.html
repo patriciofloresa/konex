@@ -2,12 +2,14 @@
 <form #polizaForm = "ngForm" (ngSubmit)="editarPoliza(polizaForm)" class="ml-5 mr-5">
   <div class="p-1">
     <div class="d-flex justify-content-end">
+      <input type="hidden" class="form-control" id="_id" name="_id" #_id="ngModel"
+        [(ngModel)]="poliza.selectPoliza._id">
       <input type="hidden" class="form-control" id="nombrePropuesta" name="nombrePropuesta" #nombrePropuesta="ngModel"
         [(ngModel)]="poliza.selectPoliza.nombrePropuesta">        
       <div class="col-sm-2 col-md-2 col-lg-2 justify-content-start">
         <label for="nroPoliza">Número de Poliza</label>
         <input type="number" class="form-control" id="nroPoliza" value="0" name="nroPoliza" #nroPoliza="ngModel"
-          [(ngModel)]="poliza.selectPoliza.nroPoliza" >
+          [(ngModel)]="poliza.selectPoliza.nroPoliza">
       </div>        
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="fcPropuesta"> Fecha Propuesta </label>
@@ -163,7 +165,7 @@
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2 mt-3">
         <label for="nombreReferido"> Nombre Referido </label>
-        <input type="text" class="form-control" value="0" id="nombreReferido" name="nombreReferido" #nombreReferido="ngModel"
+        <input type="text" class="form-control" value="0" id="nombreReferido" name="nombreReferido" #nombreReferido="ngModel" placeholder="Nombre Referido"
         [(ngModel)]="poliza.selectPoliza.nombreReferido">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2 mt-3">
