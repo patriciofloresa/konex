@@ -1,9 +1,12 @@
-<h3 class="center"> Pólizas</h3>
+<h3 class="center m-4"> PROPUESTAS DE PÓLIZAS</h3>
 <div class="mt-4">
     <form class="m-1 form-inline d-flex justify-content-center">
         <input type="search" placeholder="Nro Poliza" class="form-control mr-sm-2">
-        <input type="search" placeholder="Compañia Aseguradora" class="form-control mr-sm-2"
-        ><button type="submit" class="btn btn-secondary my-2 my-sm-0">Buscar</button>
+        <input type="search" placeholder="Alias" class="form-control mr-sm-2">
+        <input type="search" placeholder="Numero Propuesta" class="form-control mr-sm-2">
+        <input type="search" placeholder="Fecha Inicio Vigencia" class="form-control mr-sm-2">
+        <input type="search" placeholder="Fecha Fin Vigencia" class="form-control mr-sm-2">
+        <button type="submit" class="btn btn-secondary my-2 my-sm-0">Buscar</button>
     </form>
 </div>
 <div class="p-5">
@@ -11,6 +14,8 @@
         <thead>
             <tr>
                 <th scope="col"> Nro Propuesta </th>
+                <th scope="col"> Poliza </th>
+                <th scope="col"> Tipo </th>
                 <th scope="col"> Rut Aseguradora </th>
                 <th scope="col"> Compañia Aseguradora </th>
                 <th scope="col"> Estado </th>
@@ -18,65 +23,33 @@
                 <th scope="col">Inicio Vigencia</th>
                 <th scope="col">Fin Vigencia</th>   
                 <th scope="col"> Acciones </th>             
-                <th class="btn btn-outline-primary d-flex justify-content-center m-1 bd" tabindex="0" [routerLink]="['/polizas/agregar']"> Agregar </th>
+                <th class="btn btn-primary d-flex justify-content-center m-1 bd" tabindex="0" [routerLink]="['/polizas/agregar']"> Agregar </th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let poliza of polizaService.poliza">
-            <td scope="row"> {{poliza.nroPropuesta}} </td>
-            <td scope="row"> {{poliza.rutCliente}} </td>
-            <td scope="row"> {{poliza.nombreCliente}} </td>
-            <td scope="row"> {{poliza.estado}} </td>
-            <td scope="row"> {{poliza.estadoPago}} </td>
-            <td scope="row"> {{poliza.inicioVigencia}} </td>
-            <td scope="row"> {{poliza.finVigencia}} </td>
-            <td>
-                <button class="btn btn-primary p-1">Editar</button>
-                <button class="btn btn-primary p-1" [routerLink]="['/polizas/modificar']">Modificar</button>
-                <button class="btn btn-primary p-1">Incorporar</button>
-                <button class="btn btn-primary p-1">Excluir</button>
-                <button class="btn btn-primary p-1">Anular</button>
-                <button class="btn btn-primary p-1">Cancelar</button>
-                <button class="btn btn-danger p-1">Historial</button>
-            </td>
+                <td scope="row"> {{poliza.nroPropuesta}} </td>
+                <td scope="row"> {{poliza.nroPoliza }} </td>
+                <td scope="row"> {{poliza.nombrePropuesta}} </td>
+                <td scope="row"> {{poliza.rutCliente}} </td>
+                <td scope="row"> {{poliza.nombreCliente}} </td>
+                <td scope="row"> {{poliza.estado}} </td>
+                <td scope="row"> {{poliza.estadoPago}} </td>
+                <td scope="row"> {{poliza.inicioVigencia}} </td>
+                <td scope="row"> {{poliza.finVigencia}} </td>
+                <td>
+                    <button class="btn btn-primary p-1"> ESTADO </button>
+                    <button class="btn btn-primary p-1" [routerLink]="['/polizas/editar/'+poliza._id]">EDITAR</button>                   
+                    <button class="btn btn-danger p-1">HISTORIAL</button>
+                    <button class="btn p-1" [routerLink]="['/polizas/descargar/'+poliza._id]"><img src="../../../assets/img/download_111133.png" alt="descargar"></button>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>
 <hr>
 <br>
 <div class="d-flex justify-content-around">
-    <div class="bg p-3">
-        <h3 class="center pb-1">Control de Vencimiento</h3>
-        
-        <div class="row d-flex justify-content-around pb-3">
-            <div>    
-                <label class="center" for="desde"> desde </label>        
-                <input type="date" name="" id="desde" class="form-control">
-            </div>            
-            <div>   
-                <label class="center" for="hasta"> hasta </label>
-                <input type="date" name="" id="hasta" class="form-control">         
-            </div>
-        </div>
-        <table class="table table-bordered table-dark table-responsive-sm">
-            <thead>
-                <tr>
-                    <th scope="col">Nro Propuesta</th>
-                    <th scope="col">Rut Compañia Aseguradora</th>
-                    <th scope="col">Compañia Aseguradora</th>
-                    <th scope="col"> Fecha Vencimiento </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td scope="row">1</td>
-                    <td scope="row">77.889.777-1</td>
-                    <td scope="row">Entel</td>
-                    <td scope="row"> 15 - Octubre - 2020 </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
     <div class="bg p-3">
         <h3 class="center pb-3">Próximos Pagos</h3>
         <table class="table table-bordered table-dark table-responsive-sm">

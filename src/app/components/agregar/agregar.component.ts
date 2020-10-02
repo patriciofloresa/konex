@@ -11,6 +11,7 @@ import { PolizaService } from '../../services/poliza/poliza.service';
 
 export class AgregarComponent implements OnInit {
 
+  
   constructor(public poliza: PolizaService) { }
 
   public loadScript() {
@@ -26,6 +27,7 @@ export class AgregarComponent implements OnInit {
   }
 
   createPoliza(form: NgForm){
+    this.poliza.selectPoliza.nombrePropuesta = "POLIZA";
     console.log(form.value)
     this.poliza.createPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida'));

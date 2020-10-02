@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Poliza } from 'src/app/models/poliza';
 import { PolizaService } from '../../services/poliza/poliza.service';
 
@@ -24,4 +24,12 @@ export class PolizasComponent implements OnInit {
         console.log(res);
       })
   };
+  
+  enviada(poliza : Poliza){
+    console.log(poliza)
+    console.log(this.polizaService.poliza)
+    this.polizaService.enviada(poliza).subscribe(res => {poliza})
+    this.getPolizas();
+  }
 }
+  

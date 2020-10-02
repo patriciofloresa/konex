@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ActivatedRoute } from "@angular/router";
 //Addons
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
@@ -19,13 +20,16 @@ import { AgregarComponent } from './components/agregar/agregar.component';
 //Services
 import { ModificarComponent } from './components/modificar/modificar.component';
 import { PolizaService } from './services/poliza/poliza.service';
+import { DescargarComponent } from './components/descargar/descargar.component';
+import { EditarComponent } from './components/editar/editar.component';
 
 const routes : Routes = [
   { path: '', component: PolizasComponent},
   { path: 'polizas/agregar', component: AgregarComponent },
   { path: 'ramos', component: RamosComponent},
   { path: 'afiliados', component: AfiliadosComponent},
-  { path: 'polizas/modificar', component: ModificarComponent}
+  { path: 'polizas/editar/:_id', component: EditarComponent},
+  { path: 'polizas/descargar/:_id', component: DescargarComponent}
 ]
 @NgModule({
   declarations: [
@@ -36,7 +40,9 @@ const routes : Routes = [
     AgregarComponent,
     AfiliadosComponent,
     RamosComponent,
-    ModificarComponent
+    ModificarComponent,
+    DescargarComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,
@@ -52,4 +58,6 @@ const routes : Routes = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(private route: ActivatedRoute) { }
+}
