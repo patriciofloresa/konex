@@ -60,7 +60,7 @@ export class DescargarComponent implements OnInit {
       height: Height},
       jsPDF: { 
         unit: "px",
-        orientation: "p",
+        orientation: "l",
         //format: [height, width]
         format: [Height, Width]
        },

@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-    background-color: #969696;
+    background-color: #aaaaaa;
 }
 input{
     box-shadow: 1px 1px rebeccapurple;
@@ -50,3 +50,10 @@ td{
     text-align: center;
 }
 
+.ng-select.custom .ng-control .ng-input {
+    text-transform: lowercase;
+}
+
+.n{
+    text-align: end;
+}

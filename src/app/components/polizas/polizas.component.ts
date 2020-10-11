@@ -1,8 +1,9 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Poliza } from 'src/app/models/poliza';
-import { PolizaService } from '../../services/poliza/poliza.service';
-
-import { ActivatedRoute } from '@angular/router';
+import { PolizaService } from '../../services/poliza/poliza.service'; 
+import { Router, ActivatedRoute } from '@angular/router';
+import { DescargarComponent } from '../descargar/descargar.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-polizas',
@@ -12,19 +13,27 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PolizasComponent implements OnInit {
 
-  constructor(public polizaService: PolizaService,)
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+
+  constructor(public polizaService: PolizaService,private router:Router, private route:ActivatedRoute )
   {  }
 
   ngOnInit(): void {
+    this.polizaService.poliza = [];
     this.getPolizas();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10, 
+    };
   }
-
   getPolizas()
   {
     this.polizaService.getPolizas()
       .subscribe(res => {
         this.polizaService.poliza = res as Poliza[];
         console.log(res);
+        this.dtTrigger.next();
       })
   };
 

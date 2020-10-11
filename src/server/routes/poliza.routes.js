@@ -5,9 +5,9 @@ const polizaController = require('../controllers/polizaController');
 const poliza = require('../models/poliza');
 
 //Crear Polizas
-router.post('/polizas/agregar', polizaController.createPoliza)
+router.get('/polizas/agregar', polizaController.getLastNroPropuesta)
 
-router.post('/polizas/buscar/:id', polizaController.getLastNroPropuesta)
+router.post('/polizas/agregar', polizaController.createPoliza)
 
 //listar Polizas
 router.get('/', polizaController.getPolizas)
@@ -24,17 +24,14 @@ router.get('/polizas/editar/:id', polizaController.getPoliza)
 //EditarW 1 poliza
 router.put('/polizas/editar/:id', polizaController.editPoliza)
 
-//Incorporar
-router.put('/polizas/incorporar/:id', polizaController.incPoliza)
-
-//Excluir
-router.put('/polizas/excluir/:id', polizaController.excPoliza)
+//Endosos
+router.post('/polizas/editar', polizaController.incPoliza)
 
 //Anular 1 poliza
-router.put('/polizas/anular/:id', polizaController.anuPoliza)
+router.put('/polizas', polizaController.anuPoliza)
 
 //Cancelar 1 poliza
-router.put('/polizas/cancelar/:id', polizaController.canPoliza)
+router.put('/polizas', polizaController.canPoliza)
 
 //Historial de modificaciones de poliza
 //router.get('polizas/historial/:id', polizaController.hisPoliza)

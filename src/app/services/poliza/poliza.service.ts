@@ -20,24 +20,30 @@ export class PolizaService {
     return this.http.post(this.URL_API+`/polizas/agregar`, poliza);
   }
 
+  nroPropuesta(){
+    return this.http.get(this.URL_API+`/polizas/agregar`);
+  }
+
   getPolizas(){
     return this.http.get(this.URL_API);
   }
 
-  modPoliza(poliza: Poliza){
-    return this.http.put(this.URL_API+`/polizas/modificar/${poliza._id}`,poliza);
+  incPoliza(poliza: Poliza){
+    return this.http.post(this.URL_API+`/polizas/editar`,poliza);
   }
 
   excPoliza(poliza: Poliza){
-    return this.http.put(this.URL_API+`/polizas/excluir/${poliza._id}`,poliza);
+    return this.http.post(this.URL_API+`/polizas/editar`, poliza);
   }
 
   anularPoliza(poliza: Poliza){
-    return this.http.put(this.URL_API+`/polizas/modificar/${poliza._id}`,poliza);
+    return this.http.put(this.URL_API+`/polizas/editar/${poliza._id}`,poliza);
   }
-  
+  modPoliza(poliza: Poliza){
+    return this.http.put(this.URL_API+`/polizas/editar/${poliza._id}`,poliza);
+  }
   canPoliza(poliza: Poliza){
-    return this.http.put(this.URL_API+`/polizas/cancelar/${poliza._id}`,poliza);
+    return this.http.put(this.URL_API+`/polizas/editar/${poliza._id}`,poliza);
   }
 
   hisPoliza(poliza: Poliza){

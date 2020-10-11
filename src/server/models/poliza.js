@@ -5,8 +5,8 @@ const { Schema } = mongoose;
 //Define Collection and schema for Adpolizas
 
 const PolizaSchema = new Schema({
-
     nombrePropuesta: { type: String, uppercase: true },
+    numeroEndoso: {type: Number },
     fcPropuesta :{ type: String, required: true, uppercase: true  },
     nroPropuesta:{ type: Number, required: true, unique : true, dropDups: true },
     nroPoliza: { type: String },
@@ -43,7 +43,8 @@ const PolizaSchema = new Schema({
     estado:{ type: String, required: true, uppercase: true},
     estadoPago: {type: String, required: true, uppercase: true},
     nombreReferido: {type: String, uppercase: true},
-    comisionReferido: {type: Number, uppercase: true},
+    comisionReferido: {type: Number },
+    valorReferido: {type: Number },
     telefonoContacto:{ type: Number },
     nombreContacto: { type: String, uppercase: true }
 })

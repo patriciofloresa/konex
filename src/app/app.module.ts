@@ -9,28 +9,32 @@ import { ActivatedRoute } from "@angular/router";
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
 import {DatePipe} from '@angular/common';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { DataTablesModule } from 'angular-datatables';
+
 //routes
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
-import { AfiliadosComponent } from './components/afiliados/afiliados.component';
-import { RamosComponent } from './components/ramos/ramos.component';
 import { PolizasComponent } from './components/polizas/polizas.component';
 import { AgregarComponent } from './components/agregar/agregar.component';
 
 //Services
-import { ModificarComponent } from './components/modificar/modificar.component';
 import { PolizaService } from './services/poliza/poliza.service';
 import { DescargarComponent } from './components/descargar/descargar.component';
 import { EditarComponent } from './components/editar/editar.component';
+import { HistorialComponent } from './historial/historial.component';
 
 const routes : Routes = [
   { path: '', component: PolizasComponent},
-  { path: 'polizas/agregar', component: AgregarComponent },
-  { path: 'ramos', component: RamosComponent},
-  { path: 'afiliados', component: AfiliadosComponent},
+  { path: 'polizas/agregar', component: AgregarComponent },  
   { path: 'polizas/editar/:_id', component: EditarComponent},
-  { path: 'polizas/descargar/:_id', component: DescargarComponent}
+  { path: 'polizas/descargar/:_id', component: DescargarComponent},
 ]
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,26 +42,29 @@ const routes : Routes = [
     HeaderComponent,
     PolizasComponent,
     AgregarComponent,
-    AfiliadosComponent,
-    RamosComponent,
-    ModificarComponent,
     DescargarComponent,
-    EditarComponent
+    EditarComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes,{onSameUrlNavigation: 'reload'}),
     AutocompleteLibModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forRoot(maskConfig),
+    DataTablesModule 
   ],
+  exports:[RouterModule],
   providers: [ 
     DatePipe,
     PolizaService
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { 
+  
   constructor(private route: ActivatedRoute) { }
 }

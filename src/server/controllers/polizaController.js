@@ -1,4 +1,5 @@
 
+const { sortAndDeduplicateDiagnostics } = require("typescript");
 const Poliza = require("../models/poliza");
 
 //se crea objeto objeto poliza
@@ -6,7 +7,7 @@ const polizaController = {};
 
 polizaController.createPoliza = async (req, res) => {
    const poliza = new Poliza({
-    nombrePropuesta : "POLIZA",
+    nombrePropuesta : req.body.nombrePropuesta,
     fcPropuesta: req.body.fcPropuesta,
     nroPoliza: req.body.nroPoliza,
     nroPropuesta: req.body.nroPropuesta,
@@ -66,8 +67,16 @@ polizaController.getPoliza = async(req, res) => {
 }
 
 polizaController.getLastNroPropuesta = async(req, res) => {
-    const poliza = await Poliza.findOne({$query: {}, $orderby: {$natural : -1}});
-    res.json(poliza.nroPropuesta);
+    const poliza = await Poliza.findOne({}).sort({ nroPropuesta: -1 }).limit(1)
+    if (poliza)
+        {console.log("nro Propuesta: encontrada "+poliza.nroPropuesta)
+        res.json(poliza.nroPropuesta+1);}
+    else{
+        const poliza= new Poliza
+        poliza.nroPropuesta = 1;
+        console.log("nro Propuesta: no encontrada "+poliza.nroPropuesta)
+        res.json(poliza.nroPropuesta);    
+    }
 }
 
 polizaController.editPoliza = async (req, res) => {
@@ -75,7 +84,7 @@ polizaController.editPoliza = async (req, res) => {
     const { id } = req.params;
 
     const poliza = {     
-        nombrePropuesta : "POLIZA",
+        nombrePropuesta : req.body.nombrePropuesta,
         nroPoliza: req.body.nroPoliza,
         fcPropuesta: req.body.fcPropuesta,
         nroPropuesta: req.body.nroPropuesta,
@@ -106,24 +115,67 @@ polizaController.editPoliza = async (req, res) => {
         comisionExenta: req.body.comisionExenta,
         comisionAfecta: req.body.comisionAfecta,
         montoTotal: req.body.montoTotal,
-        cobertua: req.body.cobertua,
+        cobertura: req.body.cobertura,
         limites: req.body.limites,
         items: req.body.items,
         estado: req.body.estado,
         estadoPago: req.body.estadoPago,
         nombreReferido: req.body.nombreReferido,
-        comisionReferido: req.body.comisionReferido
+        comisionReferido: req.body.comisionReferido,
+        valorReferido: req.body.valorReferido,
+        numeroEndoso: req.body.numeroEndoso
     };
     await Poliza.findByIdAndUpdate( id , {$set: poliza});
     res.json( {status: console.log(poliza)});
 }
 
 polizaController.incPoliza = async(req, res) => {
-
-}
-
-polizaController.excPoliza = async(req, res) => {
-
+    const poliza = new Poliza({
+        nombrePropuesta : req.body.nombrePropuesta,
+        fcPropuesta: req.body.fcPropuesta,
+        nroPoliza: req.body.nroPoliza,
+        nroPropuesta: req.body.nroPropuesta,
+        nombreAseguradora: req.body.nombreAseguradora,
+        ramo: req.body.ramo,
+        montoAsegurado: req.body.montoAsegurado,        
+        rutCliente: req.body.rutCliente,
+        alias: req.body.alias,
+        nombreCliente: req.body.nombreCliente,
+        rutAcreedor: req.body.rutAcreedor,
+        nombreAcreedor: req.body.nombreAcreedor,
+        telefonoContacto: req.body.telefonoContacto,
+        nombreContacto: req.body.nombreContacto,
+        direccion: req.body.direccion,
+        region: req.body.region,
+        comuna: req.body.comuna,
+        formaPago: req.body.formaPago,
+        nroCuotas: req.body.nroCuotas,
+        fcPrimeraCuota: req.body.fcPrimeraCuota,
+        inicioVigencia: req.body.inicioVigencia,
+        finVigencia: req.body.finVigencia,
+        primaAfecta: req.body.primaAfecta,
+        primaExenta: req.body.primaExenta,
+        primaNeta: req.body.primaNeta,
+        iva: req.body.iva,
+        primaBruta: req.body.primaBruta,
+        tipoMoneda: req.body.tipoMoneda,
+        comisionExenta: req.body.comisionExenta,
+        comisionAfecta: req.body.comisionAfecta,
+        montoTotal: req.body.montoTotal,
+        cobertura: req.body.cobertura,
+        limites: req.body.limites,
+        items: req.body.items,
+        estado: req.body.estado,
+        estadoPago: req.body.estadoPago,
+        nombreReferido: req.body.nombreReferido,
+        comisionReferido: req.body.comisionReferido,
+        valorReferido: req.body.valorReferido,
+        numeroEndoso: req.body.numeroEndoso
+       })
+       res.json({
+        'status': 'Endoso Guardado'
+        });
+       poliza.save();
 }
 
 polizaController.anuPoliza = async(req, res) => {
@@ -183,13 +235,15 @@ polizaController.enviada = async (req, res )=> {
         comisionExenta: req.body.comisionExenta,
         comisionAfecta: req.body.comisionAfecta,
         montoTotal: req.body.montoTotal,
-        cobertua: req.body.cobertua,
+        cobertura: req.body.cobertura,
         limites: req.body.limites,
         items: req.body.items,
         estado: req.body.estado,
         estadoPago: req.body.estadoPago,
         nombreReferido: req.body.nombreReferido,
-        comisionReferido: req.body.comisionReferido
+        comisionReferido: req.body.comisionReferido,
+        valorReferido: req.body.valorReferido,
+        numeroEndoso: req.body.numeroEndoso
     }
     res.json(console.log(poliza));
     await Poliza.findByIdAndUpdate(id, {$set: poliza});

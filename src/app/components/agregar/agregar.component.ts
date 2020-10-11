@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PolizaService } from '../../services/poliza/poliza.service';
+import { Poliza } from 'src/app/models/poliza';
 
 @Component({
   selector: 'app-agregar',
@@ -11,6 +12,7 @@ import { PolizaService } from '../../services/poliza/poliza.service';
 
 export class AgregarComponent implements OnInit {
 
+  date = new Date().toISOString().slice(0,10); 
   
   constructor(public poliza: PolizaService) { }
 
@@ -23,14 +25,30 @@ export class AgregarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.poliza.poliza = [];
     this.loadScript();
+    this.nroProp();
   }
-
+  
   createPoliza(form: NgForm){
     this.poliza.selectPoliza.nombrePropuesta = "POLIZA";
     console.log(form.value)
     this.poliza.createPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida'));
+  }
+
+  nroProp(){
+    this.poliza.nroPropuesta()
+      .subscribe(res => {
+        this.poliza.poliza = res as Poliza[];
+        console.log(res);
+        this.load(this.poliza.poliza);
+      })
+  }
+
+  load(nro){
+    this.poliza.selectPoliza.nroPropuesta = nro;
+    this.poliza.selectPoliza.fcPropuesta = this.date;
   }
 
 }

@@ -11,16 +11,16 @@
             <hr>
             <div class="col-lg-12 d-flex flex-row">
                 <div class="col-lg-7 fz">
-                    <strong> PÓLIZA : </strong> <span> {{ data.nroPoliza }} </span>
+                    <strong> PÓLIZA : </strong> <span> {{ data.nroPoliza| mask:"separator":"." }} </span>
                 </div>
                 <div class="col-lg-5 fz">
-                    <strong> NÚMERO PROPUESTA : </strong> <span class="fec"> {{ data.nroPropuesta }} </span>
+                    <strong> NÚMERO PROPUESTA : </strong> <span class="fec"> {{ data.nroPropuesta| mask:"separator":"." }} </span>
                 </div>
             </div>
             <div class="col-lg-12 d-flex flex-row-reverse">
                 <div class="col-lg-5 fz">
                     <p>
-                        <strong> FECHA PROPUESTA : </strong> <span type="date" > {{data.fcPropuesta }} </span>
+                        <strong> FECHA PROPUESTA : </strong> <span type="date" > {{data.fcPropuesta| date: 'dd/MM/yyyy' }} </span>
                     </p>
                 </div> 
             </div>
@@ -37,10 +37,10 @@
             <hr>
             <div class="col-lg-12 d-flex flex-row">
                 <div class="col-lg-6 fz">
-                    <strong> VIGENCIA DESDE : </strong> <span> {{ data.inicioVigencia }} </span>
+                    <strong> VIGENCIA DESDE : </strong> <span> {{ data.inicioVigencia| date: 'dd/MM/yyyy' }} </span>
                 </div>
                 <div class="col-lg-6 fz">
-                    <strong> VIGENCIA HASTA : </strong> <span> {{ data.finVigencia }} </span>
+                    <strong> VIGENCIA HASTA : </strong> <span> {{ data.finVigencia| date: 'dd/MM/yyyy' }} </span>
                 </div>
             </div>
             <div class="col-lg-12 d-flex flex-row ">
@@ -49,7 +49,7 @@
                 </div>
                 <br>
                 <div class="col-lg-6 fz">
-                    <strong> RUT : </strong> <span> 76912042-4 </span>
+                    <strong> RUT : </strong> <span> 76.912.042-4 </span>
                 </div>
             </div>
             <br>
@@ -58,7 +58,7 @@
                     <strong> CONTRATANTE : </strong> <span> {{ data.nombreCliente }}</span>
                 </div>
                 <div class="col-lg-6 fz">
-                    <strong> RUT : </strong> <span> {{ data.rutCliente }} </span>
+                    <strong> RUT : </strong> <span > {{ data.rutCliente | mask:"00.000.00A-A||0.000.00A-A" }} </span>
                 </div>
             </div>
             <div class="col-lg-12 d-flex flex-row">
@@ -74,12 +74,12 @@
             </div>
             <div class="col-lg-12 d-flex flex-row">
                 <div class="col-lg-12 fz">
-                    <strong> PRIMA AFECTA :</strong> <span> {{ data.primaAfecta }} </span>
+                    <strong> PRIMA AFECTA :</strong> <span> {{ data.primaAfecta| mask:"separator.2":"."}} </span>
                 </div>
             </div>
             <div class="col-lg-12 d-flex flex-row">
                 <div class="col-lg-12 fz">
-                    <strong> PRIMA EXENTA </strong> <span> {{ data.primaExenta }} </span>
+                    <strong> PRIMA EXENTA </strong> <span> {{ data.primaExenta| mask:"separator.2":"." }} </span>
                 </div>
             </div>
             <div class="col-lg-12 d-flex flex-row">
@@ -89,12 +89,12 @@
             </div>
             <div class="col-lg-12 d-flex flex-row">
                 <div class="col-lg-12 fz">
-                    <strong> PRIMA BRUTA :</strong> <span> {{data.primaBruta}} </span>
+                    <strong> PRIMA BRUTA :</strong> <span> {{data.primaBruta| mask:"separator.2":"."}} </span>
                 </div>
             </div>
             <div class="col-lg-12 d-flex flex-row">
                 <div class="col-lg-12 fz d-flex justify-content-between">
-                    <strong> FORMA DE PAGO :</strong> <span> {{ data.formaPago }} , <strong> NRO. CUOTAS :</strong>{{ data.nroCuotas }} , <strong> FECHA PRIMERA CUOTA </strong>{{ data.fcPrimeraCuota }}</span>
+                    <strong> FORMA DE PAGO :</strong> <span> {{ data.formaPago }} , <strong> NRO. CUOTAS :</strong> {{ data.nroCuotas }} , <strong> FECHA PRIMERA CUOTA </strong>{{ data.fcPrimeraCuota| date: 'dd/MM/yyyy' }}</span>
                 </div>
             </div>
             <div class="col-lg-12 d-flex flex-row">
@@ -112,7 +112,7 @@
             </span>
             <hr>
             <div class="col-lg-12 d-flex flex-row fz"> 
-                <strong> CONDICIONES PARTICULARES </strong> <span> {{ data.items }} </span>
+                <strong> CONDICIONES PARTICULARES </strong>
             </div>
             <div class="col-lg-12 d-flex flex-row fz">
                 <span>
