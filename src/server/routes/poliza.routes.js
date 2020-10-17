@@ -34,7 +34,7 @@ router.put('/polizas', polizaController.anuPoliza)
 router.put('/polizas', polizaController.canPoliza)
 
 //Historial de modificaciones de poliza
-//router.get('polizas/historial/:id', polizaController.hisPoliza)
+router.get('/polizas/historial/:nroPoliza', polizaController.hisPoliza)
 
 
 

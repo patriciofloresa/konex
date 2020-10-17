@@ -10,7 +10,7 @@ function createWindow() {
 
   win.loadURL(
       url.format({
-          pathname: path.join(__dirname, `/../../dist/Konex/index.html`),
+          pathname: path.join(__dirname, `../../dist/Konex/index.html`),
           protocol: 'file:',
           slashes: true
       })

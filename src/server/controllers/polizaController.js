@@ -79,6 +79,12 @@ polizaController.getLastNroPropuesta = async(req, res) => {
     }
 }
 
+polizaController.hisPoliza = async(req, res) =>{
+    const historial = await Poliza.find( [nroPoliza] === parseInt(req.params.nroPoliza) );
+    res.json(historial);
+}
+
+ 
 polizaController.editPoliza = async (req, res) => {
     
     const { id } = req.params;

@@ -6,6 +6,7 @@
         id="propuesta">
         <thead>
             <tr>
+                <th> Acciones </th> 
                 <th> Nro Propuesta </th>
                 <th> Endoso </th>
                 <th> Poliza </th>
@@ -17,11 +18,16 @@
                 <th>Fin Vigencia</th> 
                 <th> Estado </th>
                 <th> Estado Pago </th>  
-                <th> Acciones </th>           
+                          
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let poliza of polizaService.poliza">
+                <td>
+                    <button class="btn btn-primary p-1"> ESTADO </button>
+                    <span [routerLink]="['/polizas/editar/'+poliza._id]"><img src="assets/img/edit-solid.svg" alt="" srcset="" style="height: 2rem; width: 2rem;"></span>
+                    <button class="btn p-1" [routerLink]="['/polizas/descargar/'+poliza._id]"><img src="assets/img/download_111133.png" alt="descargar"></button>
+                </td>
                 <td> {{poliza.nroPropuesta| mask:"separator":"."}} </td>
                 <td> {{poliza.numeroEndoso| mask:"separator":"."}} </td>
                 <td> {{poliza.nroPoliza| mask:"separator":"." }} </td>
@@ -33,12 +39,6 @@
                 <td> {{poliza.finVigencia|date: "dd/MM/yyyy"}} </td>
                 <td> {{poliza.estado}} </td>
                 <td> {{poliza.estadoPago}} </td>
-                <td>
-                    <button class="btn btn-primary p-1"> ESTADO </button>
-                    <span [routerLink]="['/polizas/editar/'+poliza._id]"><img src="../../../assets/img/edit-solid.svg" alt="" srcset="" style="height: 2rem; width: 2rem;"></span>                  
-                    <button class="btn btn-danger p-1">HISTORIAL</button>
-                    <button class="btn p-1" [routerLink]="['/polizas/descargar/'+poliza._id]"><img src="../../../assets/img/download_111133.png" alt="descargar"></button>
-                </td>
             </tr>
         </tbody>
     </table>

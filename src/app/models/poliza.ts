@@ -1,6 +1,6 @@
 export class Poliza {
 
-    constructor(_id = "", nombrePropuesta = "POLIZA", nroPoliza = "", fcPropuesta = Date.now().toString(), montoAsegurado=0, nombreAseguradora = "" , alias = "",ramo = "",rutCliente = "", nombreCliente = "", rutAcreedor = "", nombreAcreedor = "",
+    constructor(_id = "", nombrePropuesta = "POLIZA", nroPoliza = 0, fcPropuesta = Date.now().toString(), montoAsegurado=0, nombreAseguradora = "" , alias = "",ramo = "",rutCliente = "", nombreCliente = "", rutAcreedor = "", nombreAcreedor = "",
     telefonoContacto = "", nombreContacto = "", direccion = "", region = "", comuna = "", formaPago = "", nroCuotas = 0, fcPrimeraCuota = Date.now.toString(), comisionEmpresa = 0, inicioVigencia = Date.now.toString(),
     finVigencia = Date.now.toString(), primaAfecta = 0, primaExenta = 0, primaNeta = 0, iva = 0, primaBruta = 0, tipoMoneda = "", comisionExenta = 0, comisionAfecta = 0, montoTotal = 0, cobertura = " ",
     limites = " ", items = " ", estado = "Vigente", estadoPago = "Por Cancelar", nombreReferido = "", comisionReferido = 0, valorReferido = 0, numeroEndoso = 0)
@@ -54,7 +54,7 @@ export class Poliza {
     nombrePropuesta: String;
     montoAsegurado: Number;
     fcPropuesta : String;
-    nroPoliza : String;
+    nroPoliza : Number;
     nroPropuesta: Number;
     nombreAseguradora: String;
     alias: String;

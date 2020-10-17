@@ -61,7 +61,8 @@ function calcularKonex(){
                     e = (a*(c/100)) + (b*(d/100))
                 )
             console.log('A: '+a + ' B: '+b+ ' C: '+c+' D: '+d+' E: '+e)
-            
+        
+        e = e.toFixed(2);
         document.getElementById("montoTotal").value = e.toFixed(2);
     } catch (error) {
         console.log(error)

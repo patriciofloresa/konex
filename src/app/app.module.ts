@@ -22,7 +22,6 @@ import { AgregarComponent } from './components/agregar/agregar.component';
 import { PolizaService } from './services/poliza/poliza.service';
 import { DescargarComponent } from './components/descargar/descargar.component';
 import { EditarComponent } from './components/editar/editar.component';
-import { HistorialComponent } from './historial/historial.component';
 
 const routes : Routes = [
   { path: '', component: PolizasComponent},
@@ -44,7 +43,6 @@ const maskConfig: Partial<IConfig> = {
     AgregarComponent,
     DescargarComponent,
     EditarComponent,
-    HistorialComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +61,6 @@ const maskConfig: Partial<IConfig> = {
   ],
   bootstrap: [AppComponent]
 })
-
 export class AppModule { 
   
   constructor(private route: ActivatedRoute) { }

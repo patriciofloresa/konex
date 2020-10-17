@@ -13,7 +13,7 @@ import { Subject } from 'rxjs';
 })
 export class PolizasComponent implements OnInit {
 
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
 
   constructor(public polizaService: PolizaService,private router:Router, private route:ActivatedRoute )
@@ -23,10 +23,16 @@ export class PolizasComponent implements OnInit {
     this.polizaService.poliza = [];
     this.getPolizas();
     this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10, 
+      // Declare the use of the extension in the dom parameter
+      dom: 'Bfrtip',
+      // Configure the buttons
+      buttons: [
+        'colvis',
+        'excel',        
+      ] 
     };
   }
+  
   getPolizas()
   {
     this.polizaService.getPolizas()
@@ -36,7 +42,5 @@ export class PolizasComponent implements OnInit {
         this.dtTrigger.next();
       })
   };
-
-  
 }
   
