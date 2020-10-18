@@ -1,38 +1,45 @@
-<h3 class="center"> Pólizas</h3>
-<div class="mt-4">
-    <form class="m-1 form-inline d-flex justify-content-center">
-        <input type="search" placeholder="Nro Poliza" class="form-control mr-sm-2">
-        <input type="search" placeholder="Compañia Aseguradora" class="form-control mr-sm-2"
-        ><button type="submit" class="btn btn-secondary my-2 my-sm-0">Buscar</button>
-    </form>
-</div>
-<div class="p-5">
-    <table class="table table-bordered table-dark table-responsive-sm ">
+<h3 class="center m-4"> LISTADO DE PROPUESTAS </h3>
+<div class="p-4">
+    <table class="row-border hover w-auto cell-border compact" cellspacing="0"
+        datatable="ng" [dtOptions]="dtOptions" class="row-border hover fixed"
+        [dtTrigger] = "dtTrigger"
+        id="propuesta">
         <thead>
             <tr>
-                <th scope="col"> Nro Propuesta </th>
-                <th scope="col"> Rut Aseguradora </th>
-                <th scope="col"> Compañia Aseguradora </th>
-                <th scope="col"> Estado </th>
-                <th scope="col"> Acciones </th>                
-                <th class="btn btn-outline-primary d-flex justify-content-center m-1 bd" tabindex="0" [routerLink]="['/polizas/agregar']"> Agregar </th>
+                <th> Acciones </th> 
+                <th> Nro Propuesta </th>
+                <th> Endoso </th>
+                <th> Poliza </th>
+                <th> Tipo </th>
+                <th> Rut Cliente </th>
+                <th> Razon Social / Nombre </th>
+                <th> Compañia </th>
+                <th>Inicio Vigencia</th>
+                <th>Fin Vigencia</th> 
+                <th> Estado </th>
+                <th> Estado Pago </th>  
+                          
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <td scope="row"> 1 </td>
-            <td scope="row"> 77.889.777-1 </td>
-            <td scope="row"> Entel </td>
-            <td scope="row"> Vigente </td>
-            <td scope="row">
-                <button class="btn btn-primary p-1">Editar Propuesta</button>
-                <button class="btn btn-primary p-1" [routerLink]="['/polizas/modificar']">Modificar</button>
-                <button class="btn btn-primary p-1">Incorporar</button>
-                <button class="btn btn-primary p-1">Excluir</button>
-                <button class="btn btn-primary p-1">Anular</button>
-                <button class="btn btn-primary p-1">Cancelar</button>
-                <button class="btn btn-danger p-1">Historial</button>
-            </td>
+            <tr *ngFor="let poliza of polizaService.poliza">
+                <td>
+                    <button class="btn btn-primary p-1"> ESTADO </button>
+                    <span [routerLink]="['/polizas/editar/'+poliza._id]"><img src="assets/img/edit-solid.svg" alt="" srcset="" style="height: 2rem; width: 2rem;"></span>
+                    <button class="btn p-1" [routerLink]="['/polizas/descargar/'+poliza._id]"><img src="assets/img/download_111133.png" alt="descargar"></button>
+                </td>
+                <td> {{poliza.nroPropuesta| mask:"separator":"."}} </td>
+                <td> {{poliza.numeroEndoso| mask:"separator":"."}} </td>
+                <td> {{poliza.nroPoliza| mask:"separator":"." }} </td>
+                <td> {{poliza.nombrePropuesta}} </td>
+                <td> {{poliza.rutCliente|mask:"00.000.00A-A||0.000.00A-A"}} </td>
+                <td> {{poliza.nombreCliente}} </td>
+                <td> {{poliza.nombreAseguradora}} </td>
+                <td> {{poliza.inicioVigencia|date: "dd/MM/yyyy"}} </td>
+                <td> {{poliza.finVigencia|date: "dd/MM/yyyy"}} </td>
+                <td> {{poliza.estado}} </td>
+                <td> {{poliza.estadoPago}} </td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -40,54 +47,22 @@
 <br>
 <div class="d-flex justify-content-around">
     <div class="bg p-3">
-        <h3 class="center pb-1">Control de Vencimiento</h3>
-        
-        <div class="row d-flex justify-content-around pb-3">
-            <div>    
-                <label class="center" for="desde"> desde </label>        
-                <input type="date" name="" id="desde" class="form-control">
-            </div>            
-            <div>   
-                <label class="center" for="hasta"> hasta </label>
-                <input type="date" name="" id="hasta" class="form-control">         
-            </div>
-        </div>
-        <table class="table table-bordered table-dark table-responsive-sm">
-            <thead>
-                <tr>
-                    <th scope="col">Nro Propuesta</th>
-                    <th scope="col">Rut Compañia Aseguradora</th>
-                    <th scope="col">Compañia Aseguradora</th>
-                    <th scope="col"> Fecha Vencimiento </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td scope="row">1</td>
-                    <td scope="row">77.889.777-1</td>
-                    <td scope="row">Entel</td>
-                    <td scope="row"> 15 - Octubre - 2020 </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="bg p-3">
         <h3 class="center pb-3">Próximos Pagos</h3>
         <table class="table table-bordered table-dark table-responsive-sm">
             <thead>
                 <tr>
-                    <th scope="col">Nro Propuesta</th>
-                    <th scope="col">Rut Compañia Aseguradora</th>
-                    <th scope="col">Compañia Aseguradora</th>
-                    <th scope="col"> Fecha Vencimiento </th>
+                    <th>Nro Propuesta</th>
+                    <th>Rut Compañia Aseguradora</th>
+                    <th>Compañia Aseguradora</th>
+                    <th> Fecha Vencimiento </th>
                 </tr>
             </thead>
-            <tbody >
+            <tbody>
                 <tr>
-                    <td scope="row">1</td>
-                    <td scope="row">77.889.777-1</td>
-                    <td scope="row">Entel</td>
-                    <td scope="row"> 15 - Octubre - 2020 </td>
+                    <td>1</td>
+                    <td>77.889.777-1</td>
+                    <td>Entel</td>
+                    <td> 15 - Octubre - 2020 </td>
                 </tr>
             </tbody>
         </table>
