@@ -1,7 +1,7 @@
 <h3 class="center m-4"> LISTADO DE PROPUESTAS </h3>
 <div class="p-4">
-    <table class="row-border hover w-auto cell-border compact" cellspacing="0"
-        datatable="ng" [dtOptions]="dtOptions" class="row-border hover fixed"
+    <table class="row-border hover w-auto cell-border table-responsive" cellspacing="0"
+        datatable="ng" [dtOptions]="dtOptions" class="row-border hover fixed display nowrap"
         [dtTrigger] = "dtTrigger"
         id="propuesta">
         <thead>
@@ -18,7 +18,10 @@
                 <th>Fin Vigencia</th> 
                 <th> Estado </th>
                 <th> Estado Pago </th>  
-                          
+                <th> Estado Pago </th>  
+                <th> Estado Pago </th>
+                <th> Estado Pago </th>
+                <th> Estado Pago </th>  
             </tr>
         </thead>
         <tbody>
@@ -38,6 +41,10 @@
                 <td> {{poliza.inicioVigencia|date: "dd/MM/yyyy"}} </td>
                 <td> {{poliza.finVigencia|date: "dd/MM/yyyy"}} </td>
                 <td> {{poliza.estado}} </td>
+                <td> {{poliza.estadoPago}} </td>
+                <td> {{poliza.estadoPago}} </td>
+                <td> {{poliza.estadoPago}} </td>
+                <td> {{poliza.estadoPago}} </td>
                 <td> {{poliza.estadoPago}} </td>
             </tr>
         </tbody>

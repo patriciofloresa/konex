@@ -22,16 +22,12 @@
         <input type="Text" class="form-control textalign-right" value="" id="nroPropuesta" name="nroPropuesta" #nroPropuesta="ngModel"
         [(ngModel)]="poliza.selectPoliza.nroPropuesta" readonly>
       </div>
-      <div class="ml-auto col-sm-2 col-md-2 col-lg-2">
-        <label for="company"> Fin Vigencia </label>
-        <input type="date" class="form-control" id="company">
-      </div> 
-    </div>  
+    </div>    
   </div>
   <div class="p-3">
     <hr>
     <div class="center form-row" id="DatosAsegurados">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <label for="company" class="control-label"> Compañia Aseguradora </label>
         <input type="text" class="form-control" placeholder="Nombre Compañia" id="company" name="nombreAseguradora" #nombreAseguradora="ngModel"
         [(ngModel)]="poliza.selectPoliza.nombreAseguradora">
@@ -85,10 +81,6 @@
       </div>
     </div>
     <div class="center form-row mt-3">
-      <div class="col-md-1 col-lg-1">
-        <label for="nombre_man"> Nombre Fantasia</label>
-        <input type="Text" class="form-control" placeholder=" ej entel" id="nombre_man">
-      </div>
       <div class="col-md-3 col-lg-3">
         <label for="direccion"> Direccion Comercial </label>
         <input type="text" class="form-control" placeholder="Direccion Comercial" id="direccion" name="direccion" #direccion="ngModel"
@@ -134,16 +126,13 @@
         <input type="number" class="form-control n" id="primaExenta" placeholder="Prima Exenta" value=""  name="primaExenta" #primaExenta="ngModel"
         [(ngModel)]="poliza.selectPoliza.primaExenta"  oninput="calcularNeta(); calcularKonex()">
       </div>
+
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="primaNeta"> Prima Neta </label>
         <input type="number" class="form-control n" id="primaNeta" placeholder=" Prima NETA " value="" name="primaNeta" #primaNeta="ngModel"
         [(ngModel)]="poliza.selectPoliza.primaNeta"  onload="calcularBruta()"> 
       </div>
-    </div>
-  </div>
-  <hr>
-  <div class="p-3">
-    <div class="center form-row" id="DatosAsegurados">
+
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="iva"> IVA </label>
         <input type="number" class="form-control n ng-scope ng-binding" id="iva" placeholder="iva" name="iva" #iva="ngModel" value=""
@@ -213,7 +202,6 @@
         <label for="fcPrimeraCuota"> Primera Cuota </label>
         <input type="date" class="form-control" id="fcPrimeraCuota" name="fcPrimeraCuota" #fcPrimeraCuota="ngModel"
         [(ngModel)]="poliza.selectPoliza.fcPrimeraCuota"> 
-
       </div>
     </div>
   </div>

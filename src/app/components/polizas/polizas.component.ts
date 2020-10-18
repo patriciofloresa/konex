@@ -23,6 +23,7 @@ export class PolizasComponent implements OnInit {
     this.polizaService.poliza = [];
     this.getPolizas();
     this.dtOptions = {
+      scrollY: true,
       // Declare the use of the extension in the dom parameter
       dom: 'Bfrtip',
       // Configure the buttons

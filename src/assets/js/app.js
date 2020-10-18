@@ -55,15 +55,13 @@ function calcularKonex(){
                 e = 0
             else if (c == 0 )
                 e = (b*(d/100)).toFixed(2)
-                else if ( d == 0)
+            else if ( d == 0)
                 e = (a*(c/100)).toFixed(2)
-                else (
-                    e = (a*(c/100)) + (b*(d/100))
+            else (
+                e = (a*(c/100)) + (b*(d/100)).toFixed(2)
                 )
-            console.log('A: '+a + ' B: '+b+ ' C: '+c+' D: '+d+' E: '+e)
-        
-        e = e.toFixed(2);
-        document.getElementById("montoTotal").value = e.toFixed(2);
+            console.log('A: '+a + ' B: '+b+ ' C: '+c+' D: '+d+' E: '+e);
+        document.getElementById("montoTotal").value = e;
     } catch (error) {
         console.log(error)
     }
