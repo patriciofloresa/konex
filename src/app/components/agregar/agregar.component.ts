@@ -74,11 +74,14 @@ date = new Date().toISOString().slice(0,10);
     const b = exenta * (comisionExenta/100);
     console.log("A: "+a + "B: "+b);
     this.poliza.selectPoliza.montoTotal = parseFloat(( a + b ).toFixed(2));
-    console.log("comision Konex: "+this.poliza.selectPoliza.montoTotal)
+    console.log("comision Konex: "+ this.poliza.selectPoliza.montoTotal)
     return this.poliza.selectPoliza.montoTotal;
   } 
 
-  calcReferido(porcentaje, konex){
-    this.poliza.selectPoliza.comisionReferido =  parseFloat((konex * (porcentaje / 100)).toFixed(2))
+  calcReferido(x){
+    const a = this.calcularKonex(this.poliza.selectPoliza.comisionAfecta, this.poliza.selectPoliza.comisionExenta, this.poliza.selectPoliza.primaAfecta, this.poliza.selectPoliza.primaExenta)
+    console.log( a );
+    this.poliza.selectPoliza.comisionReferido = parseFloat((+a * (x / 100)).toFixed(2));
+    console.log("referido: "+this.poliza.selectPoliza.comisionReferido)
   }
 }

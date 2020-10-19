@@ -114,33 +114,18 @@
     </div>
   </div>
   <hr>
-
-  <div class="p-3">
-    <div class="center form-row" id="DatosAsegurados">      
-      <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="inicioVigencia"> Inicio Vigencia </label>
-        <input type="date" class="form-control" id="inicioVigencia" name="inicioVigencia" #inicioVigencia="ngModel"
-        [(ngModel)]="poliza.selectPoliza.inicioVigencia">
-      </div>
-      <div class="col-sm-2 col-md-2 col-lg-2">
-        <label for="finVigencia"> Fin Vigencia </label>
-        <input type="date" class="form-control" id="finVigencia" name="finVigencia" #finVigencia="ngModel"
-        [(ngModel)]="poliza.selectPoliza.finVigencia">
-      </div>
-    </div>
-  </div>
-  <hr>
+  
   <div class="p-3">
     <div class="center form-row" id="DatosAsegurados">
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="primaAfecta"> Prima Afecta </label>
         <input type="number" class="form-control n" placeholder="Prima Afecta" id="primaAfecta" name="primaAfecta" #primaAfecta="ngModel"
-        [(ngModel)]="poliza.selectPoliza.primaAfecta" (change)="calcularIva(primaAfecta.value);calcularNeta(primaAfecta.value, primaExenta.value); calcularKonex(comisionAfecta.value, comisionExenta.value, primaAfecta.value, primaExenta.value); calcReferido(comisionReferido.value, montoTotal.value)">
+        [(ngModel)]="poliza.selectPoliza.primaAfecta" (change)="calcularIva(primaAfecta.value);calcularNeta(primaAfecta.value, primaExenta.value); calcularKonex(comisionAfecta.value, comisionExenta.value, primaAfecta.value, primaExenta.value); calcReferido(valorReferido.value)">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="primaExenta"> Prima Exenta </label>
         <input type="number" class="form-control n" id="primaExenta" placeholder="Prima Exenta"  name="primaExenta" #primaExenta="ngModel"
-        [(ngModel)]="poliza.selectPoliza.primaExenta"  (change) = "calcularNeta(primaAfecta.value, primaExenta.value); calcularKonex(comisionAfecta.value, comisionExenta.value, primaAfecta.value, primaExenta.value); calcReferido(comisionReferido.value, montoTotal.value)">
+        [(ngModel)]="poliza.selectPoliza.primaExenta"  (change) = "calcularNeta(primaAfecta.value, primaExenta.value); calcularKonex(comisionAfecta.value, comisionExenta.value, primaAfecta.value, primaExenta.value); calcReferido(valorReferido.value)">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="primaNeta"> Prima Neta </label>
@@ -165,12 +150,12 @@
       <div class="col-sm-2 col-md-2 col-lg-2 mt-3">
         <label for="comisionAfecta"> Comision Afecta % </label>
         <input type="number" class="form-control n" placeholder="Valor Afecta %" id="comisionAfecta" name="comisionAfecta" #comisionAfecta="ngModel"
-        [(ngModel)]="poliza.selectPoliza.comisionAfecta"  (change) = "calcularNeta(primaAfecta.value, primaExenta.value); calcularKonex(comisionAfecta.value, comisionExenta.value, primaAfecta.value, primaExenta.value); calcReferido(comisionReferido.value, montoTotal.value)">
+        [(ngModel)]="poliza.selectPoliza.comisionAfecta"  (change) = "calcularNeta(primaAfecta.value, primaExenta.value); calcularKonex(comisionAfecta.value, comisionExenta.value, primaAfecta.value, primaExenta.value); calcReferido(valorReferido.value)">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2 mt-3">
         <label for="comisionExenta"> Comisión Exenta % </label>
         <input type="number" class="form-control n" id="comisionExenta" placeholder=" Valor Exenta % " name="comisionExenta" #comisionExenta="ngModel"
-        [(ngModel)]="poliza.selectPoliza.comisionExenta"  (change) = "calcularNeta(primaAfecta.value, primaExenta.value); calcularKonex(comisionAfecta.value, comisionExenta.value, primaAfecta.value, primaExenta.value); calcReferido(comisionReferido.value, montoTotal.value)">
+        [(ngModel)]="poliza.selectPoliza.comisionExenta"  (change) = "calcularNeta(primaAfecta.value, primaExenta.value); calcularKonex(comisionAfecta.value, comisionExenta.value, primaAfecta.value, primaExenta.value); calcReferido(valorReferido.value)">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2 mt-3">
         <label for="montoTotal"> Comision Total KONEX </label>
@@ -180,7 +165,7 @@
       <div class="col-sm-2 col-md-1 col-lg-1 mt-3">
         <label for="porcentajeReferido"> Com. referido</label>
         <input type="number" class="form-control n" value="0" id="valorReferido" name="valorReferido" #valorReferido="ngModel"
-        [(ngModel)]="poliza.selectPoliza.valorReferido" (change)= "calcReferido(valorReferido.value, montoTotal.value)">
+        [(ngModel)]="poliza.selectPoliza.valorReferido" (change)= "calcReferido(valorReferido.value)">
       </div>
       <div class="col-sm-2 col-md-1 col-lg-1 mt-3">
         <label for="comisionReferido"> Com. referido UF</label>

@@ -24,6 +24,7 @@ export class PolizasComponent implements OnInit {
     this.getPolizas();
     this.dtOptions = {
       scrollY: true,
+      scrollX: true,
       // Declare the use of the extension in the dom parameter
       dom: 'Bfrtip',
       // Configure the buttons
@@ -43,5 +44,6 @@ export class PolizasComponent implements OnInit {
         this.dtTrigger.next();
       })
   };
+
 }
   

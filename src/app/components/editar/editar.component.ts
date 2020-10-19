@@ -228,7 +228,10 @@ export class EditarComponent implements OnInit {
     return this.poliza.selectPoliza.montoTotal;
   } 
 
-  calcReferido(x, y){
-    
+  calcReferido(x){
+    const a = this.calcularKonex(this.poliza.selectPoliza.comisionAfecta, this.poliza.selectPoliza.comisionExenta, this.poliza.selectPoliza.primaAfecta, this.poliza.selectPoliza.primaExenta)
+    console.log( a );
+    this.poliza.selectPoliza.comisionReferido = parseFloat((+a * (x / 100)).toFixed(2));
+    console.log("referido: "+this.poliza.selectPoliza.comisionReferido)
   }
 }

@@ -3,19 +3,47 @@
     <table class="row-border hover w-auto cell-border table-responsive" cellspacing="0"
         datatable="ng" [dtOptions]="dtOptions" class="row-border hover fixed display nowrap"
         [dtTrigger] = "dtTrigger"
-        id="propuesta">
+        id="propuesta" 
+        style="width: 100%;">
         <thead>
             <tr>
                 <th> Acciones </th> 
                 <th> Nro Propuesta </th>
-                <th> Endoso </th>
-                <th> Poliza </th>
-                <th> Tipo </th>
+                <th> Nro Endoso </th>
+                <th> Nro Poliza </th>
+                <th> Propuesta </th>
+                <th> Ramo </th>
+                <th> Monto Asegurado </th>
+                <th> Alias </th>
+                <th> Aseguradora </th>
                 <th> Rut Cliente </th>
                 <th> Razon Social / Nombre </th>
-                <th> Compañia </th>
+                <th> Rut Acreedor </th>
+                <th> Nombre Acreedor </th>
+                <th> Nombre Contacto </th>
+                <th> Telefono Contacto </th>
+                <th> Direccion </th>
+                <th> Region </th>
+                <th> Comuna </th>
                 <th>Inicio Vigencia</th>
                 <th>Fin Vigencia</th> 
+                <th> Prima Afecta </th>
+                <th>Prima Exenta</th>
+                <th>Prima Neta</th>
+                <th>Iva</th>
+                <th>Prima Bruta</th>
+                <th>Tipo moneda</th>
+                <th>Comision Afecta %</th>
+                <th>Comision Exenta %</th>
+                <th> Comision Konex </th>
+                <th>Comision Referido</th>
+                <th>Comision Referido UF</th>
+                <th>Forma Pago</th>
+                <th>Nro Cuotas</th>
+                <th>FechaPrimera Cuota</th>
+                <th>Cobertura</th>
+                <th>Limites</th>
+                <th>Items</th>
                 <th> Estado </th>
                 <th> Estado Pago </th>  
                 
@@ -32,13 +60,39 @@
                 <td> {{poliza.numeroEndoso| mask:"separator":"."}} </td>
                 <td> {{poliza.nroPoliza| mask:"separator":"." }} </td>
                 <td> {{poliza.nombrePropuesta}} </td>
+                <td> {{poliza.ramo}} </td>
+                <td> {{poliza.montoAsegurado}} </td>
+                <td> {{poliza.alias}} </td>
+                <td> {{poliza.nombreAseguradora}} </td>
                 <td> {{poliza.rutCliente|mask:"00.000.00A-A||0.000.00A-A"}} </td>
                 <td> {{poliza.nombreCliente}} </td>
-                <td> {{poliza.nombreAseguradora}} </td>
+                <td> {{poliza.rutAcreedor}} </td>
+                <td> {{poliza.nombreAcreedor}} </td>
+                <td> {{poliza.nombreContacto}} </td>
+                <td> {{poliza.telefonoContacto}} </td>
+                <td> {{poliza.direccion}} </td>
+                <td> {{poliza.region}} </td>
+                <td> {{poliza.comuna}} </td>
                 <td> {{poliza.inicioVigencia|date: "dd/MM/yyyy"}} </td>
                 <td> {{poliza.finVigencia|date: "dd/MM/yyyy"}} </td>
+                <td> {{poliza.primaAfecta| mask:"separator":"." }} </td>
+                <td> {{poliza.primaExenta| mask:"separator":","}} </td>
+                <td> {{poliza.primaNeta| mask:"separator":","}} </td>
+                <td> {{poliza.iva}} </td>
+                <td> {{poliza.primaBruta| mask:"separator":","}} </td>
+                <td> {{poliza.tipoMoneda}} </td>
+                <td> {{poliza.comisionAfecta| mask:"separator":","}} </td>
+                <td> {{poliza.comisionExenta| mask:"separator":","}} </td>
+                <td> {{poliza.montoTotal| mask:"separator":","}} </td>
+                <td> {{poliza.valorReferido| mask:"separator":","}} </td>
+                <td> {{poliza.comisionReferido| mask:"separator":","}} </td>
+                <td> {{poliza.formaPago}} </td>
+                <td> {{poliza.nroCuotas}} </td>
+                <td> {{poliza.fcPrimeraCuota|date: "dd/MM/yyyy"}} </td>
+                <td> {{poliza.cobertura}} </td>
+                <td> {{poliza.limites}} </td>
+                <td> {{poliza.items}} </td>
                 <td> {{poliza.estado}} </td>
-                <td> {{poliza.estadoPago}} </td>
                 <td> {{poliza.estadoPago}} </td>
             </tr>
         </tbody>
