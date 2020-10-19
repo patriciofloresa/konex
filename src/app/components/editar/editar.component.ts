@@ -1,4 +1,5 @@
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { summaryFileName } from '@angular/compiler/src/aot/util';
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 
@@ -16,7 +17,7 @@ import { PolizaService } from '../../services/poliza/poliza.service';
 export class EditarComponent implements OnInit {
 
   nombre: string;
-  editar:boolean= false;
+  editar:boolean= true;
   incorporar:boolean=false;
   excluir:boolean=false;
   modificar: boolean=false;
@@ -96,13 +97,14 @@ export class EditarComponent implements OnInit {
 //cargamos la poliza
   load(poliza: Poliza){
     this.poliza.selectPoliza = poliza;
+    if(this.poliza.selectPoliza.region = poliza.region)
+      this.poliza.selectPoliza.comuna = poliza.comuna;
   }
 //metodo para editar propuesta
   editarPropuesta(form: NgForm){
     form.value.nombrePropuesta="POLIZA";
     form.value.nombrePropuesta = "POLIZA";
     console.log(form.value)
-    this.traerPoliza();
     this.poliza.editPoliza(form.value)
       .subscribe(res => console.log(form.value));
   }
@@ -199,16 +201,34 @@ export class EditarComponent implements OnInit {
     this.modificar=false;
   }
 
-  calcularIva(value){
-    this.poliza.selectPoliza.iva = value * 0.19
-    console.log(this.poliza.selectPoliza.iva)
+  calcularIva(afecta){
+    this.poliza.selectPoliza.iva = parseFloat((afecta * 0.19).toFixed(2))
+    console.log("Iva: "+this.poliza.selectPoliza.iva);
     return this.poliza.selectPoliza.iva;
-
   }
-  calcularNeta(){
-
+  calcularNeta(afecta, exenta){
+    this.poliza.selectPoliza.primaNeta = (afecta + exenta);
+    console.log("Neta: "+this.poliza.selectPoliza.primaNeta);
+    this.calcularBruta(this.poliza.selectPoliza.primaNeta, this.calcularIva(afecta))
+    return this.poliza.selectPoliza.primaNeta;
   }
-  calcularKonex(){
 
+  calcularBruta(neta, iva){
+    this.poliza.selectPoliza.primaBruta = (neta + iva);
+    console.log("bruta: " + this.poliza.selectPoliza.primaBruta);
+    return this.poliza.selectPoliza.primaBruta;
+  }
+
+  calcularKonex(comisionAfecta, comisionExenta, afecta, exenta){
+    const a = (afecta * (comisionAfecta/100));
+    const b = exenta * (comisionExenta/100);
+    console.log("A: "+a + "B: "+b);
+    this.poliza.selectPoliza.montoTotal = parseFloat(( a + b ).toFixed(2));
+    console.log("comision Konex: "+ this.poliza.selectPoliza.montoTotal)
+    return this.poliza.selectPoliza.montoTotal;
+  } 
+
+  calcReferido(x, y){
+    
   }
 }

@@ -44,7 +44,8 @@ polizaController.createPoliza = async (req, res) => {
     estado: req.body.estado,
     estadoPago: req.body.estadoPago,
     nombreReferido: req.body.nombreReferido,
-    comisionReferido: req.body.comisionReferido
+    comisionReferido: req.body.comisionReferido,
+    valorReferido: req.body.valorReferido
    })
    res.json({
     'status':'Poliza Guardada'

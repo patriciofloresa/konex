@@ -51,8 +51,34 @@ date = new Date().toISOString().slice(0,10);
     this.poliza.selectPoliza.fcPropuesta = this.date;
   }
 
-  calcularIva(){
-    
+  calcularIva(afecta){
+    this.poliza.selectPoliza.iva = parseFloat((afecta * 0.19).toFixed(2))
+    console.log("Iva: "+this.poliza.selectPoliza.iva);
+    return this.poliza.selectPoliza.iva;
+  }
+  calcularNeta(afecta, exenta){
+    this.poliza.selectPoliza.primaNeta = (afecta + exenta);
+    console.log("Neta: "+this.poliza.selectPoliza.primaNeta);
+    this.calcularBruta(this.poliza.selectPoliza.primaNeta, this.calcularIva(afecta))
+    return this.poliza.selectPoliza.primaNeta;
   }
 
+  calcularBruta(neta, iva){
+    this.poliza.selectPoliza.primaBruta = (neta + iva);
+    console.log("bruta: " + this.poliza.selectPoliza.primaBruta);
+    return this.poliza.selectPoliza.primaBruta;
+  }
+
+  calcularKonex(comisionAfecta, comisionExenta, afecta, exenta){
+    const a = (afecta * (comisionAfecta/100));
+    const b = exenta * (comisionExenta/100);
+    console.log("A: "+a + "B: "+b);
+    this.poliza.selectPoliza.montoTotal = parseFloat(( a + b ).toFixed(2));
+    console.log("comision Konex: "+this.poliza.selectPoliza.montoTotal)
+    return this.poliza.selectPoliza.montoTotal;
+  } 
+
+  calcReferido(porcentaje, konex){
+    this.poliza.selectPoliza.comisionReferido =  parseFloat((konex * (porcentaje / 100)).toFixed(2))
+  }
 }
