@@ -119,7 +119,7 @@
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="primaAfecta"> Prima Afecta </label>
         <input type="number" class="form-control n" placeholder="Prima Afecta" id="primaAfecta" value=""  name="primaAfecta" #primaAfecta="ngModel"
-        [(ngModel)]="poliza.selectPoliza.primaAfecta"  oninput="calcularIva(); calcularNeta(); calcularKonex()">
+        [(ngModel)]="poliza.selectPoliza.primaAfecta"  (change)="calcularIva()">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="primaExenta"> Prima Exenta </label>
@@ -135,7 +135,7 @@
 
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="iva"> IVA </label>
-        <input type="number" class="form-control n ng-scope ng-binding" id="iva" placeholder="iva" name="iva" #iva="ngModel" value=""
+        <input type="number" class="form-control n ng-scope ng-binding" id="iva" placeholder="iva" value="calcularIva()" name="iva" #iva="ngModel" value=""
         [(ngModel)]="poliza.selectPoliza.iva"  >
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">

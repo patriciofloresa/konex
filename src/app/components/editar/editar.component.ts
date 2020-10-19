@@ -22,8 +22,17 @@ export class EditarComponent implements OnInit {
   modificar: boolean=false;
   anular:boolean=false;
   cancelar:boolean=false;
+
+  //Para los Cálculos
+  iva: number;
+
+  //Para los valores existentes
   data:any;
   _id:any;
+
+  //Inicializar la fecha para distintos Endosos
+  date = new Date().toISOString().slice(0,10);
+
   polizaForm: NgForm
   constructor(
     private route:ActivatedRoute,
@@ -36,6 +45,20 @@ export class EditarComponent implements OnInit {
     this.loadScript();
     this._id = this.route.snapshot.params['_id'];
     this.traerPoliza();
+  }
+
+  nroProp(){
+    this.poliza.nroPropuesta()
+      .subscribe(res => {
+        this.poliza.poliza = res as Poliza[];
+        console.log(res);
+        this.initNroDate(this.poliza.poliza);
+      })
+  }
+
+  initNroDate(nro){
+    this.poliza.selectPoliza.nroPropuesta = nro;
+    this.poliza.selectPoliza.fcPropuesta = this.date;
   }
 
   public loadScript() {
@@ -76,9 +99,10 @@ export class EditarComponent implements OnInit {
   }
 //metodo para editar propuesta
   editarPropuesta(form: NgForm){
-    this.nombre="POLIZA";
-    form.value.nombrePropuesta = this.nombre;
+    form.value.nombrePropuesta="POLIZA";
+    form.value.nombrePropuesta = "POLIZA";
     console.log(form.value)
+    this.traerPoliza();
     this.poliza.editPoliza(form.value)
       .subscribe(res => console.log(form.value));
   }
@@ -88,6 +112,7 @@ export class EditarComponent implements OnInit {
     this.poliza.selectPoliza.nombrePropuesta = "INCORPORAR";
     this.poliza.incPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida(incorporacion)'));
+      
   }
   //metodo para endoso de exclusion
   excluirPropuesta(form: NgForm){
@@ -120,6 +145,7 @@ export class EditarComponent implements OnInit {
   }
 
   editarBtn(){
+    this.traerPoliza();
     this.editar=true;
     this.incorporar=false;
     this.excluir=false;
@@ -128,6 +154,7 @@ export class EditarComponent implements OnInit {
     this.modificar=false;
   }
   incorporarBtn(){
+    this.nroProp();
     this.editar=false;
     this.incorporar=true;
     this.excluir=false;
@@ -136,6 +163,7 @@ export class EditarComponent implements OnInit {
     this.modificar=false;
   }
   excluirBtn(){
+    this.nroProp();
     this.editar=false;
     this.incorporar=false;
     this.excluir=true;
@@ -144,6 +172,7 @@ export class EditarComponent implements OnInit {
     this.modificar=false;
   }
   modificarBtn(){
+    this.nroProp();
     this.editar=false;
     this.incorporar=false;
     this.excluir=false;
@@ -152,6 +181,7 @@ export class EditarComponent implements OnInit {
     this.modificar=true;
   }
   anularBtn(){
+    this.nroProp();
     this.editar=false;
     this.incorporar=false;
     this.excluir=false;
@@ -160,6 +190,7 @@ export class EditarComponent implements OnInit {
     this.modificar=false;
   }
   cancelarBtn(){
+    this.nroProp();
     this.editar=false;
     this.incorporar=false;
     this.excluir=false;
@@ -168,4 +199,16 @@ export class EditarComponent implements OnInit {
     this.modificar=false;
   }
 
+  calcularIva(value){
+    this.poliza.selectPoliza.iva = value * 0.19
+    console.log(this.poliza.selectPoliza.iva)
+    return this.poliza.selectPoliza.iva;
+
+  }
+  calcularNeta(){
+
+  }
+  calcularKonex(){
+
+  }
 }

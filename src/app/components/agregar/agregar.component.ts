@@ -51,4 +51,8 @@ date = new Date().toISOString().slice(0,10);
     this.poliza.selectPoliza.fcPropuesta = this.date;
   }
 
+  calcularIva(){
+    
+  }
+
 }

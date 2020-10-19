@@ -5,9 +5,11 @@ function calcularIva(){
             b = 0.19;
             c = a * b;
             c = c.toFixed(2)
+            console.log("---- IVA ----")
             console.log('A: '+a + ' B: '+b+ ' C: '+c)
-            
-        document.getElementById("iva").value = c;
+            document.getElementById("iva").value = c;
+        $('#iva').value = (c);
+
     } catch (error) {
         console.log(error)
     }

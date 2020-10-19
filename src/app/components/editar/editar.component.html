@@ -4,6 +4,7 @@
 <h2 class="center m-1 pt-2" *ngIf="modificar"> Propuesta: Endoso de Modificación </h2>
 <h2 class="center m-1 pt-2" *ngIf="anular"> Propuesta: Endoso de Anulación </h2>
 <h2 class="center m-1 pt-2" *ngIf="cancelar"> Propuesta: Endoso de Cancelación </h2>
+
 <div class="d-flex justify-content-start">
   <button class="btn btn-primary m-1" (click)="editarBtn()" onclick="editar()">EDITAR</button>
   <button class="btn btn-primary m-1" (click)="excluirBtn()" onclick="modificar()">MODIFICAR</button>
@@ -34,12 +35,12 @@
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="fcPropuesta"> Fecha Propuesta </label>
         <input type="date" class="form-control" id="fcPropuesta" value="" name="fcPropuesta" #fcPropuesta="ngModel"
-          [(ngModel)]="poliza.selectPoliza.fcPropuesta" >
+          [(ngModel)]="poliza.selectPoliza.fcPropuesta" readonly>
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="nroPropuesta"> Numero Propuesta</label>
         <input type="text" class="form-control textalign-right n" value="0" id="nroPropuesta" name="nroPropuesta" #nroPropuesta="ngModel"
-        [(ngModel)]="poliza.selectPoliza.nroPropuesta" mask="separator.0" >
+        [(ngModel)]="poliza.selectPoliza.nroPropuesta" mask="separator.0" readonly>
       </div>
     </div>    
   </div>
@@ -137,7 +138,7 @@
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="primaAfecta"> Prima Afecta </label>
         <input type="number" class="form-control n" placeholder="Prima Afecta" id="primaAfecta" name="primaAfecta" #primaAfecta="ngModel"
-        [(ngModel)]="poliza.selectPoliza.primaAfecta"  oninput="calcularIva(); calcularNeta(); calcularKonex()">
+        [(ngModel)]="poliza.selectPoliza.primaAfecta" oninput="calcularIva()" (change)="calcularIva(primaAfecta.value)">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="primaExenta"> Prima Exenta </label>
@@ -151,8 +152,8 @@
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="iva"> IVA </label>
-        <input type="number" class="form-control n" id="iva" placeholder="iva" name="iva" #iva="ngModel" value=""
-        [(ngModel)]="poliza.selectPoliza.iva"  >
+        <input type="number" class="form-control n" id="iva" placeholder="iva" name="iva" #iva="ngModel" value="{{ this.iva }}"
+        [(ngModel)]="poliza.selectPoliza.iva">
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="primaBruta"> Prima Bruta </label>
