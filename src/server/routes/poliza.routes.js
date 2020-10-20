@@ -7,7 +7,8 @@ const poliza = require('../models/poliza');
 //Crear Polizas
 router.get('/polizas/agregar', polizaController.getLastNroPropuesta)
 router.post('/polizas/agregar', polizaController.createPoliza)
-
+//Crear Endoso
+router.post('/polizas/editar', polizaController.endosoPoliza)
 //listar Polizas
 router.get('/', polizaController.getPolizas)
 

@@ -14,7 +14,7 @@ export class DescargarComponent implements OnInit {
 
   data:any;
   _id:any;
-
+  propuesta = "POLIZA";
   constructor(
     private route:ActivatedRoute,
     public poliza: PolizaService)
@@ -54,13 +54,13 @@ export class DescargarComponent implements OnInit {
     const options = {
       filename: 'poliza.pdf',
       image: {type: 'jpeg', quality:  5},
-      html2canvas: { scale: 3,
+      html2canvas: { scale: 4,
       letterRendering: true,
       width: Width,
       height: Height},
       jsPDF: { 
         unit: "px",
-        orientation: "l",
+        orientation: "p",
         //format: [height, width]
         format: [Height, Width]
        },

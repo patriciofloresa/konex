@@ -130,6 +130,59 @@ polizaController.editPoliza = async (req, res) => {
     res.json( {status: console.log(poliza)});
 }
 
+polizaController.endosoPoliza = async (req, res) => {
+    
+    const { id } = req.params;
+
+    const poliza = new Poliza({     
+        nombrePropuesta : req.body.nombrePropuesta,
+        nroPoliza: req.body.nroPoliza,
+        fcPropuesta: req.body.fcPropuesta,
+        nroPropuesta: req.body.nroPropuesta,
+        nombreAseguradora: req.body.nombreAseguradora,
+        ramo: req.body.ramo,
+        montoAsegurado: req.body.montoAsegurado,        
+        rutCliente: req.body.rutCliente,
+        alias: req.body.alias,
+        nombreCliente: req.body.nombreCliente,
+        rutAcreedor: req.body.rutAcreedor,
+        nombreAcreedor: req.body.nombreAcreedor,
+        telefonoContacto: req.body.telefonoContacto,
+        nombreContacto: req.body.nombreContacto,
+        direccion: req.body.direccion,
+        region: req.body.region,
+        comuna: req.body.comuna,
+        formaPago: req.body.formaPago,
+        nroCuotas: req.body.nroCuotas,
+        fcPrimeraCuota: req.body.fcPrimeraCuota,
+        inicioVigencia: req.body.inicioVigencia,
+        finVigencia: req.body.finVigencia,
+        primaAfecta: req.body.primaAfecta,
+        primaExenta: req.body.primaExenta,
+        primaNeta: req.body.primaNeta,
+        iva: req.body.iva,
+        primaBruta: req.body.primaBruta,
+        tipoMoneda: req.body.tipoMoneda,
+        comisionExenta: req.body.comisionExenta,
+        comisionAfecta: req.body.comisionAfecta,
+        montoTotal: req.body.montoTotal,
+        cobertura: req.body.cobertura,
+        limites: req.body.limites,
+        items: req.body.items,
+        estado: req.body.estado,
+        estadoPago: req.body.estadoPago,
+        nombreReferido: req.body.nombreReferido,
+        comisionReferido: req.body.comisionReferido,
+        valorReferido: req.body.valorReferido,
+        numeroEndoso: req.body.numeroEndoso
+    });
+    res.json({
+        'status':'Endoso Guardado Con Exito'
+        }); 
+    console.log(poliza);
+    poliza.save();
+}
+
 polizaController.descPoliza = async (req, res) => {
     const id = await req.params.id
     const poliza = await Poliza.findById(id)

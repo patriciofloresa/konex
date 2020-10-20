@@ -3,9 +3,9 @@
 </div>
 <div class="d-flex justify-content-center m-2" >
     <div class="col-lg-6" >
-        <div id="poliza" class="col-lg-12 bg-white bord">
+        <div id="poliza" class="col-lg-12 bg-white">
             <div class="col-lg-12 d-flex flex-row justify-content-between">
-                <h3 class="m-3 pt-2 d-flex"> PROPUESTA {{data.nombrePropuesta}} </h3>
+                <h3 class="m-3 pt-2 d-flex"> PROPUESTA DE {{data.nombrePropuesta}} </h3>
                 <img class="mt-3 mr-3"  src="assets/img/Logo.jpg" style="height: auto; width: 20%">
             </div>
             <hr>
@@ -19,6 +19,11 @@
             </div>
             <div class="col-lg-12 d-flex flex-row-reverse">
                 <div class="col-lg-5 fz">
+                    
+                    <p *ngIf= "propuesta !== 'POLIZA'">
+                        <strong> NÚMERO ENDOSO : </strong> <span type="date" > {{data.fcPropuesta| date: 'dd/MM/yyyy' }} </span>
+                    </p>
+                                        
                     <p>
                         <strong> FECHA PROPUESTA : </strong> <span type="date" > {{data.fcPropuesta| date: 'dd/MM/yyyy' }} </span>
                     </p>
