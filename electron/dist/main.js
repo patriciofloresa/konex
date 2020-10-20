@@ -6,7 +6,25 @@ var path = require("path");
 var url = require("url");
 var win;
 function createWindow() {
-    win = new electron_1.BrowserWindow({ width: 800, height: 600 });
+    win = new electron_1.BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true,
+            nativeWindowOpen: true,
+        },
+    });
+    var dialog = require('electron').dialog;
+    win.webContents.session.on('will-download', function (event, downloadItem, webContents) {
+        var fileName = dialog.showSaveDialog({
+            defaultPath: "descargas",
+            filters: [
+                { name: 'Hoja de cálculo de Microsoft Excel', extensions: ['.xlsx'] },
+                { name: 'PDF Document', extensions: ['.pdf'] }
+            ]
+        });
+        downloadItem.setSavePath("Propuesta");
+    });
     win.loadURL(url.format({
         pathname: path.join(__dirname, "../../dist/Konex/index.html"),
         protocol: 'file:',

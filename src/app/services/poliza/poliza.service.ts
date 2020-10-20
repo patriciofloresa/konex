@@ -58,11 +58,15 @@ export class PolizaService {
     return this.http.get(this.URL_API+`/polizas/descargar/`+id).pipe(map(res => res ))
   }
 
+  mainPoliza(id){
+    return this.http.get(this.URL_API+`/`+id).pipe(map(res => res ))
+  }
+
   editPoliza(poliza: Poliza){
     return this.http.put(this.URL_API+`/polizas/editar/${poliza._id}`,poliza);
   }
 
-  enviada(poliza: Poliza){
-    return this.http.put(this.URL_API+`/${poliza._id}`, poliza);
+  estado(poliza: Poliza){
+    return this.http.put(this.URL_API+`/${poliza._id}`,poliza);
   }
 }

@@ -6,7 +6,28 @@ import * as url from 'url';
 
 let win: BrowserWindow;
 function createWindow() {
-  win = new BrowserWindow({ width: 800, height: 600 });
+  win = new BrowserWindow({ 
+    width: 800, 
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+      nativeWindowOpen: true, //**** add this**
+    },
+  });
+
+  const { dialog } = require('electron');
+  win.webContents.session.on('will-download', (event, downloadItem, webContents) => {
+
+  var fileName = dialog.showSaveDialog({
+    defaultPath: "descargas", 
+    filters: [
+      { name: 'Hoja de cálculo de Microsoft Excel', extensions: ['.xlsx'] },
+      { name: 'PDF Document', extensions: ['.pdf'] }]
+  });
+  
+  downloadItem.setSavePath("Propuesta");
+  
+});
 
   win.loadURL(
       url.format({
@@ -29,3 +50,4 @@ app.on('activate', () => {
       createWindow()
   }
 })
+

@@ -97,13 +97,14 @@ export class EditarComponent implements OnInit {
 //cargamos la poliza
   load(poliza: Poliza){
     this.poliza.selectPoliza = poliza;
-    if(this.poliza.selectPoliza.region = poliza.region)
-      this.poliza.selectPoliza.comuna = poliza.comuna;
+    if (this.poliza.selectPoliza.region)
+      this.poliza.selectPoliza.comuna
   }
+  
 //metodo para editar propuesta
   editarPropuesta(form: NgForm){
     form.value.nombrePropuesta="POLIZA";
-    form.value.nombrePropuesta = "POLIZA";
+    this.poliza.selectPoliza.nombrePropuesta = "POLIZA";
     console.log(form.value)
     this.poliza.editPoliza(form.value)
       .subscribe(res => console.log(form.value));

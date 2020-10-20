@@ -2,9 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ActivatedRoute } from "@angular/router";
+
 //Addons
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
@@ -52,7 +54,8 @@ const maskConfig: Partial<IConfig> = {
     HttpClientModule,
     FormsModule,
     NgxMaskModule.forRoot(maskConfig),
-    DataTablesModule 
+    DataTablesModule,
+    NgbModule
   ],
   exports:[RouterModule],
   providers: [ 

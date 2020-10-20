@@ -80,12 +80,6 @@ polizaController.getLastNroPropuesta = async(req, res) => {
     }
 }
 
-polizaController.hisPoliza = async(req, res) =>{
-    const historial = await Poliza.find( [nroPoliza] === parseInt(req.params.nroPoliza) );
-    res.json(historial);
-}
-
- 
 polizaController.editPoliza = async (req, res) => {
     
     const { id } = req.params;
@@ -136,11 +130,19 @@ polizaController.editPoliza = async (req, res) => {
     res.json( {status: console.log(poliza)});
 }
 
-polizaController.incPoliza = async(req, res) => {
-    const poliza = new Poliza({
+polizaController.descPoliza = async (req, res) => {
+    const id = await req.params.id
+    const poliza = await Poliza.findById(id)
+        res.json(poliza);     
+}
+
+polizaController.estado = async (req, res )=> {
+   
+    const { id } = req.params;
+    const poliza = {     
         nombrePropuesta : req.body.nombrePropuesta,
-        fcPropuesta: req.body.fcPropuesta,
         nroPoliza: req.body.nroPoliza,
+        fcPropuesta: req.body.fcPropuesta,
         nroPropuesta: req.body.nroPropuesta,
         nombreAseguradora: req.body.nombreAseguradora,
         ramo: req.body.ramo,
@@ -178,83 +180,9 @@ polizaController.incPoliza = async(req, res) => {
         comisionReferido: req.body.comisionReferido,
         valorReferido: req.body.valorReferido,
         numeroEndoso: req.body.numeroEndoso
-       })
-       res.json({
-        'status': 'Endoso Guardado'
-        });
-       poliza.save();
-}
-
-polizaController.anuPoliza = async(req, res) => {
-    const poliza = {       
-        estado: req.body.estado,
-        estadoPago: req.body.estadoPago
     };
-
-    await Poliza.findByIdAndUpdate(req.params.id, poliza)
-        .then(() => res.sendStatus(204));
-}
-
-polizaController.canPoliza = async(req, res) => {
-    const poliza = {       
-        estado: req.body.estado,
-        estadoPago: req.body.estadoPago
-    };
-    console.log(poliza)
-    await Poliza.findByIdAndUpdate(req.params.id, poliza)
-        .then(() => res.sendStatus(204));
-}
-
-polizaController.descPoliza = async (req, res) => {
-    const id = await req.params.id
-    const poliza = await Poliza.findById(id)
-        res.json(poliza);     
-}
-
-polizaController.enviada = async (req, res )=> {
-    const { id } = req.params.id
-    const poliza = {
-        nombrePropuesta: req.body.nombrePropuesta,
-        nombreAseguradora: req.body.nombreAseguradora,
-        ramo: req.body.ramo,
-        montoAsegurado: req.body.montoAsegurado,        
-        rutCliente: req.body.rutCliente,
-        alias: req.body.alias,
-        nombreCliente: req.body.nombreCliente,
-        rutAcreedor: req.body.rutAcreedor,
-        nombreAcreedor: req.body.nombreAcreedor,
-        rutContacto: req.body.rutContacto,
-        nombreContacto: req.body.nombreContacto,
-        direccion: req.body.direccion,
-        region: req.body.region,
-        comuna: req.body.comuna,
-        formaPago: req.body.formaPago,
-        nroCuotas: req.body.nroCuotas,
-        fcPrimeraCuota: req.body.fcPrimeraCuota,
-        inicioVigencia: req.body.inicioVigencia,
-        finVigencia: req.body.finVigencia,
-        primaAfecta: req.body.primaAfecta,
-        primaExenta: req.body.primaExenta,
-        primaNeta: req.body.primaNeta,
-        iva: req.body.iva,
-        primaBruta: req.body.primaBruta,
-        tipoMoneda: req.body.tipoMoneda,
-        comisionExenta: req.body.comisionExenta,
-        comisionAfecta: req.body.comisionAfecta,
-        montoTotal: req.body.montoTotal,
-        cobertura: req.body.cobertura,
-        limites: req.body.limites,
-        items: req.body.items,
-        estado: req.body.estado,
-        estadoPago: req.body.estadoPago,
-        nombreReferido: req.body.nombreReferido,
-        comisionReferido: req.body.comisionReferido,
-        valorReferido: req.body.valorReferido,
-        numeroEndoso: req.body.numeroEndoso
-    }
-    res.json(console.log(poliza));
-    await Poliza.findByIdAndUpdate(id, {$set: poliza});
-    
+    await Poliza.findByIdAndUpdate( id , {$set: poliza});
+    res.json( {status: console.log(poliza)});
 }
 
 module.exports = polizaController;
