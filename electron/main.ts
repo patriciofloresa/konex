@@ -19,13 +19,13 @@ function createWindow() {
   win.webContents.session.on('will-download', (event, downloadItem, webContents) => {
 
   var fileName = dialog.showSaveDialog({
-    defaultPath: "descargas", 
+    defaultPath: "PROPUESTA", 
     filters: [
       { name: 'Hoja de cálculo de Microsoft Excel', extensions: ['.xlsx'] },
       { name: 'PDF Document', extensions: ['.pdf'] }]
+      
   });
-  
-  downloadItem.setSavePath("Propuesta");
+  downloadItem.setSavePath("No se donde va esto");
   
 });
 

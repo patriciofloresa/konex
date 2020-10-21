@@ -1,4 +1,3 @@
-
 function editar(){
     document.getElementById("nombrePropuesta").value = "POLIZA";
 }
@@ -21,3 +20,7 @@ function cancelar(){
     document.getElementById("nombrePropuesta").value = "CANCELAR";
     console.log( "incorporacion "+ document.getElementById("nombrePropuesta").value)
 }
+function auto_grow(element) {
+    element.style.height = "5px";
+    element.style.height = (element.scrollHeight)+"px";
+}   

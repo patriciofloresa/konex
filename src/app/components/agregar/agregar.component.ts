@@ -32,9 +32,11 @@ date = new Date().toISOString().slice(0,10);
   
   createPoliza(form: NgForm){
     this.poliza.selectPoliza.nombrePropuesta = "POLIZA";
-    console.log(form.value)
-    this.poliza.createPoliza(form.value)
+    if(form.valid)
+      this.poliza.createPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida'));
+    else
+      console.log("error, weas vacias")
   }
 
   nroProp(){

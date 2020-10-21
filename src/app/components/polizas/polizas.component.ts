@@ -25,7 +25,7 @@ export class PolizasComponent implements OnInit {
 
   polizaForm: NgForm
 
-  constructor(public polizaService: PolizaService,private router:Router, private route:ActivatedRoute,
+  constructor(public polizaService: PolizaService,private router: Router, private route:ActivatedRoute,
     public modalService: NgbModal )
   {  }
 
@@ -40,15 +40,40 @@ export class PolizasComponent implements OnInit {
       dom: 'Bfrtip',
       // Configure the buttons
       buttons: [
-        'colvis',
+        {
+          extend: 'colvis',
+          text: "Visibilidad Columnas"
+        },
       {
-          extend: 'excelHtml5',
-          exportOptions: {
-              columns: ':visible'
-          }
+        extend: 'excel',
+        exportOptions: {
+            columns: ':visible',
+        },          
       }        
-      ] 
-    };
+      ],
+      language: {
+        processing: "Procesando...",
+        search: "Buscar:",
+        lengthMenu: "Mostrar _MENU_ &eacute;l&eacute;ments",
+        info: "Mostrando desde _START_ al _END_ de _TOTAL_ elementos",
+        infoEmpty: "Mostrando ningún elemento.",
+        infoFiltered: "(filtrado _MAX_ elementos total)",
+        infoPostFix: "",
+        loadingRecords: "Cargando registros...",
+        zeroRecords: "No se encontraron registros",
+        emptyTable: "No hay datos disponibles en la tabla",
+        paginate: {
+          first: "Primero",
+          previous: "Anterior",
+          next: "Siguiente",
+          last: "Último"
+        },
+        aria: {
+          sortAscending: ": Activar para ordenar la tabla en orden ascendente",
+          sortDescending: ": Activar para ordenar la tabla en orden descendente"
+        }
+      }
+    }; 
   }
   
   getPolizas()
@@ -56,18 +81,15 @@ export class PolizasComponent implements OnInit {
     this.polizaService.getPolizas()
       .subscribe(res => {
         this.polizaService.poliza = res as Poliza[];
-        console.log(res);
         this.dtTrigger.next();
       })
   };
 
   traerPoliza(id){
-    console.log("traer poliza id: "+id);
     this.polizaService.mainPoliza(id)
       .subscribe(data => 
         {
           this.data = data;
-          console.log(" Traer Poliza data: " + JSON.stringify(this.data));
           this.load(this.data);
         }
       ) 
@@ -75,56 +97,47 @@ export class PolizasComponent implements OnInit {
   
   load(polizaService: Poliza){
     this.polizaService.selectPoliza = polizaService;
-    console.log("LoadPoliza" + JSON.stringify(this.polizaService.selectPoliza));
   };
 
   editarEstado(form: NgForm){
-     console.log(form.value)
     this.polizaService.estado(form.value)
       .subscribe(res => console.log(form.value)
     );
-    window.location.reload();
+    this.router.navigate(['']) 
   };
 
   estadoEnviado(form: NgForm){
-    console.log("value form enviado: " +JSON.stringify(form.value))
+    
     form.value.estado = "ENVIADO"
     this.polizaService.selectPoliza.estado = "ENVIADO";
-    console.log(this.polizaService.selectPoliza.estado);
+    
   };
 
   estadoPendiente(form: NgForm){
-    console.log("value form pendiente: " +JSON.stringify(form.value))
+    
     form.value.estado = "PENDIENTE"
     this.polizaService.selectPoliza.estado = "PENDIENTE";
-    console.log(this.polizaService.selectPoliza.estado);
+    
   };
 
   estadoCerrado(form: NgForm){
-    console.log("value form cerrado: " +JSON.stringify(form.value))
     form.value.estado = "CERRADO"
     this.polizaService.selectPoliza.estado = "CERRADO";
-    console.log(this.polizaService.selectPoliza.estado);
   };
   pagoPagado(form: NgForm){
-    console.log("value form enviado: " +JSON.stringify(form.value))
     form.value.estadoPago = "PAGADO"
     this.polizaService.selectPoliza.estadoPago = "PAGADO";
-    console.log(this.polizaService.selectPoliza.estadoPago);
   };
 
   pagoPendiente(form: NgForm){
-    console.log("value form pendiente: " +JSON.stringify(form.value))
     form.value.estadoPago = "PENDIENTE"
     this.polizaService.selectPoliza.estadoPago = "PENDIENTE";
-    console.log(this.polizaService.selectPoliza.estadoPago);
+    
   };
 
   pagoAtrasado(form: NgForm){
-    console.log("value form cerrado: " +JSON.stringify(form.value))
     form.value.estadoPago = "ATRASADO"
     this.polizaService.selectPoliza.estadoPago = "ATRASADO";
-    console.log(this.polizaService.selectPoliza.estadoPago);
   };
 
   //abrir Modal

@@ -105,15 +105,17 @@ export class EditarComponent implements OnInit {
   editarPropuesta(form: NgForm){
     form.value.nombrePropuesta="POLIZA";
     this.poliza.selectPoliza.nombrePropuesta = "POLIZA";
-    console.log(form.value)
-    this.poliza.editPoliza(form.value)
-      .subscribe(res => console.log(form.value));
+    if(form.valid)
+      console.log(form.value)
+      this.poliza.editPoliza(form.value)
+        .subscribe(res => console.log('Propuesta Editada'));
   }
   //metodo para endoso de incorporacion
   incorporarPropuesta(form: NgForm){
     form.value.nombrePropuesta = "INCORPORAR"
     this.poliza.selectPoliza.nombrePropuesta = "INCORPORAR";
-    this.poliza.incPoliza(form.value)
+    if(form.valid)
+     this.poliza.incPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida(incorporacion)'));
       
   }
@@ -122,8 +124,9 @@ export class EditarComponent implements OnInit {
     form.value.nombrePropuesta = "EXCLUIR"
     this.poliza.selectPoliza.nombrePropuesta = "EXCLUIR";
     console.log(form.value)
-    this.poliza.excPoliza(form.value)
-      .subscribe(res => console.log('Propuesta Añadida(exclucion)'));
+    if (form.valid)
+      this.poliza.excPoliza(form.value)
+        .subscribe(res => console.log('Propuesta Añadida(exclucion)'));
   }
   modificarPropuesta(form: NgForm){
     form.value.nombrePropuesta = "MODIFICAR"

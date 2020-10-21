@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import * as html2pdf from 'html2pdf-fix-jspdf';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas'; // Todavía no lo usamos
 
 import { PolizaService } from '../../services/poliza/poliza.service';
 
@@ -14,7 +15,7 @@ export class DescargarComponent implements OnInit {
 
   data:any;
   _id:any;
-  propuesta = "POLIZA";
+  propuesta = "";
   constructor(
     private route:ActivatedRoute,
     public poliza: PolizaService)
@@ -24,9 +25,7 @@ export class DescargarComponent implements OnInit {
 
   ngOnInit(): void {
     this._id=this.route.snapshot.params['_id'];
-    this.data = { 
-      nombrePropuesta: '-'
-    }
+    this.data = {}
     this.descPoliza();
   }
 
@@ -45,32 +44,56 @@ export class DescargarComponent implements OnInit {
 
 
   //Export to PDF
-  onExportClick(){
-    const content: Element = document.getElementById('poliza')
-    var Width = document.getElementById('poliza').offsetWidth;
-    var Height = document.getElementById('poliza').offsetHeight;
-    console.log(Width + ' wid', Height + ' hei')
-    
+  
+  downloadPDF(nroProp, company, cliente){
+    //Instance of jsPDF
+    const doc = new jsPDF('p', 'pt', 'a4');
+    const pdf = document.getElementById('pdf');
+    //Some Opts
     const options = {
-      filename: 'poliza.pdf',
-      image: {type: 'jpeg', quality:  5},
-      html2canvas: { scale: 4,
-      letterRendering: true,
-      width: Width,
-      height: Height},
-      jsPDF: { 
-        unit: "px",
-        orientation: "p",
-        //format: [height, width]
-        format: [Height, Width]
-       },
+      background: 'white',
+      scale: 5
     };
-    html2pdf()
-      .from(content)
-      .set(options)
-      .save();
+    html2canvas(pdf, options).then((canvas) => {
 
+      const img = canvas.toDataURL('image/PNG');
+
+      // Add image Canvas to PDF
+      const bufferX = 20;
+      const bufferY = 20;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      const alias = "propuesta " + nroProp + " " + company + " " + cliente+".pdf";
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined);
+      return doc;
+    }).then((docResult) => {
+      docResult.save("propuesta " + nroProp + " " + company + " " + cliente+".pdf");
+    });
   }
+  
+  // onExportClick(nroProp, company, cliente){
+  //       
+  //   const options = {
+  //     filename: "propuesta " + nroProp + " " + company + " " + cliente+".pdf" ,
+  //     image: {type: 'jpeg', quality:  5},
+  //     html2canvas: { scale: 5,
+  //     letterRendering: true,
+  //     width: Width,
+  //     height: Height},
+  //     jsPDF: { 
+  //       unit: "px",
+  //       orientation: "p",
+  //       //format: [height, width]
+  //       format: [Height, Width]
+  //      },
+  //   };
+  //   html2pdf()
+  //     .from(content)
+  //     .set(options)
+  //     .save();
+
+  // }
 
  
 }
