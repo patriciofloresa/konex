@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Poliza } from 'src/app/models/poliza';
 import { PolizaService } from '../../services/poliza/poliza.service';
 
@@ -37,9 +38,16 @@ export class EditarComponent implements OnInit {
   polizaForm: NgForm
   constructor(
     private route:ActivatedRoute,
-    public poliza: PolizaService
-  ) { 
+    public poliza: PolizaService,
+    private toastr: ToastrService
+  ) { }
 
+  toastrSucces(cuerpo, titulo){
+    this.toastr.success(cuerpo, titulo);
+  }
+  
+  toastrError(cuerpo, titulo){
+    this.toastr.error(cuerpo, titulo);
   }
 
   ngOnInit(): void {
@@ -83,13 +91,13 @@ export class EditarComponent implements OnInit {
   header(){
     if (this.polizaForm.value.nombrePropuesta == "POLIZA")
       this.editar = true
-    else if (this.polizaForm.value.nombrePropuesta == "MODIFICAR")
+    else if (this.polizaForm.value.nombrePropuesta == "MODIFICACION")
       this.editar = true;
-    else if (this.polizaForm.value.nombrePropuesta == "INCORPORAR")
+    else if (this.polizaForm.value.nombrePropuesta == "INCORPORACION")
       this.incorporar = true;
     else if (this.polizaForm.value.nombrePropuesta == "EXCLUSION")
       this.excluir = true;
-    else if (this.polizaForm.value.nombrePropuesta == "ANULAR")
+    else if (this.polizaForm.value.nombrePropuesta == "ANULACION")
       this.anular = true;
     else
       this.cancelar = true;
@@ -105,49 +113,84 @@ export class EditarComponent implements OnInit {
   editarPropuesta(form: NgForm){
     form.value.nombrePropuesta="POLIZA";
     this.poliza.selectPoliza.nombrePropuesta = "POLIZA";
+    console.log(form.value)
     if(form.valid)
-      console.log(form.value)
+    {
       this.poliza.editPoliza(form.value)
-        .subscribe(res => console.log('Propuesta Editada'));
+      .subscribe(res => console.log('Propuesta Editada'));
+      this.toastrSucces("Se ha editado correctamente la propuesta, será redirigido pronto a su descarga","Edición exitosa!!");
+    }
+    else
+    {
+      this.toastrError("Error interno no deja realizar la accion de editar", "Error")
+    }
   }
   //metodo para endoso de incorporacion
   incorporarPropuesta(form: NgForm){
-    form.value.nombrePropuesta = "INCORPORAR"
-    this.poliza.selectPoliza.nombrePropuesta = "INCORPORAR";
-    if(form.valid)
-     this.poliza.incPoliza(form.value)
+    form.value.nombrePropuesta = "INCORPORACION"
+    this.poliza.selectPoliza.nombrePropuesta = "INCORPORACION";
+    if(form.valid) {
+      this.poliza.incPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida(incorporacion)'));
+      this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Incorporación exitosa!!");
+    } else  {
+      this.toastrError("Error interno no deja realizar la accion de incorporar", "Error")
+    }
       
   }
   //metodo para endoso de exclusion
   excluirPropuesta(form: NgForm){
-    form.value.nombrePropuesta = "EXCLUIR"
-    this.poliza.selectPoliza.nombrePropuesta = "EXCLUIR";
-    console.log(form.value)
-    if (form.valid)
-      this.poliza.excPoliza(form.value)
+    form.value.nombrePropuesta = "EXCLUSION"
+    this.poliza.selectPoliza.nombrePropuesta = "EXCLUSION";
+    
+    if (form.valid) {
+        this.poliza.excPoliza(form.value)
         .subscribe(res => console.log('Propuesta Añadida(exclucion)'));
+        this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Exclusión exitosa!!");
+      } else  {
+        this.toastrError("Error interno no deja realizar la accion de excluir", "Error")
+      }
   }
+  //metodo para endoso de modificacion
   modificarPropuesta(form: NgForm){
-    form.value.nombrePropuesta = "MODIFICAR"
-    this.poliza.selectPoliza.nombrePropuesta = "MODIFICAR";
-    console.log(form.value)
-    this.poliza.modPoliza(form.value)
+    form.value.nombrePropuesta = "MODIFICACION"
+    this.poliza.selectPoliza.nombrePropuesta = "MODIFICACION";
+    
+    if (form.valid) {
+      this.poliza.modPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida(modificacion)'));
+      this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Modificación exitosa!!");
+    } else {
+      this.toastrError("Error interno no deja realizar la accion de modificar", "Error")
+    }
   }
+  //metodo para endoso de anulacion
   anularPropuesta(form: NgForm){
-    form.value.nombrePropuesta = "ANULAR"
-    this.poliza.selectPoliza.nombrePropuesta = "ANULAR";
-    console.log(form.value)
-    this.poliza.anularPoliza(form.value)
+    form.value.nombrePropuesta = "ANULACION"
+    this.poliza.selectPoliza.nombrePropuesta = "ANULACION";
+    
+    if (form.valid) {
+      this.poliza.anularPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida(anulacion)'));
+      this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Anulación exitosa!!");
+    } else {
+      this.toastrError("Error interno no deja realizar la accion de anular", "Error")
+    }
+    
   }
+  //metodo para endoso de cancelacion
   cancelarPropuesta(form: NgForm){
-    form.value.nombrePropuesta = "CANCELAR"
-    this.poliza.selectPoliza.nombrePropuesta = "CANCELAR";
-    console.log(form.value)
-    this.poliza.canPoliza(form.value)
+    form.value.nombrePropuesta = "CANCELACION"
+    this.poliza.selectPoliza.nombrePropuesta = "CANCELACION";
+    
+    if (form.valid) {
+      this.poliza.canPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida(cancelacion)'));
+      this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Cancelación exitosa!!")
+    } else {
+      this.toastrError("Error interno no deja realizar la accion de cancelar", "Error")
+    }
+    
   }
 
   editarBtn(){

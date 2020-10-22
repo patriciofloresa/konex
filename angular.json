@@ -13,6 +13,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["core-js@3", "raf", "@babel/runtime-corejs3/core-js-stable/parse-float", "@babel/runtime-corejs3/core-js-stable/promise", "@babel/runtime-corejs3/core-js-stable/symbol", "@babel/runtime-corejs3/core-js-stable/map"
+            , "@babel/runtime-corejs3/core-js-stable/parse-int", "@babel/runtime-corejs3/core-js-stable/instance/starts-with"],
             "outputPath": "dist/Konex",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,7 +29,8 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
               "node_modules/datatables.net-dt/css/jquery.dataTables.css",
-              "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css"
+              "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css",
+              "node_modules/ngx-toastr/toastr.css"      
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
@@ -39,7 +42,7 @@
               "node_modules/datatables.net-buttons/js/buttons.html5.js",
               "node_modules/datatables.net-buttons/js/buttons.print.js",
               "node_modules/html2canvas/dist/html2canvas.min.js",
-              "node_modules/jspdf/dist/jspdf.umd.min.js"              
+              "node_modules/jspdf/dist/jspdf.umd.min.js"       
             ]
           },
           "configurations": {

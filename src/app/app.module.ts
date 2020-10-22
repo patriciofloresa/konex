@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms'
 import {DatePipe} from '@angular/common';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { DataTablesModule } from 'angular-datatables';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 //routes
 import { LoginComponent } from './components/login/login.component';
@@ -49,13 +51,22 @@ const maskConfig: Partial<IConfig> = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes,{onSameUrlNavigation: 'reload'}),
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}),
     AutocompleteLibModule,
     HttpClientModule,
     FormsModule,
     NgxMaskModule.forRoot(maskConfig),
     DataTablesModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1500,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      preventDuplicates: true,
+      positionClass: 'toast-bottom-left',
+      closeButton: true,
+    }),
   ],
   exports:[RouterModule],
   providers: [ 

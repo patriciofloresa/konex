@@ -23,4 +23,16 @@ function cancelar(){
 function auto_grow(element) {
     element.style.height = "5px";
     element.style.height = (element.scrollHeight)+"px";
-}   
+}
+
+var observe;
+if (window.attachEvent) {
+  observe = function (element, event, handler) {
+    element.attachEvent('on'+event, handler);
+  };
+}
+else {
+  observe = function (element, event, handler) {
+    element.addEventListener(event, handler, false);
+  };
+}

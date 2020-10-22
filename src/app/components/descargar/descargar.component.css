@@ -2,12 +2,19 @@ h3{
     font-family: 'Times New Roman', Times, serif;
     font-size: 22px;
 }
+div{
+    padding: 0px;
+    margin: 0px;
+}
 .bord{
     border: 2px solid black;
 }
 .end{
     display: flex;
     align-items: flex-end;
+}
+.bg-gray{
+    background-color: lightgrey;
 }
 hr{
     height: 1px;
@@ -23,7 +30,26 @@ span{
     flex: row-reverse;
 }
 textarea{
+    border: 0 none white;
     overflow: hidden;
+    padding: 0;
+    outline: none;
     resize: none;
-    border: none;
+}
+p{
+    margin: 5px;
+}
+p#test {
+    white-space:pre;
+    -moz-hyphens:auto;
+    -ms-hyphens:auto;
+    -webkit-hyphens:auto;
+    hyphens:auto;
+    word-wrap:break-word;
+    }
+span {
+    margin: 5px;
+}
+strong{
+    margin: 5px;
 }

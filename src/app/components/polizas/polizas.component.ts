@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { formatNumber, JsonPipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-polizas',
@@ -25,9 +25,21 @@ export class PolizasComponent implements OnInit {
 
   polizaForm: NgForm
 
-  constructor(public polizaService: PolizaService,private router: Router, private route:ActivatedRoute,
-    public modalService: NgbModal )
+  constructor(
+    public polizaService: PolizaService,
+    private router: Router, 
+    private route:ActivatedRoute,
+    public modalService: NgbModal,
+    private toastr: ToastrService )
   {  }
+
+  toastrSucces(cuerpo, titulo){
+    this.toastr.success(cuerpo, titulo);
+  }
+  
+  toastrError(cuerpo, titulo){
+    this.toastr.error(cuerpo, titulo);
+  }
 
   ngOnInit(): void {
     this.polizaService.poliza = [];
@@ -100,10 +112,14 @@ export class PolizasComponent implements OnInit {
   };
 
   editarEstado(form: NgForm){
-    this.polizaService.estado(form.value)
-      .subscribe(res => console.log(form.value)
-    );
-    this.router.navigate(['']) 
+    if (form.valid)
+    {
+      this.polizaService.estado(form.value)
+      .subscribe(res => console.log(form.value));
+      this.toastrSucces("Estado modificado satisfactoriamente", "Modificacion de estado extiosa!!");
+    } else {
+      this.toastrError("No se ha podido guardar el estado debido a un problema interno, intente más tarde", "Modificación Fallida!! ");
+    } 
   };
 
   estadoEnviado(form: NgForm){

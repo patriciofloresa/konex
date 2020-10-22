@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PolizaService } from '../../services/poliza/poliza.service';
 import { Poliza } from 'src/app/models/poliza';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-agregar',
@@ -14,7 +15,10 @@ export class AgregarComponent implements OnInit {
 
 date = new Date().toISOString().slice(0,10); 
   
-  constructor(public poliza: PolizaService) { }
+  constructor(
+    public poliza: PolizaService,
+    private toastr: ToastrService
+    ){ }
 
   public loadScript() {
     const node = document.createElement('script');
@@ -33,10 +37,21 @@ date = new Date().toISOString().slice(0,10);
   createPoliza(form: NgForm){
     this.poliza.selectPoliza.nombrePropuesta = "POLIZA";
     if(form.valid)
-      this.poliza.createPoliza(form.value)
+      {this.poliza.createPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida'));
+
+      this.toastrSucces();
+      }
     else
-      console.log("error, weas vacias")
+      {this.toastrError();}
+  }
+
+  toastrSucces(){
+    this.toastr.success('Se ha guardado la propuesta correctamente', 'Éxito!!');
+  }
+  
+  toastrError(){
+    this.toastr.error('No se ha podido  guardar la póliza, revise que los campos esten correctamente llenado', 'Error!!')
   }
 
   nroProp(){

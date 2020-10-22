@@ -35,7 +35,7 @@
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="fcPropuesta"> Fecha Propuesta </label>
         <input type="date" class="form-control" id="fcPropuesta" value="" name="fcPropuesta" #fcPropuesta="ngModel"
-          [(ngModel)]="poliza.selectPoliza.fcPropuesta" readonly required>
+          [(ngModel)]="poliza.selectPoliza.fcPropuesta" required>
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="nroPropuesta"> Numero Propuesta</label>
@@ -67,7 +67,7 @@
       <div class="col-md-4 col-lg-1">
         <label for="rutCliente"> Rut Cliente</label>
         <input type="Text" class="form-control" placeholder="Rut Cliente" id="rutCliente" name="rutCliente" #rutCliente="ngModel"
-        [(ngModel)]="poliza.selectPoliza.rutCliente" mask="00.000.00A-A||0.000.00A-A" required>
+        [(ngModel)]="poliza.selectPoliza.rutCliente" mask="90.000.000-A" required>
       </div>
       <div class="col-md-4 col-lg-1">
         <label for="alias"> Nombre Fantasia </label>
@@ -82,7 +82,7 @@
       <div class="col-md-4 col-lg-1">
         <label for="rutAcreedor"> Rut Acreedor</label>
         <input type="Text" class="form-control" placeholder="Rut Acreedor" id="rutAcreedor" name="rutAcreedor" #rutAcreedor="ngModel"
-        [(ngModel)]="poliza.selectPoliza.rutAcreedor" mask="00.000.00A-A||0.000.00A-A">
+        [(ngModel)]="poliza.selectPoliza.rutAcreedor" mask="90.000.000-A">
       </div>
       <div class="col-md-4 col-lg-2">
         <label for="nombreAcreedor"> Nombre Acreedor </label>
@@ -137,29 +137,29 @@
     <div class="center form-row" id="DatosAsegurados">
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="primaAfecta"> Prima Afecta </label>
-        <input type="number" class="form-control n" placeholder="Prima Afecta" id="primaAfecta" name="primaAfecta" #primaAfecta="ngModel"
+        <input type="number" step="any" class="form-control n" placeholder="Prima Afecta" id="primaAfecta" name="primaAfecta" #primaAfecta="ngModel"
         [(ngModel)]="poliza.selectPoliza.primaAfecta"
         (change)="calcularIva(primaAfecta.value); calcularNeta(primaAfecta.value, primaExenta.value); calcularKonex(comisionAfecta.value, comisionExenta.value, primaAfecta.value, primaExenta.value); calcReferido(valorReferido.value)" required>
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="primaExenta"> Prima Exenta </label>
-        <input type="number" class="form-control n" id="primaExenta" placeholder="Prima Exenta"  name="primaExenta" #primaExenta="ngModel"
+        <input type="number" step="any" class="form-control n" id="primaExenta" placeholder="Prima Exenta"  name="primaExenta" #primaExenta="ngModel"
         [(ngModel)]="poliza.selectPoliza.primaExenta"
         (change) = "calcularNeta(primaAfecta.value, primaExenta.value); calcularKonex(comisionAfecta.value, comisionExenta.value, primaAfecta.value, primaExenta.value); calcReferido(valorReferido.value)" required>
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="primaNeta"> Prima Neta </label>
-        <input type="number" class="form-control n" id="primaNeta" placeholder=" Prima NETA "  name="primaNeta" #primaNeta="ngModel"
+        <input type="number" step="any" class="form-control n" id="primaNeta" placeholder=" Prima NETA "  name="primaNeta" #primaNeta="ngModel"
         [(ngModel)]="poliza.selectPoliza.primaNeta" required> 
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="iva"> IVA </label>
-        <input type="number" class="form-control n" id="iva" placeholder="iva" name="iva" #iva="ngModel"
+        <input type="number" step="any" class="form-control n" id="iva" placeholder="iva" name="iva" #iva="ngModel"
         [(ngModel)]="poliza.selectPoliza.iva" required>
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label for="primaBruta"> Prima Bruta </label>
-        <input type="number" class="form-control n" id="primaBruta" placeholder=" Prima Bruta "  name="primaBruta" #primaBruta="ngModel"
+        <input type="number" step="any" class="form-control n" id="primaBruta" placeholder=" Prima Bruta "  name="primaBruta" #primaBruta="ngModel"
         [(ngModel)]="poliza.selectPoliza.primaBruta" required>
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2">
@@ -169,29 +169,29 @@
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2 mt-3">
         <label for="comisionAfecta"> Comision Afecta % </label>
-        <input type="number" class="form-control n" placeholder="Valor Afecta %" id="comisionAfecta" name="comisionAfecta" #comisionAfecta="ngModel"
+        <input type="number" step="any" class="form-control n" placeholder="Valor Afecta %" id="comisionAfecta" name="comisionAfecta" #comisionAfecta="ngModel"
         [(ngModel)]="poliza.selectPoliza.comisionAfecta"
         (change) = "calcularNeta(primaAfecta.value, primaExenta.value); calcularKonex(comisionAfecta.value, comisionExenta.value, primaAfecta.value, primaExenta.value); calcReferido(valorReferido.value)" required>
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2 mt-3">
         <label for="comisionExenta"> Comisión Exenta % </label>
-        <input type="number" class="form-control n" id="comisionExenta" placeholder=" Valor Exenta % " name="comisionExenta" #comisionExenta="ngModel"
+        <input type="number" step="any" class="form-control n" id="comisionExenta" placeholder=" Valor Exenta % " name="comisionExenta" #comisionExenta="ngModel"
         [(ngModel)]="poliza.selectPoliza.comisionExenta"
         (change) = "calcularNeta(primaAfecta.value, primaExenta.value); calcularKonex(comisionAfecta.value, comisionExenta.value, primaAfecta.value, primaExenta.value); calcReferido(valorReferido.value)" required>
       </div>
       <div class="col-sm-2 col-md-2 col-lg-2 mt-3">
         <label for="montoTotal"> Comision Total KONEX </label>
-        <input type="number" class="form-control n" placeholder=" Monto Asegurado Total " value="0" id="montoTotal" name="montoTotal" #montoTotal="ngModel"
+        <input type="number" step="any" class="form-control n" placeholder=" Monto Asegurado Total " value="0" id="montoTotal" name="montoTotal" #montoTotal="ngModel"
         [(ngModel)]="poliza.selectPoliza.montoTotal" required>
       </div>
       <div class="col-sm-2 col-md-1 col-lg-1 mt-3">
         <label for="porcentajeReferido"> Com. referido</label>
-        <input type="number" class="form-control n" value="0" id="valorReferido" name="valorReferido" #valorReferido="ngModel"
+        <input type="number" step="any" class="form-control n" value="0" id="valorReferido" name="valorReferido" #valorReferido="ngModel"
         [(ngModel)]="poliza.selectPoliza.valorReferido" (change)= "calcReferido(valorReferido.value)">
       </div>
       <div class="col-sm-2 col-md-1 col-lg-1 mt-3">
         <label for="comisionReferido"> Com. referido UF</label>
-        <input type="number" class="form-control n" value="0" id="comisionReferido" name="comisionReferido" #comisionReferido="ngModel"
+        <input type="number" step="any" class="form-control n" value="0" id="comisionReferido" name="comisionReferido" #comisionReferido="ngModel"
         [(ngModel)]="poliza.selectPoliza.comisionReferido">
       </div>       
     </div>
