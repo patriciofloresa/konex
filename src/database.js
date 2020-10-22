@@ -15,6 +15,3 @@ mongoose.connect(URI)
 // mongoose.connect(URI)
 //     .then(DB => console.log('DB is connected'))
 //     .catch(err => console.error(err));
-
-
-    

@@ -52,11 +52,10 @@ polizaController.createPoliza = async (req, res) => {
     }); 
    console.log(poliza);
    poliza.save();
-     
 }
 
 polizaController.getPolizas = async(req, res) => {
-    const polizas = await Poliza.find();
+    const polizas = await Poliza.find().sort({ nroPropuesta: -1 });
     res.json(polizas);
 }
 
@@ -68,7 +67,7 @@ polizaController.getPoliza = async(req, res) => {
 }
 
 polizaController.getLastNroPropuesta = async(req, res) => {
-    const poliza = await Poliza.findOne({}).sort({ nroPropuesta: -1 }).limit(1)
+    const poliza = await Poliza.findOne({}).sort({ nroPropuesta: -1 }).limit(1) 
     if (poliza)
         {console.log("nro Propuesta: encontrada "+poliza.nroPropuesta)
         res.json(poliza.nroPropuesta+1);}

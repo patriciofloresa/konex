@@ -47,6 +47,7 @@ export class PolizasComponent implements OnInit {
     this._id = this.route.snapshot.params['_id'];
     this.dtOptions = {
       scrollY: true,
+      sScroll: 100,
       scrollX: true,
       // Declare the use of the extension in the dom parameter
       dom: 'Bfrtip',
@@ -131,7 +132,7 @@ export class PolizasComponent implements OnInit {
     form.value.estado = "INGRESADO"
     this.polizaService.selectPoliza.estado = "INGRESADO";
   };
-  
+
   pagoPagado(form: NgForm){
     form.value.estadoPago = "PAGADO"
     this.polizaService.selectPoliza.estadoPago = "PAGADO";

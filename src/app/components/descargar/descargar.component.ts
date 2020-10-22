@@ -52,7 +52,7 @@ export class DescargarComponent implements OnInit {
   }
   //Export to PDF
 
-  downloadPDF(nroProp, company, cliente){
+  downloadPDF(nroProp, tipo, company, cliente){
     //Instance of jsPDF
     const doc = new jsPDF('p', 'px', 'a4');
     const pdf = document.getElementById('pdf');
@@ -71,11 +71,10 @@ export class DescargarComponent implements OnInit {
       const pdfWidth = doc.internal.pageSize.getWidth() -2 * bufferX;
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
       const image_compression: any = 'MEDIUM';
-      const alias = "propuesta " + nroProp + " " + company + " " + cliente+".pdf";
       doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, image_compression , 0);
       return doc;
     }).then((docResult) => {
-      docResult.save("propuesta " + nroProp + " " + company + " " + cliente+".pdf");
+      docResult.save("Prop. " + nroProp + ", " + tipo  + ", " + company + ", " + cliente+"pdf");
     })) {
       this.toastrSucces("La descarga comenzará en breve, por favor sea paciente", "Descarga Exitosa", false);
     } else {
