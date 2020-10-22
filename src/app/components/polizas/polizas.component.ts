@@ -122,24 +122,16 @@ export class PolizasComponent implements OnInit {
     } 
   };
 
-  estadoEnviado(form: NgForm){
-    
-    form.value.estado = "ENVIADO"
-    this.polizaService.selectPoliza.estado = "ENVIADO";
-    
-  };
-
   estadoPendiente(form: NgForm){
-    
-    form.value.estado = "PENDIENTE"
-    this.polizaService.selectPoliza.estado = "PENDIENTE";
-    
+    form.value.estado = "EMISION"
+    this.polizaService.selectPoliza.estado = "EMISION";
   };
 
   estadoCerrado(form: NgForm){
-    form.value.estado = "CERRADO"
-    this.polizaService.selectPoliza.estado = "CERRADO";
+    form.value.estado = "INGRESADO"
+    this.polizaService.selectPoliza.estado = "INGRESADO";
   };
+  
   pagoPagado(form: NgForm){
     form.value.estadoPago = "PAGADO"
     this.polizaService.selectPoliza.estadoPago = "PAGADO";

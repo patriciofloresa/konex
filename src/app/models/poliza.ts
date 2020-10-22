@@ -3,7 +3,7 @@ export class Poliza {
     constructor(_id = "", nombrePropuesta = "POLIZA", nroPoliza = 0, fcPropuesta = Date.now().toString(), montoAsegurado=0, nombreAseguradora = "" , alias = "",ramo = "",rutCliente = "", nombreCliente = "", rutAcreedor = "", nombreAcreedor = "",
     telefonoContacto = "", nombreContacto = "", direccion = "", region = "", comuna = "", formaPago = "", nroCuotas = 0, fcPrimeraCuota = Date.now.toString(), comisionEmpresa = 0, inicioVigencia = Date.now.toString(),
     finVigencia = Date.now.toString(), primaAfecta = 0, primaExenta = 0, primaNeta = 0, iva = 0, primaBruta = 0, tipoMoneda = "", comisionExenta = 0, comisionAfecta = 0, montoTotal = 0, cobertura = "",
-    limites = "", items = "", estado = "PENDIENTE", estadoPago = "PENDIENTE", nombreReferido = "", comisionReferido = 0, valorReferido = 0, numeroEndoso = 0)
+    limites = "", items = "", estado = "EMISION", estadoPago = "PENDIENTE", nombreReferido = "", comisionReferido = 0, valorReferido = 0, numeroEndoso = 0)
     {
         this._id = _id;
         this.numeroEndoso = numeroEndoso;

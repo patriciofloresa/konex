@@ -208,13 +208,9 @@
             <h4> Estado de Propuesta </h4>
             <hr>
             <div class="input-group">
-                <label >
-                    <input type="radio" [(ngModel)]="polizaService.selectPoliza.estado" name="estado" (click) = "estadoEnviado(modalForm)" value="ENVIADO">
-                    ENVIADO
-                </label> <hr>
                 <label for="pendiente">
-                    <input type="radio" [(ngModel)]="polizaService.selectPoliza.estado" name="estado" (click) = "estadoPendiente(modalForm)" value="PENDIENTE">
-                    PENDIENTE
+                    <input type="radio" [(ngModel)]="polizaService.selectPoliza.estado" name="estado" (click) = "estadoPendiente(modalForm)" value="EMISION" style="width: 20px; height: 20px;">
+                    EMISION
                 </label> <hr>
                 <label for="cerrado">
                     <input type="radio" [(ngModel)]="polizaService.selectPoliza.estado" name="estado" (click) = "estadoCerrado(modalForm)" value="CERRADO">

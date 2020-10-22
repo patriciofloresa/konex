@@ -60,7 +60,7 @@
       <div class="col-md-4 col-lg-2">
         <label for="montoAsegurado"> Monto Asegurado </label>
         <input type="text" class="form-control n" placeholder="Ej: Incendios" id="montoAsegurado" name="montoAsegurado" #montoAsegurado="ngModel"
-        [(ngModel)]="poliza.selectPoliza.montoAsegurado" mask="separator.3" required>
+        [(ngModel)]="poliza.selectPoliza.montoAsegurado" mask="separator.2" required>
       </div>
     </div>
     <div class="center form-row mt-3">
@@ -227,17 +227,17 @@
     <div class="center form-row" id="DatosAsegurados">
       <div class="col-md-4 col-lg-3">
         <label for="cobertura"> Coberturas</label>        
-        <textarea type="text" class="form-control" id="cobertura" cols="90" rows="auto" name="cobertura" #cobertura="ngModel"
-        [(ngModel)]="poliza.selectPoliza.cobertura"></textarea>        
+        <textarea type="text" class="form-control" id="cobertura" cols="120" rows="2" name="cobertura" #cobertura="ngModel"
+        [(ngModel)]="poliza.selectPoliza.cobertura" wrap="hard"></textarea>        
       </div>
       <div class="col-md-4 col-lg-3">
         <label for="limites"> Limites </label>
-        <textarea class="form-control"cols="90" rows="auto" id="limites" name="limites" #limites="ngModel"
+        <textarea class="form-control"cols="120" rows="2" id="limites" name="limites" #limites="ngModel"
         [(ngModel)]="poliza.selectPoliza.limites"></textarea>
       </div>
       <div class="col-md-4 col-lg-3">
         <label for="items"> Items </label>
-        <textarea class="form-control" cols="90" rows="auto" id="items" name="items" #items="ngModel"
+        <textarea class="form-control" cols="120" rows="2" id="items" name="items" #items="ngModel"
         [(ngModel)]="poliza.selectPoliza.items"></textarea>
       </div>
     </div>
