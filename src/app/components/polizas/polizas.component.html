@@ -69,7 +69,7 @@
                 <td> {{poliza.rutAcreedor|mask:"0.000.00A-A || 00.000.00A-A"}} </td>
                 <td> {{poliza.nombreAcreedor}} </td>
                 <td> {{poliza.nombreContacto}} </td>
-                    <td> {{poliza.telefonoContacto}} </td>
+                <td> {{poliza.telefonoContacto}} </td>
                 <td> {{poliza.direccion}} </td>
                 <td> {{poliza.region}} </td>
                 <td> {{poliza.comuna}} </td>
@@ -139,6 +139,8 @@
         <div class="form-group m-2">
             <input type="hidden" class="form-control" id="nroPropuesta" name="nroPropuesta" #nroPropuesta="ngModel"
             [(ngModel)]="polizaService.selectPoliza.nroPropuesta">
+            <input type="hidden" class="form-control" id="nroPoliza" name="nroPoliza" #nroPoliza="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.nroPoliza">
             <input type="hidden" class="form-control" id="numeroEndoso" name="numeroEndoso" #numeroEndoso="ngModel"
             [(ngModel)]="polizaService.selectPoliza.numeroEndoso">
             <input type="hidden" class="form-control" id="nombrePropuesta" name="nombrePropuesta" #nombrePropuesta="ngModel"
@@ -207,7 +209,7 @@
             [(ngModel)]="polizaService.selectPoliza.items">
             <h4> Estado de Propuesta </h4>
             <hr>
-            <div class="input-group">
+            <div class="input-group d-flex justify-content-around">
                 <label for="pendiente">
                     <input type="radio" [(ngModel)]="polizaService.selectPoliza.estado" name="estado" (click) = "estadoPendiente(modalForm)" value="EMISION" style="width: 20px; height: 20px;">
                     EMISION

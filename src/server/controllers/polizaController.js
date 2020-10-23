@@ -192,6 +192,7 @@ polizaController.estado = async (req, res )=> {
    
     const { id } = req.params;
     const poliza = {     
+        numeroPoliza : req.body.nroPoliza,
         nombrePropuesta : req.body.nombrePropuesta,
         nroPoliza: req.body.nroPoliza,
         fcPropuesta: req.body.fcPropuesta,

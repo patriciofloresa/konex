@@ -74,7 +74,7 @@ export class DescargarComponent implements OnInit {
       doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, image_compression , 0);
       return doc;
     }).then((docResult) => {
-      docResult.save("Prop. " + nroProp + ", " + tipo  + ", " + company + ", " + cliente+"pdf");
+      docResult.save("Prop. " + nroProp + ", " + tipo  + ", " + company + ", " + cliente+".pdf");
     })) {
       this.toastrSucces("La descarga comenzará en breve, por favor sea paciente", "Descarga Exitosa", false);
     } else {
