@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PolizaService } from '../../services/poliza/poliza.service';
 import { Poliza } from 'src/app/models/poliza';
+import * as listado from 'src/assets/json/comuna.json';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -13,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 
 export class AgregarComponent implements OnInit {
 
+listado: { } = listado;
 date = new Date().toISOString().slice(0,10); 
   
   constructor(
@@ -29,6 +31,7 @@ date = new Date().toISOString().slice(0,10);
   }
 
   ngOnInit(): void {
+    console.log(listado)
     this.poliza.poliza = [];
     this.loadScript();
     this.nroProp();
