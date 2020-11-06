@@ -47,7 +47,7 @@
       <div class="col-md-4 col-lg-1">
         <label for="rutCliente"> Rut Cliente </label>
         <input type="Text" class="form-control" placeholder="Rut Cliente" id="rutCliente" name="rutCliente" #rutCliente="ngModel"
-        [(ngModel)]="poliza.selectPoliza.rutCliente" mask="00.000.00A-A||0.000.00A-A" required>
+        [(ngModel)]="poliza.selectPoliza.rutCliente" mask="90.000.000-A || 00.000.000-A" required>
       </div>
       <div class="col-md-4 col-lg-1">
         <label for="alias"> Nombre Fantasia </label>
@@ -62,7 +62,7 @@
       <div class="col-md-4 col-lg-1">
         <label for="rutAcreedor"> Rut Acreedor</label>
         <input type="Text" class="form-control" placeholder="Rut Acreedor" id="rutAcreedor" name="rutAcreedor" #rutAcreedor="ngModel"
-        [(ngModel)]="poliza.selectPoliza.rutAcreedor" mask="00.000.00A-A||0.000.00A-A">
+        [(ngModel)]="poliza.selectPoliza.rutAcreedor" mask="90.000.000-A || 00.000.000-A">
       </div>
       <div class="col-md-4 col-lg-2">
         <label for="nombreAcreedor"> Nombre Acreedor </label>
@@ -89,11 +89,14 @@
       <div class="col-md-3 col-lg-3">
         <label for="regiones"> Region </label>
         <select class="form-control" id="regiones" name="region" #region="ngModel"
-        [(ngModel)]="poliza.selectPoliza.region" required></select>
+        [(ngModel)]="poliza.selectPoliza.region" ng-required="true" >
+      </select>
       </div>
       <div class="col-md-3 col-lg-3">
         <label for="comunas"> Comuna </label>
-        <select class="form-control" id="comunas" name="comuna" #comuna="ngModel" [(ngModel)]="poliza.selectPoliza.comuna" required></select>
+        <select class="form-control" id="comunas" name="comuna" #comuna="ngModel" [(ngModel)]="poliza.selectPoliza.comuna" ng-required="true">
+          
+        </select>
       </div>
     </div>
   </div>
@@ -207,19 +210,19 @@
   
   <div class="p-3">
     <div class="center form-row" id="DatosAsegurados">
-      <div class="col-md-4 col-lg-3">
+      <div class="col-md-4 col-lg-4">
         <label for="cobertura"> Coberturas</label>        
-        <textarea class="form-control" id="cobertura" cols="90" rows="auto" name="cobertura" #cobertura="ngModel"
+        <textarea class="form-control" id="cobertura" cols="200" rows="auto" name="cobertura" #cobertura="ngModel"
         [(ngModel)]="poliza.selectPoliza.cobertura"></textarea>        
       </div>
-      <div class="col-md-4 col-lg-3">
+      <div class="col-md-4 col-lg-4">
         <label for="limites"> Limites </label>
-        <textarea class="form-control"cols="90" rows="auto" id="limites" name="limites" #limites="ngModel"
+        <textarea class="form-control"cols="200" rows="auto" id="limites" name="limites" #limites="ngModel"
         [(ngModel)]="poliza.selectPoliza.limites"></textarea>
       </div>
-      <div class="col-md-4 col-lg-3">
+      <div class="col-md-4 col-lg-4">
         <label for="items"> Items </label>
-        <textarea class="form-control" cols="90" rows="auto" id="items" name="items" #items="ngModel"
+        <textarea class="form-control" cols="200" rows="auto" id="items" name="items" #items="ngModel"
         [(ngModel)]="poliza.selectPoliza.items"></textarea>
       </div>
     </div>

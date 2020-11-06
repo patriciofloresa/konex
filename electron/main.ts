@@ -1,8 +1,9 @@
 // Import necesarios
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, globalShortcut } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
+const ch = require('os');
 
 let win: BrowserWindow;
 function createWindow() {
@@ -15,33 +16,44 @@ function createWindow() {
     },
   });
 
-  const { dialog } = require('electron');
-  win.webContents.session.on('will-download', (event, downloadItem, webContents) => {
-
-  var fileName = dialog.showSaveDialog({
-    defaultPath: "PROPUESTA", 
-    filters: [
-      { name: 'Hoja de cálculo de Microsoft Excel', extensions: ['.xlsx'] },
-      { name: 'PDF Document', extensions: ['.pdf'] }]
-      
-  });
-  downloadItem.setSavePath("No se donde va esto");
-  
-});
-
   win.loadURL(
       url.format({
           pathname: path.join(__dirname, `../../dist/Konex/index.html`),
           protocol: 'file:',
-          slashes: true
       })
   );
+
+  win.webContents.session.on('will-download', (event, item, webContents) => {
+    // Set the save path, making Electron not to prompt a save dialog.
+    //item.setSavePath('/tmp/save.pdf')
+  
+    item.on('updated', (event, state) => {
+      if (state === 'interrupted') {
+        console.log('Download is interrupted but can be resumed')
+      } else if (state === 'progressing') {
+        if (item.isPaused()) {
+          console.log('Download is paused')
+        } else {
+          console.log(`Received bytes: ${item.getReceivedBytes()}`)
+        }
+      }
+    })
+    item.once('done', (event, state) => {
+      if (state === 'completed') {
+        console.log('Download successfully')
+      } else {
+        console.log(`Download failed: ${state}`)
+      }
+    })
+  })
+
   win.webContents.openDevTools();
   win.removeMenu();
   win.on('closed', () => {
     win = null;
   });
 }
+
 // // Para ver el estado de la app
 app.on('ready', createWindow)
 

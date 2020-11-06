@@ -1,6 +1,6 @@
 h3{
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 22px;
+    font-family: 'Calibri', sans-serif, Times, serif;
+    font-size: 28px;
 }
 div{
     padding: 0px;
@@ -21,10 +21,11 @@ hr{
     background-color: black;
 }
 .fz{
-    font-size: 12px;
+    font-size: 13px;
 }
 span{
-    font-size: 12px
+    font-family: 'Calibri';
+    font-size: 13px
 }
 .fec{
     flex: row-reverse;
@@ -37,6 +38,7 @@ textarea{
     resize: none;
 }
 p{
+    font-family: 'Calibri', sans-serif;
     margin: 5px;
 }
 p#test {
@@ -53,3 +55,4 @@ span {
 strong{
     margin: 5px;
 }
+.element::-webkit-scrollbar { width: 0 !important }

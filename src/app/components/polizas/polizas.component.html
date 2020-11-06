@@ -4,7 +4,7 @@
         datatable="ng" [dtOptions]="dtOptions" class="row-border hover fixed  display nowrap cell-border"
         [dtTrigger] = "dtTrigger"
         id="propuesta" 
-        style="width: 100%;">
+        style="width: fixed;">
         <thead>
             <tr>
                 <th> Acciones </th> 
@@ -56,36 +56,36 @@
                     <span [routerLink]="['/polizas/editar/'+poliza._id]"><img src="assets/img/edit-solid.svg" alt="" srcset="" style="height: 2rem; width: 2rem;"></span>
                     <button class="btn p-1" [routerLink]="['/polizas/descargar/'+poliza._id]"><img src="assets/img/download_111133.png" alt="descargar"></button>
                 </td>
-                <td> {{poliza.nroPropuesta| mask:"separator":" "}} </td>
-                <td> {{poliza.numeroEndoso| mask:"separator":" "}} </td>
-                <td> {{poliza.nroPoliza| mask:"separator":" " }} </td>
+                <td> {{poliza.nroPropuesta| mask:"separator":","}} </td>
+                <td> {{poliza.numeroEndoso| mask:"separator":","}} </td>
+                <td> {{poliza.nroPoliza| mask:"separator":"," }} </td>
                 <td> {{poliza.nombrePropuesta}} </td>
                 <td> {{poliza.ramo}} </td>
-                <td> {{poliza.montoAsegurado| mask:"separator":" "}} </td>
+                <td> {{poliza.montoAsegurado| mask:"separator":","}} </td>
                 <td> {{poliza.alias}} </td>
                 <td> {{poliza.nombreAseguradora}} </td>
-                <td> {{poliza.rutCliente|mask:"0.000.00A-A || 00.000.00A-A"}} </td>
+                <td> {{poliza.rutCliente|mask: "99.000.000-A"}} </td>
                 <td> {{poliza.nombreCliente}} </td>
-                <td> {{poliza.rutAcreedor|mask:"0.000.00A-A || 00.000.00A-A"}} </td>
+                <td> {{poliza.rutAcreedor|mask: "99.000.000-A"}} </td>
                 <td> {{poliza.nombreAcreedor}} </td>
                 <td> {{poliza.nombreContacto}} </td>
-                    <td> {{poliza.telefonoContacto}} </td>
+                <td> {{poliza.telefonoContacto}} </td>
                 <td> {{poliza.direccion}} </td>
                 <td> {{poliza.region}} </td>
                 <td> {{poliza.comuna}} </td>
                 <td> {{poliza.inicioVigencia|date: "dd/MM/yyyy"}} </td>
                 <td> {{poliza.finVigencia|date: "dd/MM/yyyy"}} </td>
-                <td> {{poliza.primaAfecta| mask:"separator":" " }} </td>
-                <td> {{poliza.primaExenta| mask:"separator":" "}} </td>
-                <td> {{poliza.primaNeta| mask:"separator":" "}} </td>
-                <td> {{poliza.iva|mask:"separator":" "}} </td>
-                <td> {{poliza.primaBruta| mask:"separator":" "}} </td>
+                <td> {{poliza.primaAfecta| mask:"separator":"," }} </td>
+                <td> {{poliza.primaExenta| mask:"separator":","}} </td>
+                <td> {{poliza.primaNeta| mask:"separator":","}} </td>
+                <td> {{poliza.iva|mask:"separator":","}} </td>
+                <td> {{poliza.primaBruta| mask:"separator":","}} </td>
                 <td> {{poliza.tipoMoneda}} </td>
-                <td> {{poliza.comisionAfecta| mask:"separator":" "}} </td>
-                <td> {{poliza.comisionExenta| mask:"separator":" "}} </td>
-                <td> {{poliza.montoTotal| mask:"separator":" "}} </td>
-                <td> {{poliza.valorReferido| mask:"separator":" "}} </td>
-                <td> {{poliza.comisionReferido| mask:"separator":" "}} </td>
+                <td> {{poliza.comisionAfecta| mask:"separator":","}} </td>
+                <td> {{poliza.comisionExenta| mask:"separator":","}} </td>
+                <td> {{poliza.montoTotal| mask:"separator":","}} </td>
+                <td> {{poliza.valorReferido| mask:"separator":","}} </td>
+                <td> {{poliza.comisionReferido| mask:"separator":","}} </td>
                 <td> {{poliza.formaPago}} </td>
                 <td> {{poliza.nroCuotas}} </td>
                 <td> {{poliza.fcPrimeraCuota|date: "dd/MM/yyyy"}} </td>
@@ -139,6 +139,8 @@
         <div class="form-group m-2">
             <input type="hidden" class="form-control" id="nroPropuesta" name="nroPropuesta" #nroPropuesta="ngModel"
             [(ngModel)]="polizaService.selectPoliza.nroPropuesta">
+            <input type="hidden" class="form-control" id="nroPoliza" name="nroPoliza" #nroPoliza="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.nroPoliza">
             <input type="hidden" class="form-control" id="numeroEndoso" name="numeroEndoso" #numeroEndoso="ngModel"
             [(ngModel)]="polizaService.selectPoliza.numeroEndoso">
             <input type="hidden" class="form-control" id="nombrePropuesta" name="nombrePropuesta" #nombrePropuesta="ngModel"
@@ -207,7 +209,7 @@
             [(ngModel)]="polizaService.selectPoliza.items">
             <h4> Estado de Propuesta </h4>
             <hr>
-            <div class="input-group">
+            <div class="input-group d-flex justify-content-around">
                 <label for="pendiente">
                     <input type="radio" [(ngModel)]="polizaService.selectPoliza.estado" name="estado" (click) = "estadoPendiente(modalForm)" value="EMISION" style="width: 20px; height: 20px;">
                     EMISION

@@ -3,7 +3,6 @@
     color:red;
 }
 
-
 .noFrame{
     font-size: 24px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -16,4 +15,12 @@
     width:5px;
     color:transparent;
     cursor:default;
+}
+
+select{
+    text-transform: uppercase;
+}
+
+::selection{
+    text-transform: uppercase;
 }

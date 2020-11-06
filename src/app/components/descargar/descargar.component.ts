@@ -4,6 +4,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { PolizaService } from '../../services/poliza/poliza.service';
 import { ToastrService } from 'ngx-toastr';
+import { buffer } from 'rxjs/operators';
 
 @Component({
   selector: 'app-descargar',
@@ -54,27 +55,28 @@ export class DescargarComponent implements OnInit {
 
   downloadPDF(nroProp, tipo, company, cliente){
     //Instance of jsPDF
-    const doc = new jsPDF('p', 'px', 'a4');
+    const doc = new jsPDF('p', 'mm', 'letter');
     const pdf = document.getElementById('pdf');
     //Some Opts
     const options = {
       background: 'white',
-      scale: 5
+      scale: 5,
+      windowHeight: window.innerHeight
     };
     if (html2canvas(pdf, options).then((canvas) => {
       const img = canvas.toDataURL('image/PNG');
 
       // Add image Canvas to PDF
-      const bufferX =10;
-      const bufferY = 10;
+      const bufferX =5;
+      const bufferY = 5;
       const imgProps = (doc as any).getImageProperties(img);
-      const pdfWidth = doc.internal.pageSize.getWidth() -2 * bufferX;
+      const pdfWidth = doc.internal.pageSize.getWidth()-2 * bufferX;
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      const image_compression: any = 'MEDIUM';
+      const image_compression: any = 'FAST';
       doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, image_compression , 0);
       return doc;
     }).then((docResult) => {
-      docResult.save("Prop. " + nroProp + ", " + tipo  + ", " + company + ", " + cliente+"pdf");
+      docResult.save("Prop. " + nroProp + ", " + tipo  + ", " + company + ", " + cliente+".pdf");
     })) {
       this.toastrSucces("La descarga comenzará en breve, por favor sea paciente", "Descarga Exitosa", false);
     } else {
