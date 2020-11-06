@@ -1,10 +1,10 @@
 const Mongoose  = require("mongoose");
-
 const mongoose = require('mongoose');
-const URI = 'mongodb://localhost/Konex';
-
-mongoose.connect(URI)
-    .then(DB => console.log('DB is connected'))
+var ip = prompt("insert the ip: ")
+// const URI = 'mongodb://192.168.0.11:27017';
+const URI = 'mongodb://admin:ebelmar%402020@'+ip+':27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false'
+mongoose.connect(URI, { useNewUrlParser: true })
+    .then(DB => console.log('DB is connected to: '+ URI))
     .catch(err => console.error(err));
 
 // const Mongoose  = require("mongoose");

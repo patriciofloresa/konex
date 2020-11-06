@@ -6,12 +6,12 @@
 }
 th, td { 
   white-space: nowrap;
-  }
+}
   
-  div.dataTables_wrapper {
-      width: 80%;
-      margin: 0 auto;
-  }
+div.dataTables_wrapper {
+    width: 80%;
+    margin: 0 auto;
+}
 /*
  * Table styles
  */
