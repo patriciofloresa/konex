@@ -60,8 +60,7 @@ export class DescargarComponent implements OnInit {
     //Some Opts
     const options = {
       background: 'white',
-      scale: 5,
-      windowHeight: window.innerHeight
+      scale: 2
     };
     if (html2canvas(pdf, options).then((canvas) => {
       // const img = canvas.toDataURL('image/PNG');
@@ -76,10 +75,10 @@ export class DescargarComponent implements OnInit {
       // doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, image_compression , 0);
       var imgData = canvas.toDataURL('image/png');
       var imgWidth = 210; 
-      var pageHeight = 295;  
+      var pageHeight = 296;  
       var imgHeight = canvas.height * imgWidth / canvas.width;
       var heightLeft = imgHeight;
-      var doc = new jsPDF('p', 'mm');
+      var doc = new jsPDF('p', 'mm', 'letter');
       var position = 0;
       const image_compression: any = 'FAST';
       doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
@@ -88,7 +87,7 @@ export class DescargarComponent implements OnInit {
       while (heightLeft >= 0) {
         position = heightLeft - imgHeight;
         doc.addPage();
-        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight, undefined, image_compression, 0);
+        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
       return doc;
