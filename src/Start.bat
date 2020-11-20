@@ -1,1 +1,1 @@
-npm start
+forever start node_modules/@angular/cli/bin/ng serve

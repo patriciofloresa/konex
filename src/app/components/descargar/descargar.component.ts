@@ -64,16 +64,33 @@ export class DescargarComponent implements OnInit {
       windowHeight: window.innerHeight
     };
     if (html2canvas(pdf, options).then((canvas) => {
-      const img = canvas.toDataURL('image/PNG');
+      // const img = canvas.toDataURL('image/PNG');
 
-      // Add image Canvas to PDF
-      const bufferX =5;
-      const bufferY = 5;
-      const imgProps = (doc as any).getImageProperties(img);
-      const pdfWidth = doc.internal.pageSize.getWidth()-2 * bufferX;
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      // // Add image Canvas to PDF
+      // const bufferX =5;
+      // const bufferY = 5;
+      // const imgProps = (doc as any).getImageProperties(img);
+      // const pdfWidth = doc.internal.pageSize.getWidth()-2 * bufferX;
+      // const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      // const image_compression: any = 'FAST';
+      // doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, image_compression , 0);
+      var imgData = canvas.toDataURL('image/png');
+      var imgWidth = 210; 
+      var pageHeight = 295;  
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+      var doc = new jsPDF('p', 'mm');
+      var position = 0;
       const image_compression: any = 'FAST';
-      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, image_compression , 0);
+      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight, undefined, image_compression, 0);
+        heightLeft -= pageHeight;
+      }
       return doc;
     }).then((docResult) => {
       docResult.save("Prop. " + nroProp + ", " + tipo  + ", " + company + ", " + cliente+".pdf");
