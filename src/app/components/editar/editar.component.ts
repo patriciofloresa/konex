@@ -1,8 +1,6 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { summaryFileName } from '@angular/compiler/src/aot/util';
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 
+import { FileUploader } from 'ng2-file-upload';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -24,6 +22,8 @@ export class EditarComponent implements OnInit {
   modificar: boolean=false;
   anular:boolean=false;
   cancelar:boolean=false;
+  img: any;
+  items: File;
 
   //Para los Cálculos
   iva: number;
@@ -40,22 +40,28 @@ export class EditarComponent implements OnInit {
     private route:ActivatedRoute,
     public poliza: PolizaService,
     private toastr: ToastrService
-  ) { }
-
+  ) {
+  }
+ 
+  
+  onFileSelect(event)
+  {
+    this.items = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = e => this.img = reader.result;
+    reader.readAsDataURL(this.items);
+  }
   toastrSucces(cuerpo, titulo){
     this.toastr.success(cuerpo, titulo);
   }
-  
   toastrError(cuerpo, titulo){
     this.toastr.error(cuerpo, titulo);
   }
-
   ngOnInit(): void {
     this.loadScript();
     this._id = this.route.snapshot.params['_id'];
     this.traerPoliza();
   }
-
   nroProp(){
     this.poliza.nroPropuesta()
       .subscribe(res => {
@@ -64,15 +70,13 @@ export class EditarComponent implements OnInit {
         this.initNroDate(this.poliza.poliza);
       })
   }
-
   initNroDate(nro){
     this.poliza.selectPoliza.nroPropuesta = nro;
     this.poliza.selectPoliza.fcPropuesta = this.date;
   }
-
   public loadScript() {
     const node = document.createElement('script');
-    node.src = 'assets/js/comuna.js'; // put there your js file location
+    node.src = 'assets/js/comuna.js';
     node.type = 'text/javascript';
     node.async = true;
    document.getElementsByTagName('head')[0].appendChild(node);
@@ -111,12 +115,10 @@ export class EditarComponent implements OnInit {
   
 //metodo para editar propuesta
   editarPropuesta(form: NgForm){
-    form.value.nombrePropuesta="POLIZA";
-    this.poliza.selectPoliza.nombrePropuesta = "POLIZA";
-    console.log(form.value)
+    
     if(form.valid)
     {
-      this.poliza.editPoliza(form.value)
+      this.poliza.editPoliza(form.value, this.items)
       .subscribe(res => console.log('Propuesta Editada'));
       this.toastrSucces("Se ha editado correctamente la propuesta, será redirigido pronto a su descarga","Edición exitosa!!");
     }
@@ -129,8 +131,9 @@ export class EditarComponent implements OnInit {
   incorporarPropuesta(form: NgForm){
     form.value.nombrePropuesta = "INCORPORACION"
     this.poliza.selectPoliza.nombrePropuesta = "INCORPORACION";
+    
     if(form.valid) {
-      this.poliza.incPoliza(form.value)
+      this.poliza.endPoliza(form.value, this.items)
       .subscribe(res => console.log('Propuesta Añadida(incorporacion)'));
       this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Incorporación exitosa!!");
     } else  {
@@ -144,7 +147,7 @@ export class EditarComponent implements OnInit {
     this.poliza.selectPoliza.nombrePropuesta = "EXCLUSION";
     
     if (form.valid) {
-        this.poliza.excPoliza(form.value)
+        this.poliza.endPoliza(form.value, this.items)
         .subscribe(res => console.log('Propuesta Añadida(exclucion)'));
         this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Exclusión exitosa!!");
       } else  {
@@ -157,7 +160,7 @@ export class EditarComponent implements OnInit {
     this.poliza.selectPoliza.nombrePropuesta = "MODIFICACION";
     
     if (form.valid) {
-      this.poliza.modPoliza(form.value)
+      this.poliza.endPoliza(form.value, this.items)
       .subscribe(res => console.log('Propuesta Añadida(modificacion)'));
       this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Modificación exitosa!!");
     } else {
@@ -168,9 +171,8 @@ export class EditarComponent implements OnInit {
   anularPropuesta(form: NgForm){
     form.value.nombrePropuesta = "ANULACION"
     this.poliza.selectPoliza.nombrePropuesta = "ANULACION";
-    
     if (form.valid) {
-      this.poliza.anularPoliza(form.value)
+      this.poliza.endPoliza(form.value, this.items)
       .subscribe(res => console.log('Propuesta Añadida(anulacion)'));
       this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Anulación exitosa!!");
     } else {
@@ -182,15 +184,13 @@ export class EditarComponent implements OnInit {
   cancelarPropuesta(form: NgForm){
     form.value.nombrePropuesta = "CANCELACION"
     this.poliza.selectPoliza.nombrePropuesta = "CANCELACION";
-    
     if (form.valid) {
-      this.poliza.canPoliza(form.value)
+      this.poliza.endPoliza(form.value, this.items)
       .subscribe(res => console.log('Propuesta Añadida(cancelacion)'));
       this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Cancelación exitosa!!")
     } else {
       this.toastrError("Error interno no deja realizar la accion de cancelar", "Error")
     }
-    
   }
 
   editarBtn(){
@@ -261,7 +261,7 @@ export class EditarComponent implements OnInit {
   }
 
   calcularBruta(neta, iva){
-    this.poliza.selectPoliza.primaBruta = (neta + iva);
+    this.poliza.selectPoliza.primaBruta = ((neta + iva).toFixed(2));
     console.log("bruta: " + this.poliza.selectPoliza.primaBruta);
     return this.poliza.selectPoliza.primaBruta;
   }

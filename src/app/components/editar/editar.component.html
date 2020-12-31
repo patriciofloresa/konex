@@ -14,7 +14,7 @@
   <button class="btn btn-primary m-1" (click)="cancelarBtn()" onclick="cancelar()">CANCELAR</button>
 </div>
 
-<form #polizaForm= "ngForm" class="ml-5 mr-5" ngNativeValidate>
+<form #polizaForm= "ngForm" class="ml-5 mr-5" ngNativeValidate enctype = "multipart/form-data">
   <div class="p-1">
     <div class="d-flex justify-content-end">
       <input type="hidden" class="form-control" id="_id" name="_id" #_id="ngModel"
@@ -229,21 +229,26 @@
     <div class="center form-row" id="DatosAsegurados">
       <div class="col-md-4 col-lg-4">
         <label for="cobertura"> Coberturas</label>        
-        <textarea type="text" class="form-control" id="cobertura" cols="200" rows="2" name="cobertura" #cobertura="ngModel"
-        [(ngModel)]="poliza.selectPoliza.cobertura" wrap="hard"></textarea>        
+        <textarea type="text" class="form-control" id="my-textarea" cols="200" rows="2" name="cobertura" #cobertura="ngModel"
+        [(ngModel)]="poliza.selectPoliza.cobertura" wrap="hard" ></textarea>        
       </div>
       <div class="col-md-4 col-lg-4">
         <label for="limites"> Limites </label>
-        <textarea class="form-control"cols="200" rows="2" id="limites" name="limites" #limites="ngModel"
+        <textarea class="form-control"cols="200" rows="2" id="my-textarea" name="limites" #limites="ngModel"
         [(ngModel)]="poliza.selectPoliza.limites"></textarea>
       </div>
-      <div class="col-md-4 col-lg-4">
+      <div class="col-lg-4 col-md-4">
+        <br>
         <label for="items"> Items </label>
-        <textarea class="form-control" cols="200" rows="2" id="items" name="items" #items="ngModel"
-        [(ngModel)]="poliza.selectPoliza.items"></textarea>
+        <br>
+        <input (change)="onFileSelect($event)" type="file" name="photo" style="box-shadow: none;" observeFiles>
       </div>
     </div>
   </div>
+  <hr>
+  <div class="d-flex align-items-center justify-content-center" *ngIf="img">
+    <img [src]="img" alt="" name="img" class="img-responsive">
+</div>
   <hr>
   <input type="hidden" class="form-control" id="estado" name="estado" #estado="ngModel"
   [(ngModel)]="poliza.selectPoliza.estado" required>

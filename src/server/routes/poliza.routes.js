@@ -1,28 +1,26 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const polizaController = require("../controllers/polizaController");
+const poliza = require("../models/poliza");
+const upload = require("../controllers/upload");
 
-const polizaController = require('../controllers/polizaController');
-const poliza = require('../models/poliza');
-
+//Nro Propuesta
+router.get("/polizas/agregar", polizaController.getLastNroPropuesta)
 //Crear Polizas
-router.get('/polizas/agregar', polizaController.getLastNroPropuesta)
-router.post('/polizas/agregar', polizaController.createPoliza)
+router.post("/polizas/agregar", upload.single("items"), polizaController.createPoliza)
+//Editar 1 poliza
+router.put("/polizas/editar/:id", upload.single("items"), polizaController.editPoliza)
 //Crear Endoso
-router.post('/polizas/editar', polizaController.endosoPoliza)
+router.post("/polizas/editar", upload.single("items"), polizaController.endosoPoliza);
 //listar Polizas
-router.get('/', polizaController.getPolizas)
-
+router.get("/", polizaController.getPolizas)
 //Descargar Poliza
-router.get('/polizas/descargar/:id', polizaController.descPoliza)
-
+router.get("/polizas/descargar/:id", polizaController.descPoliza)
 //Cambiar Estado
-router.get('/:id', polizaController.getPoliza)
-router.put('/:id', polizaController.estado)
-
+router.get("/:id", polizaController.getPoliza)
+router.put("/:id", polizaController.estado)
 //buscar 1 poliza
-router.get('/polizas/editar/:id', polizaController.getPoliza)
+router.get("/polizas/editar/:id", polizaController.getPoliza)
 
-//EditarW 1 poliza
-router.put('/polizas/editar/:id', polizaController.editPoliza)
 
 module.exports = router;

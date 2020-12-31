@@ -1,9 +1,11 @@
 <h2 class="center m-1 pt-2"> Propuesta Poliza </h2>
-<form #polizaForm = "ngForm" (ngSubmit)="createPoliza(polizaForm)" class="ml-5 mr-5" ngNativeValidate>
+<form #polizaForm="ngForm" (ngSubmit)="createPoliza(polizaForm)" class="ml-5 mr-5" ngNativeValidate enctype="multipart/form-data" method="POST">
   <div class="p-0.5">
     <div class="d-flex justify-content-end">
       <input type="hidden" class="form-control" id="nombrePropuesta" name="nombrePropuesta" #nombrePropuesta="ngModel"
         [(ngModel)]="poliza.selectPoliza.nombrePropuesta"> 
+        <input type="hidden" class="form-control" id="numeroEndoso" name="numeroEndoso" #numeroEndoso="ngModel"
+        [(ngModel)]="poliza.selectPoliza.numeroEndoso"> 
       <div class="col-sm-2 col-md-2 col-lg-2">
         <input type="hidden" class="form-control" id="nroPoliza" value="0" name="nroPoliza" #nroPoliza="ngModel"
           [(ngModel)]="poliza.selectPoliza.nroPoliza">
@@ -117,7 +119,6 @@
     </div>
   </div>
   <hr>
-  
   <div class="p-3">
     <div class="center form-row" id="DatosAsegurados">
       <div class="col-sm-2 col-md-2 col-lg-2">
@@ -217,15 +218,20 @@
       </div>
       <div class="col-md-4 col-lg-4">
         <label for="limites"> Limites </label>
-        <textarea class="form-control"cols="200" rows="auto" id="limites" name="limites" #limites="ngModel"
+        <textarea class="form-control" cols="200" rows="auto" id="limites" name="limites" #limites="ngModel"
         [(ngModel)]="poliza.selectPoliza.limites"></textarea>
       </div>
-      <div class="col-md-4 col-lg-4">
+      <div class="col-lg-4 col-md-4">
+        <br>
         <label for="items"> Items </label>
-        <textarea class="form-control" cols="200" rows="auto" id="items" name="items" #items="ngModel"
-        [(ngModel)]="poliza.selectPoliza.items"></textarea>
+        <br>
+        <input (change)="onFileSelect($event)" type="file" name="photo" style="box-shadow: none;" observeFiles>
       </div>
     </div>
+  </div>
+  <hr>
+  <div class="d-flex align-items-center justify-content-center" *ngIf="img">
+        <img [src]="img" alt="" name="img" class="img-responsive" accept="image/*">
   </div>
   <hr>
   <input type="hidden" class="form-control" id="estado" name="estado" #estado="ngModel"

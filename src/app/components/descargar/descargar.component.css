@@ -40,15 +40,18 @@ textarea{
 p{
     font-family: 'Calibri', sans-serif;
     margin: 5px;
-}
-p#test {
     white-space:pre;
     -moz-hyphens:auto;
     -ms-hyphens:auto;
     -webkit-hyphens:auto;
     hyphens:auto;
     word-wrap:break-word;
-    }
+}
+pre{
+    font-family: 'Calibri', sans-serif;
+    font-size: 13px;
+    margin: 0;
+}
 span {
     margin: 5px;
 }

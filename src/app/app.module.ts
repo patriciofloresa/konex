@@ -6,7 +6,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ActivatedRoute } from "@angular/router";
-
 //Addons
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
@@ -15,7 +14,6 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { DataTablesModule } from 'angular-datatables';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
 //routes
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';

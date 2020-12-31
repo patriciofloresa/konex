@@ -1,9 +1,7 @@
 //Add poliza
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-
 //Define Collection and schema for Adpolizas
-
 const PolizaSchema = new Schema({
     nombrePropuesta: { type: String, uppercase: true },
     numeroEndoso: {type: Number },
@@ -37,7 +35,7 @@ const PolizaSchema = new Schema({
     montoTotal:{ type: Number, required: true, },
     cobertura:{ type: String, uppercase: true },
     limites:{ type: String, uppercase: true },
-    items:{ type: String, uppercase: true },
+    items:{ type: String },
     estado:{ type: String, required: true, uppercase: true},
     estadoPago: {type: String, required: true, uppercase: true},
     nombreReferido: {type: String, uppercase: true},
@@ -46,5 +44,10 @@ const PolizaSchema = new Schema({
     telefonoContacto:{ type: Number },
     nombreContacto: { type: String, uppercase: true }
 })
+
+PolizaSchema.methods.itemsUrl = function setItemsUrl(filename, full) {
+    // this.items = `${full}:3000/private/${filename}`;
+    this.items = `http://localhost:3000/private/${filename}`;
+}
 
 module.exports = mongoose.model('Poliza', PolizaSchema);

@@ -1,9 +1,9 @@
 export class Poliza {
 
     constructor(_id = "", nombrePropuesta = "POLIZA", nroPoliza = 0, fcPropuesta = Date.now().toString(), montoAsegurado=0, nombreAseguradora = "" , alias = "",ramo = "",rutCliente = "", nombreCliente = "", rutAcreedor = "", nombreAcreedor = "",
-    telefonoContacto = "", nombreContacto = "", direccion = "", region = "", comuna = "", formaPago = "", nroCuotas = 0, fcPrimeraCuota = Date.now.toString(), comisionEmpresa = 0, inicioVigencia = Date.now.toString(),
+    telefonoContacto = 0, nombreContacto = "", direccion = "", region = "", comuna = "", formaPago = "", nroCuotas = 0, fcPrimeraCuota = Date.now.toString(), comisionEmpresa = 0, inicioVigencia = Date.now.toString(),
     finVigencia = Date.now.toString(), primaAfecta = 0, primaExenta = 0, primaNeta = 0, iva = 0, primaBruta = 0, tipoMoneda = "", comisionExenta = 0, comisionAfecta = 0, montoTotal = 0, cobertura = "",
-    limites = "", items = "", estado = "EMISION", estadoPago = "PENDIENTE", nombreReferido = "", comisionReferido = 0, valorReferido = 0, numeroEndoso = 0)
+    limites = "", estado = "EMISION", estadoPago = "PENDIENTE", nombreReferido = "", comisionReferido = 0, valorReferido = 0, numeroEndoso = 0, items = "")
     {
         this._id = _id;
         this.numeroEndoso = numeroEndoso;
@@ -19,14 +19,12 @@ export class Poliza {
         this.rutAcreedor= rutAcreedor;
         this.nombreAcreedor= nombreAcreedor;
         this.telefonoContacto= telefonoContacto;
-        this.nombreContacto= nombreContacto;
         this.direccion= direccion;
         this.region= region;
         this.comuna= comuna;
         this.formaPago= formaPago;
         this.nroCuotas= nroCuotas;
         this.fcPrimeraCuota=  fcPrimeraCuota;
-        this.comisionEmpresa= comisionEmpresa;
         this.inicioVigencia= inicioVigencia;
         this.finVigencia= finVigencia;
         this.primaAfecta= primaAfecta;
@@ -40,55 +38,54 @@ export class Poliza {
         this.montoTotal= montoTotal;
         this.cobertura=cobertura;
         this.limites= limites;
-        this.items= items;
         this.estado= estado;
         this.estadoPago= estadoPago;
         this.nombreContacto = nombreContacto;
         this.nombreReferido = nombreReferido;
         this.comisionReferido = comisionReferido;
         this.valorReferido = valorReferido;
+        this.items = items;
     }
 
     _id: string;
     numeroEndoso: Number;
-    nombrePropuesta: String;
+    nombrePropuesta: string;
     montoAsegurado: Number;
-    fcPropuesta : String;
+    fcPropuesta : string;
     nroPoliza : Number;
     nroPropuesta: Number;
-    nombreAseguradora: String;
-    alias: String;
-    ramo: String;
-    rutCliente: String;
-    nombreCliente: String;
-    rutAcreedor: String;
-    nombreAcreedor: String;
-    telefonoContacto: String;
-    nombreContacto: String;
-    direccion: String;
-    region: String;
-    comuna: String;
-    formaPago: String;
+    nombreAseguradora: string;
+    alias: string;
+    ramo: string;
+    rutCliente: string;
+    nombreCliente: string;
+    rutAcreedor: string;
+    nombreAcreedor: string;
+    telefonoContacto: Number;
+    nombreContacto: string;
+    direccion: string;
+    region: string;
+    comuna: string;
+    formaPago: string;
     nroCuotas: Number;
-    fcPrimeraCuota:  String;
-    comisionEmpresa: Number;
-    inicioVigencia: String;
-    finVigencia: String;
+    fcPrimeraCuota:  string;
+    inicioVigencia: string;
+    finVigencia: string;
     primaAfecta: Number;
     primaExenta: Number;
     primaNeta: Number;
     iva: Number;
     primaBruta: Number;
-    tipoMoneda: String;
+    tipoMoneda: string;
     comisionExenta: Number;
     comisionAfecta: Number;
     montoTotal: Number;
-    cobertura: String;
-    limites: String;
-    items: String;
-    estado: String;
-    estadoPago: String;
-    nombreReferido: String;
+    cobertura: string;
+    limites: string;
+    items: string;
+    estado: string;
+    estadoPago: string;
+    nombreReferido: string;
     comisionReferido: Number;
     valorReferido: Number;
 }

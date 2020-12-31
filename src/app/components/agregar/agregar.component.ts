@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { PolizaService } from '../../services/poliza/poliza.service';
 import { Poliza } from 'src/app/models/poliza';
 import { ToastrService } from 'ngx-toastr';
+import { HttpClient, HttpHeaders, JsonpClientBackend } from '@angular/common/http';
+import { send } from 'process';
 
 @Component({
   selector: 'app-agregar',
@@ -13,11 +15,20 @@ import { ToastrService } from 'ngx-toastr';
 
 export class AgregarComponent implements OnInit {
 
-date = new Date().toISOString().slice(0,10); 
-  
+  date = new Date().toISOString().slice(0,10); 
+  name: any;
+  img: any;
+  items: File;
+  inicioVigencia = new Date().toISOString().slice(0,10);
+  finVigencia = new Date(new Date().setFullYear( new Date().getFullYear()+1)).toISOString().slice(0,10);
+  primeraCuota = new Date(new Date().setMonth( new Date().getMonth()+1)).toISOString().slice(0,10);
+
+  //form: FormData = new FormData();
+
   constructor(
     public poliza: PolizaService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private http: HttpClient
     ){ }
 
   public loadScript() {
@@ -25,26 +36,37 @@ date = new Date().toISOString().slice(0,10);
     node.src = 'assets/js/comuna.js'; // put there your js file location
     node.type = 'text/javascript';
     node.async = true;
-   document.getElementsByTagName('head')[0].appendChild(node);
+    document.getElementsByTagName('head')[0].appendChild(node);
   }
 
   ngOnInit(): void {
-  
     this.poliza.poliza = [];
     this.loadScript();
     this.nroProp();
   }
   
+  onFileSelect(event)
+  {
+    this.items = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = e => this.img = reader.result;
+    reader.readAsDataURL(this.items);
+  }
+  
   createPoliza(form: NgForm){
-    this.poliza.selectPoliza.nombrePropuesta = "POLIZA";
-    if(form.valid)
-      {this.poliza.createPoliza(form.value)
-      .subscribe(res => console.log('Propuesta Añadida'));
-
-      this.toastrSucces();
+    try {
+      if(form.valid)
+      {
+        if (this.poliza.createPoliza(form.value, this.items)
+        .subscribe(res => console.log('Propuesta Añadida'))){
+          this.toastrSucces();
+        }
+        
       }
-    else
-      {this.toastrError();}
+    } catch (error) {
+      console.log(error)
+      this.toastrError();
+    } 
   }
 
   toastrSucces(){
@@ -59,7 +81,7 @@ date = new Date().toISOString().slice(0,10);
     this.poliza.nroPropuesta()
       .subscribe(res => {
         this.poliza.poliza = res as Poliza[];
-        console.log(res);
+        console.log(res)
         this.load(this.poliza.poliza);
       })
   }
@@ -67,6 +89,10 @@ date = new Date().toISOString().slice(0,10);
   load(nro){
     this.poliza.selectPoliza.nroPropuesta = nro;
     this.poliza.selectPoliza.fcPropuesta = this.date;
+    this.poliza.selectPoliza.inicioVigencia = this.inicioVigencia;
+    this.poliza.selectPoliza.finVigencia = this.finVigencia;
+    this.poliza.selectPoliza.formaPago = "PAC";
+    this.poliza.selectPoliza.fcPrimeraCuota = this.primeraCuota;
   }
 
   calcularIva(afecta){
@@ -82,7 +108,7 @@ date = new Date().toISOString().slice(0,10);
   }
 
   calcularBruta(neta, iva){
-    this.poliza.selectPoliza.primaBruta = (neta + iva);
+    this.poliza.selectPoliza.primaBruta = ((neta + iva).toFixed(2));
     console.log("bruta: " + this.poliza.selectPoliza.primaBruta);
     return this.poliza.selectPoliza.primaBruta;
   }
