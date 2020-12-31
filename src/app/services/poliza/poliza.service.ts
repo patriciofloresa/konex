@@ -10,8 +10,7 @@ export class PolizaService {
 
   selectPoliza: Poliza;
   poliza: Poliza[];
-  
-  readonly URI = 'http://localhost:3000';
+  readonly URI = 'http:localhost:3000';
   // readonly URI = 'http://25.1.200.237:3000'|| 'http://localhost:3000';
   constructor(private http: HttpClient) {
     this.selectPoliza = new Poliza();

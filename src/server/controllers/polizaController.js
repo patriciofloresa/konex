@@ -1,5 +1,5 @@
 const Poliza = require("../models/poliza");
-const app = require("../../server.js");
+const app = require("../../app.js");
 const polizaController = {};
 
 polizaController.createPoliza = async (req, res) => {

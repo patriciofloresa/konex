@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const polizaController = require("../controllers/polizaController");
-const poliza = require("../models/poliza");
 const upload = require("../controllers/upload");
 
 //Nro Propuesta
