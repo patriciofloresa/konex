@@ -7,8 +7,6 @@ const cors = require('cors');
 const path = require('path');
 
 //Settings
-app.set('port', process.env.PORT || 3000);
-
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());

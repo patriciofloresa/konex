@@ -19,6 +19,7 @@ export class PolizasComponent implements OnInit {
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
 
+
   //Para los valores existentes
   data:any;
   _id:any;
@@ -47,7 +48,6 @@ export class PolizasComponent implements OnInit {
     this._id = this.route.snapshot.params['_id'];
     this.dtOptions = {
       scrollY: true,
-      sScroll: 100,
       scrollX: true,
       // Declare the use of the extension in the dom parameter
       dom: 'Bfrtip',
@@ -93,8 +93,8 @@ export class PolizasComponent implements OnInit {
   {
     this.polizaService.getPolizas()
       .subscribe(res => {
-        this.polizaService.poliza = res as Poliza[];
         this.dtTrigger.next();
+        this.polizaService.poliza = res as Poliza[];
       })
   };
 
