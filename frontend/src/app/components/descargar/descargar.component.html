@@ -273,9 +273,10 @@
                             <pre contenteditable="true"> {{ data.limites }} </pre>
                         </div>
                     </div>
-                    <div class="col-lg-12 d-flex fz justify-content-end">
-                        <div class="col-lg-11 justify-content-start"> 
-                            <p style='white-space:pre' > {{ data.items }}  </p>
+                    <div class="col-lg-12 d-flex fz justify-content-center">
+                        <div class="col-lg-11"> 
+                            <!-- <p style='white-space:pre' > {{ data.items }}  </p> -->
+                            <img [src]="data.items" alt="" srcset="" style="width: 100%;" (onload)="onLoad($event)">
                         </div>
                     </div>
                 </div>

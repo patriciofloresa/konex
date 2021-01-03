@@ -38,7 +38,7 @@ polizaController.createPoliza = async (req, res) => {
             montoTotal: req.body.montoTotal,
             cobertura: req.body.cobertura,
             limites: req.body.limites,
-            items: req.body.file,
+            items: req.file.path,
             estado: req.body.estado,
             estadoPago: req.body.estadoPago,
             nombreReferido: req.body.nombreReferido,
@@ -46,13 +46,6 @@ polizaController.createPoliza = async (req, res) => {
             valorReferido: req.body.valorReferido,
             numeroEndoso: req.body.numeroEndoso
         });
-        if (req.file){
-            const {filename} = req.file
-            const full = req.hostname
-            poliza.itemsUrl(filename, full)
-        }else{
-        console.log('not req file')
-            console.log(poliza)}
         const stored = await poliza.save()
         res.status(201).send({ stored })
     } catch (error) {
@@ -125,13 +118,11 @@ polizaController.editPoliza = async (req, res) => {
         comisionReferido: req.body.comisionReferido,
         valorReferido: req.body.valorReferido,
         numeroEndoso: req.body.numeroEndoso,
-        items: req.body.items
+        items: req.file.path
     };
     if (req.file){
         const {filename} = req.file 
-        poliza.items = "http://localhost:3000/private/"+req.file.filename;
-        console.log(' if req file')
-        console.log(poliza)
+        poliza.items = "http://localhost:3000/"+req.file.path;
     };
     const stored = await Poliza.findByIdAndUpdate( id , {$set: poliza});
     res.status(201).send({ stored })
@@ -182,13 +173,8 @@ polizaController.endosoPoliza = async (req, res) => {
         comisionReferido: req.body.comisionReferido,
         valorReferido: req.body.valorReferido,
         numeroEndoso: req.body.numeroEndoso,
-        items: req.file.filename
+        items: req.file.path
     });
-    if (req.file){
-        const {filename} = req.file
-        const full = req.hostname
-        poliza.itemsUrl(filename, full)
-    }
     res.json({
         'status':'Endoso Guardado Con Exito'
         });

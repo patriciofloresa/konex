@@ -48,6 +48,7 @@ export class DescargarComponent implements OnInit {
     .subscribe(data => 
     {
       this.data = data;
+      console.log(this.data.items)
       const toDataURL = url => fetch(this.data.items)
       .then(response => response.blob())
       .then(blob => new Promise((resolve, reject) => {
@@ -58,9 +59,7 @@ export class DescargarComponent implements OnInit {
         }))
         toDataURL('https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0')
         .then(dataUrl => {
-        console.log('RESULT:', dataUrl)
         this.data.items = dataUrl;
-        console.log(this.data.items)
       })
     })        
   }
