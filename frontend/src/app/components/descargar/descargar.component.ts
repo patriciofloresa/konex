@@ -4,6 +4,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { PolizaService } from '../../services/poliza/poliza.service';
 import { ToastrService } from 'ngx-toastr';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-descargar',
@@ -20,7 +21,8 @@ export class DescargarComponent implements OnInit {
   constructor(
     private route:ActivatedRoute,
     public poliza: PolizaService,
-    private toastr: ToastrService)
+    private toastr: ToastrService,
+    private _sanitizer: DomSanitizer)
   {
 
   }
@@ -49,7 +51,8 @@ export class DescargarComponent implements OnInit {
     {
       this.data = data;
       console.log(this.data.items)
-      const toDataURL = url => fetch(this.data.items)
+      var url = this._sanitizer.bypassSecurityTrustUrl(this.data.items)
+      const toDataURL = url => fetch(url)
       .then(response => response.blob())
       .then(blob => new Promise((resolve, reject) => {
         const reader = new FileReader()
