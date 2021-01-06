@@ -16,7 +16,7 @@ export class DescargarComponent implements OnInit {
 
   data:any;
   _id:any;
-  images: any;
+  items: any;
   propuesta = "";
   constructor(
     private route:ActivatedRoute,
@@ -50,36 +50,11 @@ export class DescargarComponent implements OnInit {
     .subscribe(data => 
     {
       this.data = data;
+      this.items = this.data.items;
       console.log(this.data.items)
-      var url = this._sanitizer.bypassSecurityTrustUrl(this.data.items)
-      const toDataURL = url => fetch(url)
-      .then(response => response.blob())
-      .then(blob => new Promise((resolve, reject) => {
-        const reader = new FileReader()
-        reader.onloadend = () => resolve(reader.result)
-        reader.onerror = reject
-        reader.readAsDataURL(blob)
-        }))
-        toDataURL('https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0')
-        .then(dataUrl => {
-        this.data.items = dataUrl;
-      })
     })        
   }
 
-  // toDataURL(url, callback) {
-  //   var xhr = new XMLHttpRequest();
-  //   xhr.onload = function() {
-  //     var reader = new FileReader();
-  //     reader.onloadend = function() {
-  //       callback(reader.result);
-  //     }
-  //     reader.readAsDataURL(xhr.response);
-  //   };
-  //   xhr.open('GET', url);
-  //   xhr.responseType = 'blob';
-  //   xhr.send();
-  // }
   //Export to PDF
 
   downloadPDF(nroProp, tipo, company, cliente){
@@ -90,12 +65,12 @@ export class DescargarComponent implements OnInit {
     const options = {
       useCors: true,
       background: 'white',
-      scale: 2
+      scale: 5
     };
     if (html2canvas(pdf, options).then((canvas) => {
       var imgData = canvas.toDataURL('image/png');
       var imgWidth = 210; 
-      var pageHeight = 298;  
+      var pageHeight = 286;  
       var imgHeight = canvas.height * imgWidth / canvas.width;
       var heightLeft = imgHeight;
       var position = 0;
@@ -115,7 +90,7 @@ export class DescargarComponent implements OnInit {
     })) {
       this.toastrSucces("La descarga comenzará en breve, por favor sea paciente", "Descarga Exitosa", false);
     } else {
-      this.toastrError("La descarga ha presentado un error interno y no ha podido realizarce, intente dentro de un tiempo", "Erro de descarga");
+      this.toastrError("La descarga ha presentado un error interno y no ha podido realizarce, intente dentro de un tiempo", "Error de descarga");
     }
   }
  

@@ -1,29 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { PolizaService } from '../../services/poliza/poliza.service';
 import { Poliza } from 'src/app/models/poliza';
 import { ToastrService } from 'ngx-toastr';
-import { HttpClient, HttpHeaders, JsonpClientBackend } from '@angular/common/http';
-import { send } from 'process';
+import { HttpClient } from '@angular/common/http';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
   styleUrls: ['./agregar.component.css'],
-  providers: [PolizaService]
+  providers: [PolizaService,  ]
 })
 
-export class AgregarComponent implements OnInit {
+export class AgregarComponent implements OnInit, OnDestroy {
 
   date = new Date().toISOString().slice(0,10); 
   name: any;
-  img: any;
-  items: File;
+  items: any;
   inicioVigencia = new Date().toISOString().slice(0,10);
   finVigencia = new Date(new Date().setFullYear( new Date().getFullYear()+1)).toISOString().slice(0,10);
   primeraCuota = new Date(new Date().setMonth( new Date().getMonth()+1)).toISOString().slice(0,10);
-
-  //form: FormData = new FormData();
+  public Editor = ClassicEditor;
 
   constructor(
     public poliza: PolizaService,
@@ -45,23 +43,17 @@ export class AgregarComponent implements OnInit {
     this.nroProp();
   }
   
-  onFileSelect(event)
-  {
-    this.items = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = e => this.img = reader.result;
-    reader.readAsDataURL(this.items);
+  ngOnDestroy(): void {
   }
   
   createPoliza(form: NgForm){
     try {
       if(form.valid)
       {
-        if (this.poliza.createPoliza(form.value, this.items)
+        if (this.poliza.createPoliza(form.value)
         .subscribe(res => console.log('Propuesta Añadida'))){
           this.toastrSucces();
         }
-        
       }
     } catch (error) {
       console.log(error)

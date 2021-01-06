@@ -3,54 +3,54 @@ const app = require("../../app.js");
 const polizaController = {};
 
 polizaController.createPoliza = async (req, res) => {
+    const poliza = new Poliza({     
+        nombrePropuesta : req.body.nombrePropuesta,
+        nroPoliza: req.body.nroPoliza,
+        fcPropuesta: req.body.fcPropuesta,
+        nroPropuesta: req.body.nroPropuesta,
+        nombreAseguradora: req.body.nombreAseguradora,
+        ramo: req.body.ramo,
+        montoAsegurado: req.body.montoAsegurado,        
+        rutCliente: req.body.rutCliente,
+        alias: req.body.alias,
+        nombreCliente: req.body.nombreCliente,
+        rutAcreedor: req.body.rutAcreedor,
+        nombreAcreedor: req.body.nombreAcreedor,
+        telefonoContacto: req.body.telefonoContacto,
+        nombreContacto: req.body.nombreContacto,
+        direccion: req.body.direccion,
+        region: req.body.region,
+        comuna: req.body.comuna,
+        formaPago: req.body.formaPago,
+        nroCuotas: req.body.nroCuotas,
+        fcPrimeraCuota: req.body.fcPrimeraCuota,
+        inicioVigencia: req.body.inicioVigencia,
+        finVigencia: req.body.finVigencia,
+        primaAfecta: req.body.primaAfecta,
+        primaExenta: req.body.primaExenta,
+        primaNeta: req.body.primaNeta,
+        iva: req.body.iva,
+        primaBruta: req.body.primaBruta,
+        tipoMoneda: req.body.tipoMoneda,
+        comisionExenta: req.body.comisionExenta,
+        comisionAfecta: req.body.comisionAfecta,
+        montoTotal: req.body.montoTotal,
+        cobertura: req.body.cobertura,
+        limites: req.body.limites,
+        items: req.body.items,
+        estado: req.body.estado,
+        estadoPago: req.body.estadoPago,
+        nombreReferido: req.body.nombreReferido,
+        comisionReferido: req.body.comisionReferido,
+        valorReferido: req.body.valorReferido,
+        numeroEndoso: req.body.numeroEndoso
+    });
     try {
-        const poliza = new Poliza({     
-            nombrePropuesta : req.body.nombrePropuesta,
-            nroPoliza: req.body.nroPoliza,
-            fcPropuesta: req.body.fcPropuesta,
-            nroPropuesta: req.body.nroPropuesta,
-            nombreAseguradora: req.body.nombreAseguradora,
-            ramo: req.body.ramo,
-            montoAsegurado: req.body.montoAsegurado,        
-            rutCliente: req.body.rutCliente,
-            alias: req.body.alias,
-            nombreCliente: req.body.nombreCliente,
-            rutAcreedor: req.body.rutAcreedor,
-            nombreAcreedor: req.body.nombreAcreedor,
-            telefonoContacto: req.body.telefonoContacto,
-            nombreContacto: req.body.nombreContacto,
-            direccion: req.body.direccion,
-            region: req.body.region,
-            comuna: req.body.comuna,
-            formaPago: req.body.formaPago,
-            nroCuotas: req.body.nroCuotas,
-            fcPrimeraCuota: req.body.fcPrimeraCuota,
-            inicioVigencia: req.body.inicioVigencia,
-            finVigencia: req.body.finVigencia,
-            primaAfecta: req.body.primaAfecta,
-            primaExenta: req.body.primaExenta,
-            primaNeta: req.body.primaNeta,
-            iva: req.body.iva,
-            primaBruta: req.body.primaBruta,
-            tipoMoneda: req.body.tipoMoneda,
-            comisionExenta: req.body.comisionExenta,
-            comisionAfecta: req.body.comisionAfecta,
-            montoTotal: req.body.montoTotal,
-            cobertura: req.body.cobertura,
-            limites: req.body.limites,
-            items: req.file.path,
-            estado: req.body.estado,
-            estadoPago: req.body.estadoPago,
-            nombreReferido: req.body.nombreReferido,
-            comisionReferido: req.body.comisionReferido,
-            valorReferido: req.body.valorReferido,
-            numeroEndoso: req.body.numeroEndoso
-        });
         const stored = await poliza.save()
         res.status(201).send({ stored })
     } catch (error) {
         console.log(error);
-        res.status(500).send({ message: 'Mensaje CULIAO'+error.message })
+        res.status(500).send({ message: 'Error: '+error.message })
     }
 }
 
@@ -118,17 +118,14 @@ polizaController.editPoliza = async (req, res) => {
         comisionReferido: req.body.comisionReferido,
         valorReferido: req.body.valorReferido,
         numeroEndoso: req.body.numeroEndoso,
-        items: req.file.path
+        items: req.body.items
     };
-    if (req.file){
-        const {filename} = req.file 
-        poliza.items = "http://localhost:3000/"+req.file.path;
-    };
-    const stored = await Poliza.findByIdAndUpdate( id , {$set: poliza});
+    try {
+        const stored = await Poliza.findByIdAndUpdate( id , {$set: poliza});
     res.status(201).send({ stored })
-    
-    
-    // res.json( {status: console.log(poliza)});
+    } catch (error) {
+        res.status(500).send({ message: 'Error: '+error.message })
+    }
 }
 
 polizaController.endosoPoliza = async (req, res) => {
@@ -173,12 +170,14 @@ polizaController.endosoPoliza = async (req, res) => {
         comisionReferido: req.body.comisionReferido,
         valorReferido: req.body.valorReferido,
         numeroEndoso: req.body.numeroEndoso,
-        items: req.file.path
+        items: req.body.items
     });
-    res.json({
-        'status':'Endoso Guardado Con Exito'
-        });
-    poliza.save();
+    try {
+        const stored = await Poliza.save( poliza );
+        res.status(201).send({ stored })
+    } catch (error) {
+        res.status(500).send({ message: 'Error: '+error.message })
+    }
 }
 
 polizaController.descPoliza = async (req, res) => {

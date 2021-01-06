@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Poliza } from 'src/app/models/poliza';
 import { PolizaService } from '../../services/poliza/poliza.service';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-editar',
@@ -20,8 +21,6 @@ export class EditarComponent implements OnInit {
   modificar: boolean=false;
   anular:boolean=false;
   cancelar:boolean=false;
-  img: any;
-  items: File;
 
   //Para los Cálculos
   iva: number;
@@ -34,21 +33,14 @@ export class EditarComponent implements OnInit {
   date = new Date().toISOString().slice(0,10);
 
   polizaForm: NgForm
+  public Editor = ClassicEditor;
+
   constructor(
     private route:ActivatedRoute,
     public poliza: PolizaService,
     private toastr: ToastrService
-  ) {
-  }
+  ) {}
  
-  
-  onFileSelect(event)
-  {
-    this.items = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = e => this.img = reader.result;
-    reader.readAsDataURL(this.items);
-  }
   toastrSucces(cuerpo, titulo){
     this.toastr.success(cuerpo, titulo);
   }
@@ -86,10 +78,10 @@ export class EditarComponent implements OnInit {
       {
         this.data = data;
         this.load(this.data);
-        console.log(this.data);
       }
     ) 
   }
+
   header(){
     if (this.polizaForm.value.nombrePropuesta == "POLIZA")
       this.editar = true
@@ -116,7 +108,7 @@ export class EditarComponent implements OnInit {
     
     if(form.valid)
     {
-      this.poliza.editPoliza(form.value, this.items)
+      this.poliza.editPoliza(form.value)
       .subscribe(res => console.log('Propuesta Editada'));
       this.toastrSucces("Se ha editado correctamente la propuesta, será redirigido pronto a su descarga","Edición exitosa!!");
     }
@@ -131,7 +123,7 @@ export class EditarComponent implements OnInit {
     this.poliza.selectPoliza.nombrePropuesta = "INCORPORACION";
     
     if(form.valid) {
-      this.poliza.endPoliza(form.value, this.items)
+      this.poliza.endPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida(incorporacion)'));
       this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Incorporación exitosa!!");
     } else  {
@@ -145,7 +137,7 @@ export class EditarComponent implements OnInit {
     this.poliza.selectPoliza.nombrePropuesta = "EXCLUSION";
     
     if (form.valid) {
-        this.poliza.endPoliza(form.value, this.items)
+        this.poliza.endPoliza(form.value)
         .subscribe(res => console.log('Propuesta Añadida(exclucion)'));
         this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Exclusión exitosa!!");
       } else  {
@@ -158,9 +150,9 @@ export class EditarComponent implements OnInit {
     this.poliza.selectPoliza.nombrePropuesta = "MODIFICACION";
     
     if (form.valid) {
-      this.poliza.endPoliza(form.value, this.items)
+      this.poliza.endPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida(modificacion)'));
-      this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Modificación exitosa!!");
+      this.toastrSucces("Se ha generado correctamente la propuesta","Modificación exitosa!!");
     } else {
       this.toastrError("Error interno no deja realizar la accion de modificar", "Error")
     }
@@ -170,7 +162,7 @@ export class EditarComponent implements OnInit {
     form.value.nombrePropuesta = "ANULACION"
     this.poliza.selectPoliza.nombrePropuesta = "ANULACION";
     if (form.valid) {
-      this.poliza.endPoliza(form.value, this.items)
+      this.poliza.endPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida(anulacion)'));
       this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Anulación exitosa!!");
     } else {
@@ -183,7 +175,7 @@ export class EditarComponent implements OnInit {
     form.value.nombrePropuesta = "CANCELACION"
     this.poliza.selectPoliza.nombrePropuesta = "CANCELACION";
     if (form.valid) {
-      this.poliza.endPoliza(form.value, this.items)
+      this.poliza.endPoliza(form.value)
       .subscribe(res => console.log('Propuesta Añadida(cancelacion)'));
       this.toastrSucces("Se ha generado correctamente la propuesta, será redirigido pronto a su descarga","Cancelación exitosa!!")
     } else {

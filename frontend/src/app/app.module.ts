@@ -14,8 +14,9 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { DataTablesModule } from 'angular-datatables';  
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 //routes
-import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PolizasComponent } from './components/polizas/polizas.component';
 import { AgregarComponent } from './components/agregar/agregar.component';
@@ -39,7 +40,6 @@ const maskConfig: Partial<IConfig> = {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     HeaderComponent,
     PolizasComponent,
     AgregarComponent,
@@ -65,12 +65,14 @@ const maskConfig: Partial<IConfig> = {
       positionClass: 'toast-bottom-left',
       closeButton: true,
     }),
+    CKEditorModule,
   ],
   exports:[RouterModule],
   providers: [ 
     DatePipe,
     PolizaService
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { 

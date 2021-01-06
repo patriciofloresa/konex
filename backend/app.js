@@ -4,7 +4,6 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
-const path = require('path');
 
 //Settings
 app.set('port', 3000)
@@ -17,7 +16,5 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(require('./server/routes/poliza.routes'));
-
-app.use('/fileStorage', express.static(`${__dirname}/fileStorage`))
 
 module.exports = app;

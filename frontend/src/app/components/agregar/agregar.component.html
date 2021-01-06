@@ -221,17 +221,14 @@
         <textarea class="form-control" cols="200" rows="auto" id="limites" name="limites" #limites="ngModel"
         [(ngModel)]="poliza.selectPoliza.limites"></textarea>
       </div>
-      <div class="col-lg-4 col-md-4">
-        <br>
-        <label for="items"> Items </label>
-        <br>
-        <input (change)="onFileSelect($event)" type="file" name="photo" style="box-shadow: none;" observeFiles>
-      </div>
     </div>
   </div>
   <hr>
-  <div class="d-flex align-items-center justify-content-center" *ngIf="img">
-        <img [src]="img" alt="" name="img" class="img-responsive" accept="image/*">
+  <div class="col-lg-12 col-md-12" >
+    <br>
+    <label for="items"> Items </label>
+    <br>
+    <ckeditor [editor]="Editor" name="items" #items="ngModel" [(ngModel)]="poliza.selectPoliza.items"></ckeditor>
   </div>
   <hr>
   <input type="hidden" class="form-control" id="estado" name="estado" #estado="ngModel"

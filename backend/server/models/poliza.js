@@ -45,9 +45,4 @@ const PolizaSchema = new Schema({
     nombreContacto: { type: String, uppercase: true }
 })
 
-PolizaSchema.methods.itemsUrl = function setItemsUrl(filename, full) {
-    // this.items = `${full}:3000/private/${filename}`;
-    this.items = `http://localhost:3000/private/${filename}`;
-}
-
 module.exports = mongoose.model('Poliza', PolizaSchema);

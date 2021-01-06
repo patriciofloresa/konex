@@ -1,16 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const polizaController = require("../controllers/polizaController");
-const upload = require("../controllers/upload");
 
 //Nro Propuesta
 router.get("/polizas/agregar", polizaController.getLastNroPropuesta)
 //Crear Polizas
-router.post("/polizas/agregar", upload.single("items"), polizaController.createPoliza)
+router.post("/polizas/agregar", polizaController.createPoliza)
 //Editar 1 poliza
-router.put("/polizas/editar/:id", upload.single("items"), polizaController.editPoliza)
+router.put("/polizas/editar/:id", polizaController.editPoliza)
 //Crear Endoso
-router.post("/polizas/editar", upload.single("items"), polizaController.endosoPoliza);
+router.post("/polizas/editar", polizaController.endosoPoliza);
 //listar Polizas
 router.get("/", polizaController.getPolizas)
 //Descargar Poliza
