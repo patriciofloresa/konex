@@ -1,0 +1,298 @@
+<div>
+    <button class="btn btn-primary" onprogress="init()" (click)="downloadPDF(this.data.nroPropuesta, this.data.nombrePropuesta ,this.data.nombreAseguradora, this.data.nombreCliente)"> Imprimir </button>
+</div>
+<div  class="d-flex justify-content-center m-2">
+    <div  class="col-lg-7" name="pdf" id="pdf" >
+        <div class="col-lg-12 bg-white center " style="padding: none; margin: none">
+            <div class="col-md-11 bord">
+                <p></p>
+                <div class="d-flex  align-content-around align-items-center">
+                    <div class="col-lg-6 d-flex  justify-content-center">
+                        <h3 class="d-flex" style="padding: 0;"> PROPUESTA DE {{ data.nombrePropuesta }}</h3>
+                    </div>
+                    <div class="col-lg-6 d-flex  justify-content-center">
+                        <img class="d-flex" src="assets/img/konex.png" style="height: 110%; width: 70%; padding: 0;">
+                    </div>
+                </div>
+                <p></p>
+                <div>
+                    <div class="col-lg-12 d-flex  align-content-around bg-gray">
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p *ngIf="data.nroPoliza !== null ">
+                                <strong> PÓLIZA : </strong>
+                            </p>
+                        </div>
+                        <div class="col-lg-2 fz d-flex justify-content-start">
+                            <span> {{ data.nroPoliza| mask:"separator.2":"," }} </span>
+                        </div>
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p>
+                                <strong> NÚMERO PROPUESTA : </strong> 
+                            </p>
+                        </div>
+                        <div class="col-lg-2 fz d-flex justify-content-start">
+                            <span class="fec"> {{ data.nroPropuesta| mask:"separator.2":"," }} </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 d-flex  align-content-around bg-gray">
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p *ngIf="data.nombrePropuesta !== 'POLIZA'" >
+                                <strong> NÚMERO ENDOSO : </strong>
+                            </p>
+                        </div>
+                        <div class="col-lg-2 fz d-flex justify-content-start">
+                            <span> {{data.numeroEndoso| mask:"separator":"," }} </span>
+                        </div>
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p>
+                                <strong> FECHA PROPUESTA : </strong> 
+                            </p>
+                        </div>
+                        <div class="col-lg-2 fz d-flex justify-content-start ">
+                            <span  > {{data.fcPropuesta| date: 'dd/MM/yyyy' }} </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 d-flex  align-content-around">
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p><Strong>COMPAÑIA DE SEGUROS :</Strong></p>
+                        </div>
+                        <div class="col-lg-9 fz d-flex justify-content-start">
+                            <span contenteditable=""> {{ data.nombreAseguradora }} SEGUROS GENERALES S.A. </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 fz d-flex align-content-around">
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p><Strong>RAMO :</Strong></p>
+                        </div>
+                        <div class="col-lg-9 fz d-flex justify-content-start">
+                            <span> {{ data.ramo }} </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-12 d-flex  align-content-around bg-gray">
+                    <div class="col-lg-3 fz d-flex justify-content-end">
+                        <p>
+                            <strong> VIGENCIA DESDE : </strong>
+                        </p>
+                    </div>
+                    <div class="col-lg-2 fz d-flex justify-content-start">
+                        <span> {{data.inicioVigencia| date: 'dd/MM/yyyy' }}</span>
+                    </div>
+                    <div class="col-lg-3 fz d-flex justify-content-end">
+                        <p>
+                            <strong> VIGENCIA HASTA :</strong> 
+                        </p>
+                    </div>
+                    <div class="col-lg-2 fz d-flex justify-content-start ">
+                        <span> {{data.finVigencia| date: 'dd/MM/yyyy' }} </span>
+                    </div>
+                </div>
+                <div class="col-lg-12 d-flex  align-content-around bg-gray">
+                    <div class="col-lg-3 fz d-flex justify-content-end">
+                        <p>
+                            <strong> PRODUCTOR : </strong>
+                        </p>
+                    </div>
+                    <div class="col-lg-4 fz d-flex justify-content-start">
+                        <span> KONEX CORREDORES DE SEGUROS </span>
+                    </div>
+                    <div class="col-lg-1 fz d-flex justify-content-end">
+                        <p>
+                            <strong> RUT :</strong> 
+                        </p>
+                    </div>
+                    <div class="col-lg-3 fz d-flex justify-content-start ">
+                        <span  > 76.912.042-4 </span>
+                    </div>                
+                </div>
+                <div class="col-lg-12 d-flex  align-content-around">
+                    <div class="col-lg-3 fz d-flex justify-content-end">
+                        <p>
+                            <strong> CONTRATANTE : </strong>
+                        </p>
+                    </div>
+                    <div class="col-lg-9 fz d-flex justify-content-start">
+                        <span> {{ data.nombreCliente }} </span>
+                    </div>                
+                </div>
+                <div  class="col-lg-12 d-flex  align-content-around">
+                    <div class="col-lg-3 fz d-flex justify-content-end">
+                        <p>
+                            <strong> RUT :</strong> 
+                        </p>
+                    </div>
+                    <div class="col-lg-2 fz d-flex justify-content-start ">
+                        <span> {{ data.rutCliente| mask: "90.000.000-A" }} </span>
+                    </div>                    
+                </div>
+                <div class="col-lg-12 d-flex  align-content-around">
+                    <div class="col-lg-3 fz d-flex justify-content-end">
+                        <p>
+                            <strong> DIRECCION COMERCIAL :</strong> 
+                        </p>
+                    </div>
+                    <div class="col-lg-9 fz d-flex justify-content-start ">
+                        <span  > {{ data.direccion }}, {{ data.comuna }}, {{ data.region }} </span>
+                    </div> 
+                </div>
+                
+                <div class="">
+                    <div class="col-lg-12 d-flex  align-content-around">
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p> 
+                                <strong> PRIMA AFECTA : </strong> 
+                            </p>    
+                        </div>
+                        <div class="col-lg-2 fz d-flex justify-content-start ">
+                            <span> {{data.primaAfecta | mask:"separator.2":"," }} </span>
+                        </div>
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p>
+                                <strong> PRIMA EXENTA :</strong> 
+                            </p>
+                        </div>
+                        <div class="col-lg-2 fz d-flex justify-content-start ">
+                            <span> {{data.primaExenta | mask:"separator.2":"," }} </span>
+                        </div>                        
+                    </div>
+                    
+                    <div class="col-lg-12 d-flex align-content-around bg-gray">
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p>
+                                <strong> IVA :</strong> 
+                            </p>    
+                        </div>
+                        <div class="col-lg-2 fz d-flex justify-content-start">
+                            <span> {{ data.iva| mask:"separator.2":","}} </span>
+                        </div>
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                                <p>
+                                    <strong> PRIMA BRUTA :</strong>
+                                </p>
+                        </div>
+                        <div>
+                            <span> {{data.primaBruta| mask:"separator.2":","}} </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 d-flex flex-align-content-around"> 
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p> 
+                                <strong> MONTO ASEGURADO {{ data.tipoMoneda }} : </strong> 
+                            </p>    
+                        </div>
+                        <div class="col-lg-9 fz d-flex justify-content-start ">
+                            <span> {{data.montoAsegurado | mask:"separator.2":"," }} </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 d-flex align-content-around bg-gray">
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p>
+                                <strong> FORMA DE PAGO :</strong>
+                            </p> 
+                        </div>
+                        <div class="col-lg-1 fz d-flex justify-content-start">
+                            <span> {{ data.formaPago }} </span>
+                        </div>
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p>
+                                <strong> NRO. DE CUOTAS :</strong>
+                            </p> 
+                        </div>
+                        <div class="col-lg-1 fz d-flex justify-content-start">
+                            <span> {{ data.nroCuotas }} </span>
+                        </div>
+                        <div class="col-lg-2 fz d-flex justify-content-end">
+                            <p>
+                                <strong> PRIMERA CUOTA :</strong>
+                            </p> 
+                        </div>
+                        <div class="col-lg-2 fz d-flex justify-content-start">
+                            <span> {{ data.fcPrimeraCuota| date: 'dd/MM/yyyy' }} </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 d-flex align-content-around">
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p>
+                                <strong> COMISION AFECTA :</strong>
+                            </p> 
+                        </div>
+                        <div class="col-lg-2 fz d-flex justify-content-start">
+                            <span> {{ data.comisionAfecta }}% </span>
+                        </div>
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p>
+                                <strong> COMISION EXENTA :</strong>
+                            </p> 
+                        </div>
+                        <div class="col-lg-2 fz d-flex justify-content-start">
+                            <span> {{ data.comisionExenta }}% </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 d-flex align-content-around">
+                        <div class="col-lg-3 fz d-flex justify-content-end">
+                            <p>
+                                <strong> TIPO MONEDA : </strong>
+                            </p>
+                        </div>
+                        <div class="col-lg-2 fz d-flex justify-content-start">
+                            <span> {{data.tipoMoneda}} </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div *ngIf="!(data.cobertura == null || data.cobertura == ' ' || data.cobertura == '')">
+                    <div  class="col-lg-12 fz d-flex justify-content-center bg-gray"> 
+                        <p>
+                            <strong> COBERTURAS </strong>
+                        </p>
+                    </div>
+                    <p></p> 
+                    <div class="col-lg-12 d-flex fz justify-content-center">
+                        <div class="col-lg-11 justify-content-start" style='white-space:pre'> 
+                            <pre contenteditable="true"> {{ data.cobertura }} </pre>
+                        </div>
+                    </div>
+                </div>
+                <p></p>                
+                <div *ngIf="(data.limites || data.items )">
+                    <div class="col-lg-12 fz d-flex justify-content-center bg-gray"> 
+                        <p>
+                            <strong> CONDICIONES PARTICULARES </strong>
+                        </p>
+                    </div>
+                    <p></p>
+                    <div class="col-lg-12 d-flex fz justify-content-center" *ngIf = "data.limites">
+                        <div  class="col-lg-12 fz d-flex justify-content-center bg-gray"> 
+                            <p>
+                                <strong> LIMITES </strong>
+                            </p>
+                        </div>
+                        <p></p> 
+                        <div class="col-lg-11 justify-content-start" style='white-space:pre'> 
+                            <pre contenteditable="true"> {{ data.limites }} </pre>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 d-flex fz justify-content-center">
+                        <div class="col-lg-11 center"> 
+                            <div [innerHtml]="items" class="flex-container"></div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="m-2">
+                    <div class="d-flex justify-content-start" style="padding-right: 30px ;">
+                        <img src="assets/img/firma.png" alt="" srcset="">
+                    </div>                    
+
+                    <div class="d-flex justify-content-start" style="padding-right: 30px ;">
+                        <p style='white-space:pre'> Firma de Director de Cuentas <br/> Konex Corredora de Seguros</p>
+                    </div>
+                </div>
+            </div>
+        </div>   
+       <br>
+    </div>
+</div>
+
+

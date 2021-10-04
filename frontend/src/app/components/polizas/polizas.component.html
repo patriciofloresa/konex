@@ -1,0 +1,220 @@
+<h3 class="center m-4"> LISTADO DE PROPUESTAS </h3>
+<div class="p-4">
+    <table class="row-border hover w-auto cell-border table-responsive" cellspacing="0"
+        datatable [dtOptions]="dtOptions" class="row-border hover fixed  display nowrap cell-border"
+        [dtTrigger] = "dtTrigger"
+        id="propuesta" 
+        style="width: fixed;">
+        <thead>
+            <tr>
+                <th> Acciones </th> 
+                <th> Nro Propuesta </th>
+                <th> Nro Endoso </th>
+                <th> Nro Poliza </th>
+                <th> Propuesta </th>
+                <th> Ramo </th>
+                <th> Monto Asegurado </th>
+                <th> Nombre Fantasía </th>
+                <th> Aseguradora </th>
+                <th> Rut Cliente </th>
+                <th> Razon Social / Nombre </th>
+                <th> Rut Acreedor </th>
+                <th> Nombre Acreedor </th>
+                <th> Nombre Contacto </th>
+                <th> Telefono Contacto </th>
+                <th> Direccion </th>
+                <th> Region </th>
+                <th> Comuna </th>
+                <th>Inicio Vigencia</th>
+                <th>Fin Vigencia</th> 
+                <th> Prima Afecta </th>
+                <th>Prima Exenta</th>
+                <th>Prima Neta</th>
+                <th>Iva</th>
+                <th>Prima Bruta</th>
+                <th>Tipo moneda</th>
+                <th>Comision Afecta %</th>
+                <th>Comision Exenta %</th>
+                <th> Comision Konex </th>
+                <th>Comision Referido</th>
+                <th>Comision Referido UF</th>
+                <th>Forma Pago</th>
+                <th>Nro Cuotas</th>
+                <th>FechaPrimera Cuota</th>
+                <th>Cobertura</th>
+                <th>Limites</th>
+                <th>Items</th>
+                <th> Estado </th>
+                <th> Estado Pago </th>  
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let poliza of polizaService.poliza">
+                <td>
+                    <button class="btn btn-primary p-1" (click)="modalService.open(content); traerPoliza(poliza._id)"> ESTADO </button>
+                    <span [routerLink]="['/polizas/editar/'+poliza._id]"><img src="assets/img/edit-solid.svg" alt="" srcset="" style="height: 2rem; width: 2rem;"></span>
+                    <button class="btn p-1" [routerLink]="['/polizas/descargar/'+poliza._id]"><img src="assets/img/download_111133.png" alt="descargar"></button>
+                </td>
+                <td> {{poliza.nroPropuesta| mask:"separator":","}} </td>
+                <td> {{poliza.numeroEndoso| mask:"separator":","}} </td>
+                <td> {{poliza.nroPoliza| mask:"separator":"," }} </td>
+                <td> {{poliza.nombrePropuesta}} </td>
+                <td> {{poliza.ramo}} </td>
+                <td> {{poliza.montoAsegurado| mask:"separator":","}} </td>
+                <td> {{poliza.alias}} </td>
+                <td> {{poliza.nombreAseguradora}} </td>
+                <td> {{poliza.rutCliente|mask: "99.000.000-A"}} </td>
+                <td> {{poliza.nombreCliente}} </td>
+                <td> {{poliza.rutAcreedor|mask: "99.000.000-A"}} </td>
+                <td> {{poliza.nombreAcreedor}} </td>
+                <td> {{poliza.nombreContacto}} </td>
+                <td> {{poliza.telefonoContacto}} </td>
+                <td> {{poliza.direccion}} </td>
+                <td> {{poliza.region}} </td>
+                <td> {{poliza.comuna}} </td>
+                <td> {{poliza.inicioVigencia|date: "dd/MM/yyyy"}} </td>
+                <td> {{poliza.finVigencia|date: "dd/MM/yyyy"}} </td>
+                <td> {{poliza.primaAfecta| mask:"separator":"," }} </td>
+                <td> {{poliza.primaExenta| mask:"separator":","}} </td>
+                <td> {{poliza.primaNeta| mask:"separator":","}} </td>
+                <td> {{poliza.iva|mask:"separator":","}} </td>
+                <td> {{poliza.primaBruta| mask:"separator":","}} </td>
+                <td> {{poliza.tipoMoneda}} </td>
+                <td> {{poliza.comisionAfecta| mask:"separator":","}} </td>
+                <td> {{poliza.comisionExenta| mask:"separator":","}} </td>
+                <td> {{poliza.montoTotal| mask:"separator":","}} </td>
+                <td> {{poliza.valorReferido| mask:"separator":","}} </td>
+                <td> {{poliza.comisionReferido| mask:"separator":","}} </td>
+                <td> {{poliza.formaPago}} </td>
+                <td> {{poliza.nroCuotas}} </td>
+                <td> {{poliza.fcPrimeraCuota|date: "dd/MM/yyyy"}} </td>
+                <td> {{poliza.cobertura}} </td>
+                <td> {{poliza.limites}} </td>
+                <td> {{poliza.items}} </td>
+                <td> {{poliza.estado}} </td>
+                <td> {{poliza.estadoPago}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<hr>
+<br>
+<!-- MODAl -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title"> Propuesta <strong> número: </strong> {{ polizaService.selectPoliza.nroPropuesta }} </h4> 
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #modalForm = "ngForm" >
+            <input type="hidden" class="form-control" id="_id" name="_id" #_id="ngModel"
+            [(ngModel)]="polizaService.selectPoliza._id">
+        <div class="form-group m-2">
+            <input type="hidden" class="form-control" id="nroPropuesta" name="nroPropuesta" #nroPropuesta="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.nroPropuesta">
+            <input type="hidden" class="form-control" id="nroPoliza" name="nroPoliza" #nroPoliza="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.nroPoliza">
+            <input type="hidden" class="form-control" id="numeroEndoso" name="numeroEndoso" #numeroEndoso="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.numeroEndoso">
+            <input type="hidden" class="form-control" id="nombrePropuesta" name="nombrePropuesta" #nombrePropuesta="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.nombrePropuesta">
+            <input type="hidden" class="form-control" id="ramo" name="ramo" #ramo="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.ramo">
+            <input type="hidden" class="form-control" id="montoAsegurado" name="montoAsegurado" #montoAsegurado="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.montoAsegurado">
+            <input type="hidden" class="form-control" id="alias" name="alias" #alias="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.alias">
+            <input type="hidden" class="form-control" id="nombreAseguradora" name="nombreAseguradora" #nombreAseguradora="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.nombreAseguradora">
+            <input type="hidden" class="form-control" id="rutCliente" name="rutCliente" #rutCliente="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.rutCliente">
+            <input type="hidden" class="form-control" id="nombreCliente" name="nombreCliente" #nombreCliente="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.nombreCliente">
+            <input type="hidden" class="form-control" id="rutAcreedor" name="rutAcreedor" #rutAcreedor="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.rutAcreedor">
+            <input type="hidden" class="form-control" id="nombreAcreedor" name="nombreAcreedor" #nombreAcreedor="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.nombreAcreedor">
+            <input type="hidden" class="form-control" id="nombreContacto" name="nombreContacto" #nombreContacto="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.nombreContacto">
+            <input type="hidden" class="form-control" id="telefonoContacto" name="telefonoContacto" #telefonoContacto="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.telefonoContacto">
+            <input type="hidden" class="form-control" id="direccion" name="direccion" #direccion="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.direccion">
+            <input type="hidden" class="form-control" id="region" name="region" #region="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.region">
+            <input type="hidden" class="form-control" id="comuna" name="comuna" #comuna="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.comuna">
+            <input type="hidden" class="form-control" id="inicioVigencia" name="inicioVigencia" #inicioVigencia="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.inicioVigencia">
+            <input type="hidden" class="form-control" id="finVigencia" name="finVigencia" #finVigencia="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.finVigencia">
+            <input type="hidden" class="form-control" id="primaAfecta" name="primaAfecta" #primaAfecta="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.primaAfecta">
+            <input type="hidden" class="form-control" id="primaExenta" name="primaExenta" #primaExenta="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.primaExenta">
+            <input type="hidden" class="form-control" id="primaNeta" name="primaNeta" #primaNeta="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.primaNeta">
+            <input type="hidden" class="form-control" id="iva" name="iva" #iva="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.iva">
+            <input type="hidden" class="form-control" id="primaBruta" name="primaBruta" #primaBruta="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.primaBruta">
+            <input type="hidden" class="form-control" id="tipoMoneda" name="tipoMoneda" #tipoMoneda="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.tipoMoneda">
+            <input type="hidden" class="form-control" id="comisionAfecta" name="comisionAfecta" #comisionAfecta="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.comisionAfecta">
+            <input type="hidden" class="form-control" id="comisionExenta" name="comisionExenta" #comisionExenta="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.comisionExenta">
+            <input type="hidden" class="form-control" id="montoTotal" name="montoTotal" #montoTotal="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.montoTotal">
+            <input type="hidden" class="form-control" id="comisionReferido" name="comisionReferido" #comisionReferido="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.comisionReferido">
+            <input type="hidden" class="form-control" id="valorReferido" name="valorReferido" #valorReferido="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.valorReferido">
+            <input type="hidden" class="form-control" id="formaPago" name="formaPago" #formaPago="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.formaPago">
+            <input type="hidden" class="form-control" id="nroCuotas" name="nroCuotas" #nroCuotas="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.nroCuotas">
+            <input type="hidden" class="form-control" id="cobertura" name="cobertura" #cobertura="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.cobertura">
+            <input type="hidden" class="form-control" id="limites" name="limites" #limites="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.limites">
+            <input type="hidden" class="form-control" id="items" name="items" #items="ngModel"
+            [(ngModel)]="polizaService.selectPoliza.items">
+            <h4> Estado de Propuesta </h4>
+            <hr>
+            <div class="input-group d-flex justify-content-around">
+                <label for="pendiente">
+                    <input type="radio" [(ngModel)]="polizaService.selectPoliza.estado" name="estado" (click) = "estadoPendiente(modalForm)" value="EMISION" style="width: 20px; height: 20px;">
+                    EMISION
+                </label> <hr>
+                <label for="cerrado">
+                    <input type="radio" [(ngModel)]="polizaService.selectPoliza.estado" name="estado" (click) = "estadoCerrado(modalForm)" value="CERRADO">
+                    CERRADO
+                </label>
+            </div>
+            <h4> Estado de Pago </h4>
+            <hr>
+            <div class="input-group">
+                <label >
+                    <input type="radio" [(ngModel)]="polizaService.selectPoliza.estadoPago" name="estadoPago" (click) = "pagoPagado(modalForm)" value="PAGADO">
+                    PAGADO
+                </label> <hr>
+                <label for="pendiente">
+                    <input type="radio" [(ngModel)]="polizaService.selectPoliza.estadoPago" name="estadoPago" (click) = "pagoPendiente(modalForm)" value="PENDIENTE">
+                    PENDIENTE
+                </label> <hr>
+                <label for="cerrado">
+                    <input type="radio" [(ngModel)]="polizaService.selectPoliza.estadoPago" name="estadoPago" (click) = "pagoAtrasado(modalForm)" value="ATRASADO">
+                    ATRASADO
+                </label>
+            </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="editarEstado(modalForm); modal.close('Save click')">Save</button>
+    </div>
+</ng-template>

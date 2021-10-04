@@ -1,0 +1,61 @@
+h3{
+    font-family: 'Calibri', sans-serif, Times, serif;
+    font-size: 28px;
+}
+div{
+    padding: 0px;
+    margin: 0px;
+}
+.bord{
+    border: 2px solid black;
+}
+.end{
+    display: flex;
+    align-items: flex-end;
+}
+.bg-gray{
+    background-color: lightgrey;
+}
+hr{
+    height: 1px;
+    background-color: black;
+}
+.fz{
+    font-size: 13px;
+}
+span{
+    font-family: 'Calibri';
+    font-size: 13px
+}
+.fec{
+    flex: row-reverse;
+}
+textarea{
+    border: 0 none white;
+    overflow: hidden;
+    padding: 0;
+    outline: none;
+    resize: none;
+}
+p{
+    font-family: 'Calibri', sans-serif;
+    margin: 5px;
+    white-space:pre;
+    -moz-hyphens:auto;
+    -ms-hyphens:auto;
+    -webkit-hyphens:auto;
+    hyphens:auto;
+    word-wrap:break-word;
+}
+pre{
+    font-family: 'Calibri', sans-serif;
+    font-size: 13px;
+    margin: 0;
+}
+span {
+    margin: 5px;
+}
+strong{
+    margin: 5px;
+}
+.element::-webkit-scrollbar { width: 0 !important }

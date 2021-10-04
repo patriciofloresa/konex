@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    background-color: #aaaaaa;
+}
+input{
+    box-shadow: 1px 1px rebeccapurple;
+}
+
+.form-group.required .control-label:after {
+    content:"*";
+    color:red;
+}
+
+label{
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 17px;
+}
+
+.textalign-right{
+    text-align: right;
+}
+select{
+    box-shadow: 1px 1px rebeccapurple;
+}
+.center{
+    display: flex;
+    justify-content: center;
+}
+label{
+    font-weight: 500;
+    color: #161616;
+}
+.form-control:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(128, 140, 163);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  text-align: end;
+}
+
+th{
+    text-align: center;
+}
+
+td{
+    text-align: center;
+}
+
+.ng-select.custom .ng-control .ng-input {
+    text-transform: lowercase;
+}
+
+.n{
+    text-align: end;
+}
